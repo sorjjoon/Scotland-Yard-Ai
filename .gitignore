@@ -5,3 +5,5 @@ package-lock.json
 nodemon.json
 *.csv
 *.py
+/dist
+/coverage

@@ -5,20 +5,34 @@
   <meta charset="utf-8">
   <title>Scotland Yard Ai</title>
   <link rel="stylesheet" href="/public/style.css">
+  <script src="/public/client.js"></script>
+
   <script src="/public/sigma.min.js"></script>
   <script src="/public/sigma.parsers.json.min.js"></script>
-  
-
 </head>
+
 <body>
-  <div id="graph-container"> </div>
+  <main>
+    <div id="graph-container"> </div>
+
+    <div id="sidebar"></div>
+  </main>
+  
   <script>
+    addToSidebar("hello")
+    addToSidebar("hello22")
+    addToSidebar("hell213o")
+    addToSidebar("hell123213o")
+    
+    
     sigma.parsers.json('public/graph/taxi_data.json', {
       container: 'graph-container',
       settings: {
         defaultNodeColor: '#ec5148',
         drawLabels: true
       }
+    }, function(s) {
+      window._sigma = s
     });
   </script>
 </body>
