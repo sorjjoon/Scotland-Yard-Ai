@@ -8,7 +8,7 @@ To build and run the project:
 * install node (university vdi has everything you need)
 * install dependencies: npm install
 * compile the source code: npm run compile
-* * compiled code should appear in the /dist folder
+  * compiled code should appear in the /dist folder
 * start the server: npm start
 * open browser at [http://localhost:5000](/http://localhost:5000)
 
