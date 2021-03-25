@@ -2,7 +2,7 @@
 
 Created a base for the project, mainly the server implmentation. Created the game map with an external program (Gephi), exported it to json and used the library sigmajs to embed it into the webpage. For simplicity, only taxi routes are implemented in the current game map, other types of routes will come later (after implementing MCST). The lack of diffrent kind of routes will not matter when implementing the ai, only diffrence will be in how child states for the current game state are generated (which can easily be modified later)
 
-Created a working base game, which allows playing against humans as well a dummy ai (currently always pick the neighbouring node with the smallest id). 
+Created a working base game, which allows playing against humans as well against a dummy ai (currently picks a random node). 
 
 A lot of gui tweaks, created a sidebar for the game history, blinking color for the node currently used. 
 
@@ -18,7 +18,7 @@ For example all constants to modify the gameplay, located in utils/constants can
 
 Currently all assets outside folders MCST and server can be used in both server side, as well as client side (in the browser).
 
-Finally, as preperation for next week, began implementing the GameTree class (not pushed atm)
+Finally, as preperation for next week, began implementing the GameTree class (not ready or tested yet)
 
 Time usage: ~ 20h
 
