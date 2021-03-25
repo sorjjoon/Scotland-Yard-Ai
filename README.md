@@ -5,7 +5,7 @@
 # Usage
 To build and run the project:
 * Clone the repo
-* install node (university vdi has everything you need)
+* install [node](https://nodejs.org/en/download/) (university vdi has everything needed)
 * install dependencies: npm install
 * compile the source code: npm run compile
   * compiled code should appear in the /dist folder
