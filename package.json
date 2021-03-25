@@ -4,9 +4,9 @@
   "description": "*  [Requirments](/documentation/requirments.md)\r * [Weekly reports](/documentation/reports)",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node dist/index.js",
-    "demon": "nodemon dist/index.js",
-    "compile": "tsc",
+    "start": "node dist/server/index.js",
+    "demon": "nodemon dist/server/index.js",
+    "compile": "tsc && tsc -p tsconfig.client.json && webpack",
     "watch": "tsc -w",
     "test": "jest"
   },
@@ -27,10 +27,14 @@
     "jest": "^26.6.3",
     "nodemon": "^2.0.7",
     "ts-jest": "^26.5.4",
+    "ts-loader": "^8.0.18",
     "ts-node": "^9.1.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.5.0"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1"
   }

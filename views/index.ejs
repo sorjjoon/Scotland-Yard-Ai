@@ -1,40 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Scotland Yard Ai</title>
+    <link rel="stylesheet" href="/public/style.css" />
+    <script src="/public/client.js"></script>
+    <!-- <script src="/public/client.bundle.js"></script> -->
 
-<head>
-  <meta charset="utf-8">
-  <title>Scotland Yard Ai</title>
-  <link rel="stylesheet" href="/public/style.css">
-  <script src="/public/client.js"></script>
+    <script src="/public/sigma.min.js"></script>
+    <script src="/public/sigma.parsers.json.min.js"></script>
+    <script src="/public/sigma.plugins.neighborhoods.min.js"></script>
+  </head>
 
-  <script src="/public/sigma.min.js"></script>
-  <script src="/public/sigma.parsers.json.min.js"></script>
-</head>
+  <body>
+    <main>
+      <div id="graph-container"></div>
+      <div id="sidebar">
+        <table id="game-start-info">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Played By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% players.forEach(function(player){ %>
+            <tr>
+              <td style="color: <%=player.color%>"><%= player.role %></td>
+              <td>
+                <select class="ai-selector" id="ai-select-<%=player.id%>">
+                  <option value="1" selected="selected">AI</option>
+                  <option value="0">HUMAN</option>
+                </select>
+              </td>
+            </tr>
+            <% }); %>
 
-<body>
-  <main>
-    <div id="graph-container"> </div>
+            <tr>
+              <td>
+                <button onclick="startGame()">Start game</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
 
-    <div id="sidebar"></div>
-  </main>
-  
-  <script>
-    addToSidebar("hello")
-    addToSidebar("hello22")
-    addToSidebar("hell213o")
-    addToSidebar("hell123213o")
-    
-    
-    sigma.parsers.json('public/graph/taxi_data.json', {
-      container: 'graph-container',
-      settings: {
-        defaultNodeColor: '#ec5148',
-        drawLabels: true
-      }
-    }, function(s) {
-      window._sigma = s
-    });
-  </script>
-</body>
-
+    <script>
+      var players = <%-JSON.stringify(players)%>;
+      var  revealTurns = <%-JSON.stringify(revealTurns)%>;
+      var gameActive = false
+      var X
+      var detectives = []
+      players.forEach((p) => {
+        if (p.role == "X") {
+          p
+          X=p
+        } else {
+          detectives.push(p)
+        }
+      });
+      detectives.sort((a,b) => a.id-b.id)
+      sigma.parsers.json(
+        "public/graph/taxi_data.json",
+        {
+          container: "graph-container",
+          settings: {
+            drawLabels: true,
+          },
+        },
+        function (s) {
+          window._sigma = s;
+          s.bind('clickNode', function(e) {
+            if(window.gameActive) {
+              window.clickedNode = e.data.node
+            }
+          });
+          sigma.classes.graph.addMethod('adjacentEdges', function(id) {
+            id = String(id)
+            var a = this.allNeighborsIndex[id],
+                eid,
+                target,
+                edges = [];
+            for(target in a) {
+              for(eid in a[target]) {
+                edges.push(a[target][eid]);
+              }
+            }
+            return edges;
+          });
+        }
+      );
+    </script>
+  </body>
 </html>

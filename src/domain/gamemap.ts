@@ -2,8 +2,12 @@ import { GraphNode, NodeInfo } from "./graphnode";
 
 export class GameMap {
   private nodes: Array<GraphNode>;
-
-  constructor(nodes: Array<NodeInfo>, edges: Array<EdgeInfo>) {
+  /**
+   * use the function 'loadMap' for instating a map from json
+   * @param  {Array<NodeInfo>} nodes
+   * @param  {Array<EdgeInfo>} edges
+   */
+  private constructor(nodes: Array<NodeInfo>, edges: Array<EdgeInfo>) {
     this.nodes = [];
     nodes.forEach((element) => {
       this.nodes.push(new GraphNode(element));
@@ -22,17 +26,27 @@ export class GameMap {
       }
     });
   }
-
-  static loadMap(mapJson: string) {
+  /**
+   * Create a gamemap from a json string (sigma export format)
+   * @param  {string} mapJson
+   */
+  public static loadMap(mapJson: string) {
     console.log("Loading graph data");
     const data: MapData = JSON.parse(mapJson);
     return new GameMap(data.nodes, data.edges);
   }
-  getAllNodes(): readonly GraphNode[] {
+  /**
+   * Nodes are ordered by id
+   * @returns GraphNode[] 
+   */
+  public getAllNodes(): readonly GraphNode[] {
     return this.nodes;
   }
-  getNode(nodeId: number) {
-    return this.nodes[nodeId - 1];
+  /**
+   * @param  {number} nodeId
+   */
+  public getNode(nodeId: number|string) {
+    return this.nodes[Number(nodeId) - 1];
   }
 }
 
