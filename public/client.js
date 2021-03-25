@@ -149,7 +149,7 @@ async function getMoveFromServer(gameState) {
     xhr.open(method, url);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function () {
-      if (this.status >= 200) {
+      if (this.status >= 200 && this.status<300) {
         addToSidebar("Success!");
         resolve(xhr.response);
       } else {

@@ -1,7 +1,6 @@
 //Force prototype loading for webpack
 import * as _ from "./prototypes";
 
-
 export enum Color {
   red = "rgb(235, 64, 52)",
   green = "rgb(50, 168, 82)",
@@ -13,16 +12,18 @@ export enum Color {
   orange = "rgb(255, 153, 51)",
 }
 
-
-
 //Game constants
-export const gameDuration = 23
+export const gameDuration = 23;
 export const revealTurns = [1, 3, 8, 13, 23];
 
 export const detectiveCount = 3;
 export const taxiTickets = 22;
 
 export const xColor = Color.red;
-export const detectiveColors: Color[] = Object.keys(Color).map((key) => {
-  if (Color[key] !== xColor && Color[key] !==undefined) return Color[key];
+export const detectiveColors: Color[] = []
+Object.keys(Color).forEach(function (key) {
+  if (Color[key] !== xColor && Color[key]) {
+    detectiveColors.push(Color[key]);
+  }
 });
+

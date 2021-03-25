@@ -35,3 +35,12 @@ export function lookUpBasedOnKey<T, K>(source:T[], key:string, value:K):T|null {
     }
     return null
 }
+
+/**
+ * Return a random element from the array. If pop param is true, element is removed from the array
+ * @param  {boolean} pop=false
+ * @returns T
+ */
+ export function getRandom(arr:Array<any>|ReadonlyArray<any>){
+    return arr[randomInt(0,arr.length-1)]
+  }

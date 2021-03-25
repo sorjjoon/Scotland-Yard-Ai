@@ -12,6 +12,7 @@ import { GameState } from "../MCST/gamestate";
 import { GameMap } from "../domain/gamemap";
 import { readFileSync } from "fs";
 import { EdgeType } from "../domain/graphnode";
+import { getRandom } from "../utils/utils";
 
 /**
  * Main entry point for the app
@@ -28,16 +29,17 @@ const main = async () => {
   require("./prototypes")
 
   app.set("view engine", "ejs");
-
+  
   app.use("/public", express.static(path.join(process.cwd(), "public")));
   app.post("/move", (req, res) => {
+    console.log("Getting move")
     const gameState: GameState = req.body;
     if (gameState === null) {
       res.status(500).send({
         message: "Empty message body",
       });
     }
-    return gameMap.getNode(gameState.playerToMove.location.id).getNeighbours(EdgeType.TAXI)[0]
+     res.json({id: getRandom(gameMap.getNode(gameState.playerToMove.location.id).getNeighbours(EdgeType.TAXI)).id})
   });
   app.get("/", (req, res) => {
     detectiveColors.shuffle(); //Different colors every game
@@ -46,6 +48,7 @@ const main = async () => {
       players.push(
         new Detective(null, id, detectiveColors[id - 1], taxiTickets)
       );
+      
     }
     
     players.push(new MisterX(null, players.length + 1, xColor));
