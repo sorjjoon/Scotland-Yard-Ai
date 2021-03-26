@@ -1,6 +1,7 @@
 # Scotland-Yard-Ai
 *  [Requirments](/documentation/requirments.md)
 * [Weekly reports](/documentation/reports)
+* [Coverage report](/documentation/testing/coverage.txt)
 
 # Usage
 To build and run the project:
@@ -15,3 +16,4 @@ To build and run the project:
 Unit tests: npm test
 \
 Afterwards, coverage report will be in /coverage/lcov-report/index.html (and a summary in stdout)
+

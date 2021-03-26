@@ -8,7 +8,7 @@
     "demon": "nodemon dist/server/index.js",
     "compile": "tsc ",
     "watch": "tsc -w",
-    "test": "jest --silent --verbose"
+    "test": "jest --silent --verbose > documentation/testing/coverage.txt"
   },
   "repository": {
     "type": "git",
