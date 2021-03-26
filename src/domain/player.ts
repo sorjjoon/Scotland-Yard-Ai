@@ -1,4 +1,4 @@
-import { Color } from "../utils/constant";
+import { Color } from "../utils/constants";
 import { Clonable } from "./clonable";
 import { EdgeType, GraphNode, NodeInfo } from "./graphnode";
 

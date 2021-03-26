@@ -1,14 +1,14 @@
-import { EdgeType } from "../src/domain/graphnode";
-import { gameMap } from "../src/utils/constant";
-import { GameMap } from "../src/domain/gamemap";
+import { GameMap } from "../../src/domain/gamemap";
+import { EdgeType } from "../../src/domain/graphnode";
+import { gameMap } from "../../src/server/constants";
 
 describe("Test gamemap", () => {
   const gamemap = gameMap;
-  test("Test gamemap is loaded", () => {
+  test("gamemap is loaded", () => {
     expect(gamemap).toBeInstanceOf(GameMap);
   });
 
-  test("Test node getter", () => {
+  test("node getter", () => {
     const nodes = gamemap.getAllNodes();
     expect(nodes.length).toEqual(199);
     for (let i = 1; i < 200; i++) {
@@ -17,7 +17,9 @@ describe("Test gamemap", () => {
     }
   });
 
-  test("Test node edges", () => {
+  test("node edges are correct", () => {
+    //Testing a few example nodes
+
     const testNode1 = gameMap.getNode(32);
     const edges1 = testNode1.getNeighbours(EdgeType.TAXI);
     expect(edges1.length).toEqual(4);
@@ -49,7 +51,7 @@ describe("Test gamemap", () => {
     expect(ids).toEqual([104, 117, 118, 127]);
   });
 
-  test("Test edge bidirectionality", () => {
+  test("edge bidirectionality", () => {
     const nodes = gamemap.getAllNodes();
     expect(nodes.length).toEqual(199);
     for (let nodeId = 1; nodeId < 200; nodeId++) {

@@ -1,5 +1,5 @@
-import { gameMap } from ".";
 import { Detective, MisterX, Role , UnknownPlayer} from "../domain/player";
+import { gameMap } from "./constants";
 
 export function  createPlayerFromObject(player: UnknownPlayer): Detective | MisterX {
     if (player.role === Role.DETECTIVE) {

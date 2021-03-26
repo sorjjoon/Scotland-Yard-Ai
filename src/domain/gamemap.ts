@@ -31,7 +31,7 @@ export class GameMap {
    * @param  {string} mapJson
    */
   public static loadMap(mapJson: string) {
-    console.log("Loading graph data");
+    console.debug("Loading graph data");
     const data: MapData = JSON.parse(mapJson);
     return new GameMap(data.nodes, data.edges);
   }

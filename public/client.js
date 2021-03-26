@@ -254,7 +254,7 @@ async function mainLoop() {
       p.taxiTickets--;
     }
   }
-  if (xIsCaught()) addToSidebar("<b>Game Ended! Detectives won!</b>");
-  else addToSidebar("<b>Game Ended! X won!</b>");
+  if (xIsCaught()) addToSidebar("<b>X was caught! Detectives win!</b>");
+  else addToSidebar("<b>Time ran out! X won!</b>");
   addToSidebar("Refresh view for a new game");
 }

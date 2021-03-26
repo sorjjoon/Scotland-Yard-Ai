@@ -7,12 +7,12 @@ import {
   revealTurns,
   taxiTickets,
   xColor,
-} from "../utils/constant";
+} from "../utils/constants";
 import { GameState } from "../MCST/gamestate";
-import { GameMap } from "../domain/gamemap";
-import { readFileSync } from "fs";
 import { EdgeType } from "../domain/graphnode";
-import { getRandom } from "../utils/utils";
+import { gameMap } from "./constants";
+import { format } from "util";
+
 
 /**
  * Main entry point for the app
@@ -32,6 +32,11 @@ const main = async () => {
   
   app.use("/public", express.static(path.join(process.cwd(), "public")));
 
+  //Log all incoming requests
+  app.use(function(req, res, next) {
+    console.info(format("[%s] at %s requested %s", new Date().toUTCString(), req.ip, req.url))
+    next()
+  })
 
   app.post("/move", (req, res) => {
     const gameState: GameState = req.body;
@@ -42,7 +47,7 @@ const main = async () => {
     }
      res.json({id: gameMap.getNode(gameState.playerToMove.location.id).getNeighbours(EdgeType.TAXI).getRandom().id})
   });
-  
+
   app.get("/", (req, res) => {
     detectiveColors.shuffle(); //Different colors every game
     const players:Player[] = [];
@@ -62,12 +67,7 @@ const main = async () => {
   });
 };
 
-export const gameMap = GameMap.loadMap(
-  readFileSync(
-    path.join(process.cwd(), "public", "graph", "taxi_data.json"),
-    "utf8"
-  )
-);
+
 main().catch((err) => {
   console.error(err);
 });

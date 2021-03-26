@@ -1,8 +1,8 @@
 
 
-import { gameMap } from ".";
 import { EdgeType, GraphNode } from "../domain/graphnode";
 import { Player} from "../domain/player";
+import { gameMap } from "./constants";
 
 //Adding prototypes here, so domain objects are not dependant on server (const gameMap)
 

@@ -1,4 +1,4 @@
-import * as _ from "../utils/prototypes"
+import * as _ from "../utils/prototypes";
 
 /**
  * Returns a random number between the arguments (inclusive)
@@ -9,16 +9,16 @@ import * as _ from "../utils/prototypes"
  * @param  {number} [start=0]
  * @param  {number} end
  */
-export function randomInt(start:number, end?:number):number {
-    var a, b;
-    if (typeof end === 'undefined') {
-        a=0
-        b=start
-    } else {
-        a=start
-        b=end
-    }
-    return Math.floor(Math.random()*(b-a+1)+a)
+export function randomInt(start: number, end?: number): number {
+  var a, b;
+  if (typeof end === "undefined") {
+    a = 0;
+    b = start;
+  } else {
+    a = start;
+    b = end;
+  }
+  return Math.floor(Math.random() * (b - a + 1) + a);
 }
 
 /**
@@ -29,18 +29,13 @@ export function randomInt(start:number, end?:number):number {
  * @param  {K} value
  * @returns T
  */
-export function lookUpBasedOnKey<T, K>(source:T[], key:string, value:K):T|null {
-    for(let x of source) {
-        if(x[key] === value) return x
-    }
-    return null
-}
-
-/**
- * Return a random element from the array. If pop param is true, element is removed from the array
- * @param  {boolean} pop=false
- * @returns T
- */
- export function getRandom(arr:Array<any>|ReadonlyArray<any>){
-    return arr[randomInt(0,arr.length-1)]
+export function lookUpBasedOnKey<T, K>(
+  source: T[],
+  key: string,
+  value: K
+): T | null {
+  for (let x of source) {
+    if (x[key] === value) return x;
   }
+  return null;
+}

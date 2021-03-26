@@ -1,9 +1,10 @@
 import { cloneGameState, GameState } from "./gamestate";
-import { gameDuration, revealTurns } from "../utils/constant";
+import { gameDuration, revealTurns } from "../utils/constants";
 import { Role } from "../domain/player";
 import { EdgeType, GraphNode } from "../domain/graphnode";
 import { lookUpBasedOnKey } from "../utils/utils";
-import { gameMap } from "../server";
+import { gameMap } from "../server/constants";
+
 
 export class GameTree {
   static gameMap = gameMap;

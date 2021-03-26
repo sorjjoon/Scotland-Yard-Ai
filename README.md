@@ -5,7 +5,7 @@
 # Usage
 To build and run the project:
 * Clone the repo
-* install [node](https://nodejs.org/en/download/) (university vdi has everything needed)
+* install [node](https://nodejs.org/en/download/) (cubbli has everything needed)
 * install dependencies: npm install
 * compile the source code: npm run compile
   * compiled code should appear in the /dist folder
@@ -13,5 +13,5 @@ To build and run the project:
 * open browser at [http://localhost:5000](/http://localhost:5000)
 
 Unit tests: npm test
-
-Afterwards, coverage report will be in /coverage/index.html (and a summary in stdout)
+\
+Afterwards, coverage report will be in /coverage/lcov-report/index.html (and a summary in stdout)
