@@ -31,16 +31,18 @@ const main = async () => {
   app.set("view engine", "ejs");
   
   app.use("/public", express.static(path.join(process.cwd(), "public")));
+
+
   app.post("/move", (req, res) => {
-    console.log("Getting move")
     const gameState: GameState = req.body;
     if (gameState === null) {
       res.status(500).send({
         message: "Empty message body",
       });
     }
-     res.json({id: getRandom(gameMap.getNode(gameState.playerToMove.location.id).getNeighbours(EdgeType.TAXI)).id})
+     res.json({id: gameMap.getNode(gameState.playerToMove.location.id).getNeighbours(EdgeType.TAXI).getRandom().id})
   });
+  
   app.get("/", (req, res) => {
     detectiveColors.shuffle(); //Different colors every game
     const players:Player[] = [];

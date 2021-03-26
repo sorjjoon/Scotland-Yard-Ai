@@ -12,10 +12,15 @@ declare module "../domain/player" {
         
     }
 }
-
-Player.prototype.makeMove = function makeMove(move: number | GraphNode, moveType: EdgeType) {
-    if (!isNaN(Number(move))) {
-      move = gameMap.getNode(Number(move));
+/**
+ * Set the players position to match the new node.
+ * Node can be GraphNode object or a node id (in which the correct node is looked up from gamemap)
+ * @param  {number|GraphNode} move
+ * @param  {EdgeType} moveType
+ */
+Player.prototype.makeMove = function makeMove(newNode: number | GraphNode, moveType: EdgeType) {
+    if (!isNaN(Number(newNode))) {
+      newNode = gameMap.getNode(Number(newNode));
     }
-    this.location = move as GraphNode;
+    this.location = newNode as GraphNode;
   }

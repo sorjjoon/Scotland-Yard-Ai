@@ -11,7 +11,8 @@ export class GraphNode {
     this.taxiEdges = [];
   }
   /**
-   * Get all neighboring nodes of the given type
+   * Get all neighboring nodes of the given type. 
+   * Do not modify the returned array, if you need to add a new edge, use addEdge
    * @param  {EdgeType} type Edgetypes to return. Currently only Taxi is supported
    * @returns {readonly GraphNode[]} readonly GraphNode
    */

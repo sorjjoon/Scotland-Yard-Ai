@@ -3,6 +3,14 @@ import { randomInt } from "./utils";
 declare global {
   interface Array<T> {
     shuffle():void
+    getRandom():T
+  }
+}
+
+declare global {
+  interface ReadonlyArray<T> {
+    shuffle():void
+    getRandom():T
   }
 }
 
@@ -17,5 +25,7 @@ Array.prototype.shuffle =  function shuffle() {
     this[randomIndex] = temp;
   }
 }
-
+Array.prototype.getRandom =  function getRandom<T>():T{
+  return this[randomInt(0,this.length-1)]
+}
 
