@@ -3,7 +3,7 @@ import { gameDuration, revealTurns } from "../utils/constants";
 import { Role } from "../domain/players/Player";
 import { EdgeType, GraphNode } from "../domain/GraphNode";
 import { lookUpBasedOnKey } from "../utils/utils";
-import { gameMap } from "../server/constants";
+import { gameMap } from "../server/GameMap";
 import { MisterX } from "../domain/players/MisterX";
 import { Detective } from "../domain/players/Detective";
 import { createPlayerFromObject } from "../server/utils";

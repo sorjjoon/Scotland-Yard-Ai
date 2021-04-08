@@ -7,7 +7,7 @@ import { GameTree } from "../../src/MCST/GameTree";
 import { Role } from "../../src/domain/players/Player";
 import { Detective } from "../../src/domain/players/Detective";
 import { gameDuration } from "../../src/utils/constants";
-import { gameMap } from "../../src/server/constants";
+import { gameMap } from "../../src/server/GameMap";
 import { EdgeType } from "../../src/domain/GraphNode";
 
 describe("Test GameTree", () => {

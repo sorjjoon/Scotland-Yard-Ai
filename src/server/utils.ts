@@ -1,6 +1,6 @@
 import { Detective } from "../domain/players/Detective";
 import { MisterX } from "../domain/players/MisterX";
-import { gameMap } from "./constants";
+import { gameMap } from "./GameMap";
 import { SerializedPlayer } from "../domain/players/SerializedPlayer";
 
 export function createPlayerFromObject(player: SerializedPlayer): Detective | MisterX {

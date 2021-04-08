@@ -1,14 +1,23 @@
 import express from "express";
 import path from "path";
 import { Player } from "../domain/players/Player";
-import { Color, detectiveColors, detectiveCount, revealTurns, taxiTickets, xColor } from "../utils/constants";
+import {
+  AITypes,
+  Color,
+  detectiveColors,
+  detectiveCount,
+  moveProcessTime,
+  revealTurns,
+  taxiTickets,
+  xColor,
+} from "../utils/constants";
 import { GameState } from "../MCST/GameState";
 import { format } from "util";
 import { MisterX } from "../domain/players/MisterX";
 import { Detective } from "../domain/players/Detective";
 
 import { PureSearchTree } from "../MCST/search_trees/PureSearchTree";
-import { AITypes, gameMap, moveProcessTime } from "./constants";
+import { gameMap } from "./GameMap";
 import { EdgeType } from "../domain/GraphNode";
 import { monteCarloSearch } from "../MCST/MCTS";
 import { GameTree } from "../MCST/GameTree";

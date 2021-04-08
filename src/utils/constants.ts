@@ -11,6 +11,8 @@ export enum Color {
 export const black = "rgb(0, 0, 0)";
 
 //Game constants
+export const moveProcessTime = 5 * 1000; //ms
+
 export const gameDuration = 23;
 export const revealTurns = [1, 3, 8, 13, 23];
 
@@ -24,3 +26,9 @@ export const xColor = Color.red;
 export const detectiveColors: readonly Color[] = Object.keys(Color)
   .filter((key) => Color[key] !== xColor && typeof Color[key] === "string")
   .map((key) => Color[key]);
+
+export enum AITypes {
+  HUMAN = "0",
+  RANDOM = "1",
+  "PURE MCTS" = "2",
+}

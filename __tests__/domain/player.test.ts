@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import path from "path";
-import { gameMap } from "../../src/server/constants";
+import { gameMap } from "../../src/server/GameMap";
 import { EdgeType, GraphNode } from "../../src/domain/GraphNode";
 import { Detective } from "../../src/domain/players/Detective";
 import { MisterX } from "../../src/domain/players/MisterX";

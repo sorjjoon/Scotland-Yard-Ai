@@ -1,6 +1,6 @@
 import { GameMap } from "../../src/domain/gamemap";
 import { EdgeType } from "../../src/domain/graphnode";
-import { gameMap } from "../../src/server/constants";
+import { gameMap } from "../../src/server/GameMap";
 
 describe("Test gamemap", () => {
   const gamemap = gameMap;
@@ -57,9 +57,7 @@ describe("Test gamemap", () => {
     for (let nodeId = 1; nodeId < 200; nodeId++) {
       let node = gameMap.getNode(nodeId);
       node.getNeighbours(EdgeType.TAXI).forEach((neighbour) => {
-        expect(
-          neighbour.getNeighbours(EdgeType.TAXI).map((x) => x.id)
-        ).toContain(nodeId);
+        expect(neighbour.getNeighbours(EdgeType.TAXI).map((x) => x.id)).toContain(nodeId);
       });
     }
   });
