@@ -5,7 +5,7 @@
 
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    
+
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
@@ -13,7 +13,7 @@
     "emitDecoratorMetadata": true,
 
     "experimentalDecorators": true,
-    "baseUrl": "..",
+    "baseUrl": "../../",
 
     "noEmit": false,
     "noImplicitThis": true,
@@ -27,5 +27,5 @@
     "resolveJsonModule": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "src/client", "__tests__"]
+  "exclude": ["node_modules"]
 }

@@ -1,21 +1,22 @@
-import { Detective, MisterX, Role , UnknownPlayer} from "../domain/player";
+import { Detective } from "../domain/players/Detective";
+import { MisterX } from "../domain/players/MisterX";
 import { gameMap } from "./constants";
+import { SerializedPlayer } from "../domain/players/SerializedPlayer";
 
-export function  createPlayerFromObject(player: UnknownPlayer): Detective | MisterX {
-    if (player.role === Role.DETECTIVE) {
-      return new Detective(
-        gameMap.getNode(player.location.id),
-        player.id,
-        player.color,
-        player.taxiTickets
-      );
-      
-    }
-    return new MisterX(
+export function createPlayerFromObject(player: SerializedPlayer): Detective | MisterX {
+  if (Detective.isDetective(player)) {
+    return new Detective(
       gameMap.getNode(player.location.id),
-      player.id,
+      Number(player.id),
       player.color,
-      player.locationKnownToDetectives,
-      player.turnCounterForLocation
+      Number(player.taxiTickets)
     );
   }
+  return new MisterX(
+    gameMap.getNode(player.location?.id),
+    Number(player.id),
+    player.color,
+    gameMap.getNode(player.locationKnownToDetectives?.id),
+    player.turnCounterForLocation
+  );
+}

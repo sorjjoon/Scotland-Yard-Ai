@@ -1,4 +1,4 @@
-import { GraphNode, NodeInfo } from "./graphnode";
+import { GraphNode, NodeInfo } from "./GraphNode";
 
 export class GameMap {
   private nodes: Array<GraphNode>;
@@ -37,16 +37,20 @@ export class GameMap {
   }
   /**
    * Nodes are ordered by id
-   * @returns GraphNode[] 
+   * @returns GraphNode[]
    */
   public getAllNodes(): readonly GraphNode[] {
     return this.nodes;
   }
   /**
+   * Return the node with the requested id
+   * Returns null in case invalid id (like undefined)
    * @param  {number} nodeId
+   * @returns {GraphNode}
    */
-  public getNode(nodeId: number|string) {
-    return this.nodes[Number(nodeId) - 1];
+  public getNode(nodeId: number | string | null) {
+    //Number(null) returns 0
+    return this.nodes[Number(nodeId) - 1] ?? null;
   }
 }
 

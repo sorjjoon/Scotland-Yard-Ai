@@ -4,12 +4,29 @@ main {
   grid-template-columns: auto 350px;
   grid-template-rows: 98vh;
 }
-#graph-container {
-  height: 95%;
+#main-wrapper {
+  height: 100%;
   grid-column-start: 1;
   grid-row-start: 1;
 }
-
+#graph-container {
+  height: 98%;
+}
+#replay-header {
+  height: 0;
+  display: none;
+}
+#replay-header.show {
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#replay-header > * {
+  flex: 1 1 auto;
+  margin: 5px;
+  font-weight: bold;
+}
 #sidebar {
   grid-column-start: 2;
   grid-row-start: 1;
@@ -18,7 +35,7 @@ main {
   border: 1px solid #d9d9d9;
   background-color: #fcfcfc;
   padding: 4px;
-  overflow-y: scroll
+  overflow-y: scroll;
 }
 #sidebar > * {
   font-size: 18px;
@@ -29,6 +46,8 @@ main {
 #sidebar > div:first-child {
   font-size: 24px;
   padding: 6px 0;
+  font-weight: bold;
+  text-align: center;
 }
 #game-start-info {
   width: 100%;

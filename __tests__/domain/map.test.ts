@@ -58,7 +58,7 @@ describe("Test gamemap", () => {
       let node = gameMap.getNode(nodeId);
       node.getNeighbours(EdgeType.TAXI).forEach((neighbour) => {
         expect(
-          neighbour.getNeighbours(EdgeType.TAXI).map((x) => x.id) 
+          neighbour.getNeighbours(EdgeType.TAXI).map((x) => x.id)
         ).toContain(nodeId);
       });
     }

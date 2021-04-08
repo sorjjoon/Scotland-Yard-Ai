@@ -1,8 +1,9 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/client/client.ts",
-  mode:"none",
+  entry: ["./src/utils/prototypes.ts", "./src/client/external.ts"],
+  mode: "none",
+
   module: {
     rules: [
       {
@@ -15,7 +16,7 @@ module.exports = {
             },
           },
         ],
-        exclude: [/node_modules/,path.resolve(__dirname, "server", "index.ts")]
+        exclude: [/node_modules/, path.resolve(__dirname, "server", "index.ts")],
       },
     ],
   },
@@ -26,7 +27,7 @@ module.exports = {
   output: {
     filename: "client.bundle.js",
     path: path.resolve(__dirname, "public"),
-    libraryTarget: 'var',
-    library: 'lib'
+    libraryTarget: "var",
+    library: "lib",
   },
 };

@@ -1,16 +1,13 @@
-
-
-import { EdgeType, GraphNode } from "../domain/graphnode";
-import { Player} from "../domain/player";
-import { gameMap } from "./constants";
+import { EdgeType, GraphNode } from "../GraphNode";
+import { Player } from "./Player";
+import { gameMap } from "../../server/constants";
 
 //Adding prototypes here, so domain objects are not dependant on server (const gameMap)
 
-declare module "../domain/player" {
-    interface Player {
-        makeMove(move: number | GraphNode, moveType: EdgeType)
-        
-    }
+declare module "../../domain/players/Player" {
+  interface Player {
+    makeMove(move: number | GraphNode, moveType: EdgeType);
+  }
 }
 /**
  * Set the players position to match the new node.
@@ -19,8 +16,8 @@ declare module "../domain/player" {
  * @param  {EdgeType} moveType
  */
 Player.prototype.makeMove = function makeMove(newNode: number | GraphNode, moveType: EdgeType) {
-    if (!isNaN(Number(newNode))) {
-      newNode = gameMap.getNode(Number(newNode));
-    }
-    this.location = newNode as GraphNode;
+  if (typeof newNode === "number") {
+    newNode = gameMap.getNode(newNode);
   }
+  this.location = newNode;
+};

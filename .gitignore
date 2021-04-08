@@ -11,3 +11,4 @@ time.txt
 *.bundle.*
 /*temp*
 *.map
+*.tgz

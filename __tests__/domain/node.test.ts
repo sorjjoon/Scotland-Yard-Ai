@@ -18,8 +18,8 @@ describe("Test node type guard", () => {
         "utf-8"
       )
     );
-    sigmaNodes.nodes.forEach(element => {
-        expect(GraphNode.isGraphNode(element)).toBe(true);
+    sigmaNodes.nodes.forEach((element) => {
+      expect(GraphNode.isGraphNode(element)).toBe(true);
     });
   });
 });

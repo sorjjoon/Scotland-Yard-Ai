@@ -4,8 +4,7 @@
     <meta charset="utf-8" />
     <title>Scotland Yard Ai</title>
     <link rel="stylesheet" href="/public/style.css" />
-    <script src="/public/client.js"></script>
-    <!-- <script src="/public/client.bundle.js"></script> -->
+    <script src="/public/client.bundle.js"></script>
 
     <script src="/public/sigma.min.js"></script>
     <script src="/public/sigma.parsers.json.min.js"></script>
@@ -14,7 +13,16 @@
 
   <body>
     <main>
-      <div id="graph-container"></div>
+      <div id="main-wrapper">
+        <div id="replay-header">
+          <button id="replay-prev">Last Move</button>
+          <span id="replay-turncounter"> Turn: </span>
+          <span id="replay-player">Player to move: </span>
+          <button id="replay-next">Next Move</button>
+        </div>
+        <div id="graph-container"></div>
+      </div>
+
       <div id="sidebar">
         <table id="game-start-info">
           <thead>
@@ -29,16 +37,24 @@
               <td style="color: <%=player.color%>"><%= player.role %></td>
               <td>
                 <select class="ai-selector" id="ai-select-<%=player.id%>">
-                  <option value="1" selected="selected">AI</option>
-                  <option value="0">HUMAN</option>
+                  <% Object.keys(aiTypes).forEach(function(key){ %>
+                  <option value="<%=aiTypes[key]%>" selected="selected"><%=key%></option>
+                  <% }); %>
                 </select>
               </td>
             </tr>
             <% }); %>
-
             <tr>
               <td>
-                <button onclick="startGame()">Start game</button>
+                <input id="playout-debug" type="checkbox" value="Show playout debug info" checked="" />
+              </td>
+              <td>
+                <label for="playout-debug"> Show playout debug info</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button onclick="lib.startGame()">Start game</button>
               </td>
             </tr>
           </tbody>
@@ -49,48 +65,7 @@
     <script>
       var players = <%-JSON.stringify(players)%>;
       var  revealTurns = <%-JSON.stringify(revealTurns)%>;
-      var gameActive = false
-      var X
-      var detectives = []
-      players.forEach((p) => {
-        if (p.role == "X") {
-          p
-          X=p
-        } else {
-          detectives.push(p)
-        }
-      });
-      detectives.sort((a,b) => a.id-b.id)
-      sigma.parsers.json(
-        "public/graph/taxi_data.json",
-        {
-          container: "graph-container",
-          settings: {
-            drawLabels: true,
-          },
-        },
-        function (s) {
-          window._sigma = s;
-          s.bind('clickNode', function(e) {
-            if(window.gameActive) {
-              window.clickedNode = e.data.node
-            }
-          });
-          sigma.classes.graph.addMethod('adjacentEdges', function(id) {
-            id = String(id)
-            var a = this.allNeighborsIndex[id],
-                eid,
-                target,
-                edges = [];
-            for(target in a) {
-              for(eid in a[target]) {
-                edges.push(a[target][eid]);
-              }
-            }
-            return edges;
-          });
-        }
-      );
+      window.addEventListener("load",lib.fetchGraph())
     </script>
   </body>
 </html>

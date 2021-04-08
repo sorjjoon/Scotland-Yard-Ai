@@ -1,10 +1,10 @@
-### Weekly report 3. (21.3-27.3)
+### Weekly report 2. (21.3-27.3)
 
 Created a base for the project, mainly the server implmentation. Created the game map with an external program (Gephi), exported it to json and used the library sigmajs to embed it into the webpage. For simplicity, only taxi routes are implemented in the current game map, other types of routes will come later (after implementing MCST). The lack of diffrent kind of routes will not matter when implementing the ai, only diffrence will be in how child states for the current game state are generated (which can easily be modified later)
 
-Created a working base game, which allows playing against humans as well against a dummy ai (currently picks a random node). 
+Created a working base game, which allows playing against humans as well against a dummy ai (currently picks a random node).
 
-A lot of gui tweaks, created a sidebar for the game history, blinking color for the node currently used. 
+A lot of gui tweaks, created a sidebar for the game history, blinking color for the node currently used.
 
 Hid Mister X color during detectives turn (unless his location has been revealed)
 
@@ -26,9 +26,6 @@ Currently the base game is working fine, (and the gui looks good enough).
 
 I had to do a lot of research to the various tools used to make a functioning node project, such as using multiple tsconfigs or webpack, as well as numerous other typescirpt oddities, such as how to deal with prototypes (declare global/module). Implementing unit tests was much easier than I expected, jest came builtin with all the tools I needed (including code coverage and support for typescript), so it needed next to no configuration.
 
-At the moment everything seems clear, but I am worried I am spending a little too much worrying about how readable the client side code will be (meaning the gui code), as it was the major motivation for doing the huge refactoring to allow domain objects to independent of game map, as well as having to resort to prototypes to implement all the needed functionality for Player and GraphNode. 
+At the moment everything seems clear, but I am worried I am spending a little too much worrying about how readable the client side code will be (meaning the gui code), as it was the major motivation for doing the huge refactoring to allow domain objects to independent of game map, as well as having to resort to prototypes to implement all the needed functionality for Player and GraphNode.
 
 The goal for next week will be the implementation of the MCST algorithm (and maybe the migaration to full typescript?)
-
-
-

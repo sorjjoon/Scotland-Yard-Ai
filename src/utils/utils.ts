@@ -22,20 +22,16 @@ export function randomInt(start: number, end?: number): number {
 }
 
 /**
- * Returns the first object, whiches 'key' attribute equals value
- * Returns null in case not found
+ * Returns the first object, which has a 'key' attribute equaling value
+ * Returns undefined in case not found
  * @param  {T[]} source
  * @param  {string} key
  * @param  {K} value
  * @returns T
  */
-export function lookUpBasedOnKey<T, K>(
-  source: T[],
-  key: string,
-  value: K
-): T | null {
+export function lookUpBasedOnKey<T, K>(source: readonly T[], key: string, value: K): T | undefined {
   for (let x of source) {
     if (x[key] === value) return x;
   }
-  return null;
+  return undefined;
 }
