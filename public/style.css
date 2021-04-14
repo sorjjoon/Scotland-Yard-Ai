@@ -28,14 +28,13 @@ main {
   font-weight: bold;
 }
 #sidebar {
-  grid-column-start: 2;
-  grid-row-start: 1;
   display: flex;
   flex-direction: column;
   border: 1px solid #d9d9d9;
   background-color: #fcfcfc;
   padding: 4px;
   overflow-y: scroll;
+  flex: 1 1 auto;
 }
 #sidebar > * {
   font-size: 18px;
@@ -54,4 +53,15 @@ main {
 }
 #game-start-info th {
   text-align: left;
+}
+#side-wrapper {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  height: 100%;
+}
+#edge-selector {
+  flex: 0 1 auto;
 }

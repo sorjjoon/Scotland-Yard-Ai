@@ -12,7 +12,7 @@ To build and run the project:
 - install [node](https://nodejs.org/en/download/) (cubbli has everything needed)
 - install dependencies: npm install
 - compile the source code: npm run compile
-  - compiled javascript should appear in the /dist folder, and there should client.bundle.js file in the /public folder
+  - compiled javascript should appear in the /dist folder, and there should a client.bundle.js file in the /public folder
 - start the server: npm run start
 - open browser at [http://localhost:5000](/http://localhost:5000)
 

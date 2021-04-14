@@ -10,7 +10,7 @@ export class PureSearchTree extends GameTree {
    * @returns {GraphNode}
    */
   public getBestMove(): GameTree {
-    var comparator;
+    var comparator: (a: any, b: any) => number;
     let simpleComparator = (a, b) => {
       return a.wins / a.visits - b.wins / b.visits;
     };

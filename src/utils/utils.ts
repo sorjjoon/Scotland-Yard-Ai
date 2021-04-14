@@ -23,6 +23,7 @@ export function randomInt(start: number, end?: number): number {
 
 /**
  * Returns the first object, which has a 'key' attribute equaling value
+ *
  * Returns undefined in case not found
  * @param  {T[]} source
  * @param  {string} key

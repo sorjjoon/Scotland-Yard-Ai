@@ -1,4 +1,4 @@
-import { GraphNode, NodeInfo } from "./GraphNode";
+import { EdgeType, GraphNode, NodeInfo } from "./GraphNode";
 
 export class GameMap {
   private nodes: Array<GraphNode>;
@@ -20,10 +20,8 @@ export class GameMap {
     edges.forEach((element) => {
       let node1 = this.getNode(element.source);
       let node2 = this.getNode(element.target);
-      if (element.color == "rgb(0,0,0)") {
-        node1.addEdge(node2);
-        node2.addEdge(node1);
-      }
+      node1.addEdge(node2, element.attributes.type);
+      node2.addEdge(node1, element.attributes.type);
     });
   }
   /**
@@ -63,7 +61,7 @@ interface EdgeInfo {
   source: number;
   target: number;
   id: number;
-  attributes: object;
+  attributes: { [type: string]: EdgeType };
   color: string;
   size: number;
 }

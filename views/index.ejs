@@ -22,43 +22,68 @@
         </div>
         <div id="graph-container"></div>
       </div>
-
-      <div id="sidebar">
-        <table id="game-start-info">
-          <thead>
-            <tr>
-              <th scope="col">Role</th>
-              <th scope="col">Played By</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% players.forEach(function(player){ %>
-            <tr>
-              <td style="color: <%=player.color%>"><%= player.role %></td>
-              <td>
-                <select class="ai-selector" id="ai-select-<%=player.id%>">
-                  <% Object.keys(aiTypes).forEach(function(key){ %>
-                  <option value="<%=aiTypes[key]%>" selected="selected"><%=key%></option>
-                  <% }); %>
-                </select>
-              </td>
-            </tr>
-            <% }); %>
-            <tr>
-              <td>
-                <input id="playout-debug" type="checkbox" value="Show playout debug info" checked="" />
-              </td>
-              <td>
-                <label for="playout-debug"> Show playout debug info</label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button onclick="lib.startGame()">Start game</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div id="side-wrapper">
+        <div id="sidebar">
+          <table id="game-start-info">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Played By</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% players.forEach(function(player){ %>
+              <tr>
+                <td style="color: <%=player.color%>"><%= player.role %></td>
+                <td>
+                  <select class="ai-selector" id="ai-select-<%=player.id%>">
+                    <% Object.keys(aiTypes).forEach(function(key){ %>
+                    <option value="<%=aiTypes[key]%>" selected="selected"><%=key%></option>
+                    <% }); %>
+                  </select>
+                </td>
+              </tr>
+              <% }); %>
+              <tr>
+                <td>
+                  <input id="playout-debug" type="checkbox" value="Show playout debug info" checked="" />
+                </td>
+                <td>
+                  <label for="playout-debug"> Show playout debug info</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button onclick="lib.startGame()">Start game</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="edge-selector">
+          <span> Visible routes </span>
+          <table>
+            <!-- Form is here just to remove autocomplete on firefox -->
+            <form id="dummy" autocomplete="off">
+              <tbody>
+                <tr>
+                  <td>
+                    <input id="taxi" type="checkbox" value="1" checked="" oninput="lib.updateVisibleEdges()" />
+                    <label for="taxi"> Taxi</label>
+                  </td>
+                  <td>
+                    <input id="bus" type="checkbox" value="1" checked="" oninput="lib.updateVisibleEdges()" />
+                    <label for="bus"> Bus</label>
+                  </td>
+                  <td>
+                    <input id="metro" type="checkbox" value="1" checked="" oninput="lib.updateVisibleEdges()" />
+                    <label for="metro"> Metro</label>
+                  </td>
+                </tr>
+              </tbody>
+            </form>
+          </table>
+        </div>
       </div>
     </main>
 

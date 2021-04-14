@@ -6,9 +6,11 @@ import { Player, Role } from "./Player";
 
 export class Detective extends Player implements Clonable<Detective> {
   taxiTickets: number;
+  tickets: { [key in EdgeType]?: number };
 
   constructor(location: GraphNode | null, id: number, color: Color, taxiTickets: number) {
     super(Role.DETECTIVE, location, id, color);
+    this.tickets.TAXI = taxiTickets;
     this.taxiTickets = taxiTickets;
   }
   /**

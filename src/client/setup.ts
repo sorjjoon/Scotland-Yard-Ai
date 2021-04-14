@@ -22,7 +22,11 @@ declare global {
     showDebug: boolean;
   }
 }
-
+/**
+ * Set up the window for a new game.
+ *
+ * Sigma should be loaded before calling this function (loadGraph)
+ */
 export function startGame() {
   addToSidebar("Game log");
   addToSidebar("Setting up...");
@@ -72,6 +76,9 @@ export function startGame() {
   mainLoop();
 }
 
+/**
+ * Make the ajax request to load
+ */
 export function fetchGraph() {
   sigma.parsers.json(
     "public/graph/taxi_data.json",
@@ -79,7 +86,7 @@ export function fetchGraph() {
       container: "graph-container",
 
       settings: {
-        //@ts-ignore
+        //@ts-ignore, type declarations are for prev version?
         drawLabels: true,
       },
     },
@@ -90,14 +97,15 @@ export function fetchGraph() {
           window.clickedNode = e.data.node;
         }
       });
-      //For the sigma.neighborhood plugin
+      //sigma.neighborhood plugin needs adjacentEdges to know which nodes are neighbouring one another
       sigma.classes.graph.addMethod("adjacentEdges", function (id) {
-        id = String(id);
+        id = Number(id);
         //@ts-ignore
         var a = this.allNeighborsIndex[id],
           eid,
           target,
           edges = [];
+
         for (target in a) {
           for (eid in a[target]) {
             edges.push(a[target][eid]);

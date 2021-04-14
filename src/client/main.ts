@@ -74,10 +74,15 @@ export async function mainLoop() {
   if (xIsCaught()) addToSidebar("<b>X was caught! Detectives win!</b>");
   else addToSidebar("<b>Time ran out! X won!</b>");
   addToSidebar("Refresh view for a new game");
-  pushGameState(turnCounter, {});
+  pushGameState(turnCounter, {} as any);
   addToSidebar("<button id='replay-button' onclick='lib.replayGame()'> Replay Game </button>");
 }
-
+/**
+ * Wait for a human player to make a move, and check that the made move is legal
+ *
+ * @param  {Player} player
+ * @returns {Promise<GraphNode>} move
+ */
 function getNextMove(player: Player): Promise<GraphNode> {
   delete window.clickedNode;
   window.gameActive = true;
@@ -110,9 +115,18 @@ function getNextMove(player: Player): Promise<GraphNode> {
     })();
   });
 }
-function validMove(player: Player, move: number | string) {
+/**
+ * Check if the given move is legal for the given player
+ * @param  {Player} player
+ * @param  {number|string} move
+ * @returns {boolean}
+ */
+function validMove(player: Player, move: number | string): boolean {
   //cast to any because neighborhood is loaded by plugin
-  let ids = (window._sigma.graph as any).neighborhood(player.location.id).nodes.map((n) => n.id);
+  let ids = (window._sigma.graph as any)
+    .neighborhood(player.location.id)
+    .nodes.filter((n) => n.id != player.location.id)
+    .map((n) => n.id);
   if (Detective.isDetective(player)) {
     return ids.includes(String(move)) && !window.detectives.map((d) => d.location.id).includes(Number(move));
   }
