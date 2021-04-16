@@ -25,7 +25,8 @@ To build and run the project (all commands from the project root):
     - Pure: An implementation of PURE MCTS (a very simple MCTS)
     - Explorative: A more advanced version of MCTS, with a preference for exploring the gametree
       - Currently not working, couldn't get this to work for this deadline (makes nonsensical moves atm)
-- Diffrent constants, to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts).
+
+Diffrent constants, to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts).
   - After any modifications you will need to run compile and start again
   - If you intend to modify the constant, instead of npm run compile, use 'npm run watch' and 'npm run pack' for compiling, and 'npm run demon' to start the server
     - They will automatically recompile and restart the server as needed (after file save)
