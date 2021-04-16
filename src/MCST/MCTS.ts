@@ -44,7 +44,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     if (fastestRoute.length - 2 > maxDistanceBeforeRushing) {
       let rushMove = fastestRoute[1];
 
-      rushMove.details.moveDebugStr = "No playouts, rushed towards X. Distance: {0}".formatString(
+      rushMove.details.moveDebugStr = " No playouts, rushed towards X. Distance: {0}".formatString(
         fastestRoute.length - 2
       );
       for (let e of Object.values(EdgeType)) {
