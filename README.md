@@ -19,6 +19,12 @@ To build and run the project (all commands from the project root):
   - compiled javascript should appear in the /dist folder, and there should a client.bundle.js file in the /public folder
 - start the server: 'npm run start'
 - open browser at [http://localhost:5000](/http://localhost:5000)
+  - When selecting opponents for a game, there are currently 4 options
+    - Human: Moves are made manually by the player
+    - Random: The AI will choose a move at random
+    - Pure: An implementation of PURE MCTS (a very simple MCTS)
+    - Explorative: A more advanced version of MCTS, with a preference for exploring the gametree
+      - Currently not working, couldn't get this to work for this deadline (makes nonsensical moves atm)
 - Diffrent constants, to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts).
   - After any modifications you will need to run compile and start again
   - If you intend to modify the constant, instead of npm run compile, use 'npm run watch' and 'npm run pack' for compiling, and 'npm run demon' to start the server
