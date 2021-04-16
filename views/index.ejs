@@ -44,6 +44,21 @@
                 </td>
               </tr>
               <% }); %>
+            </tbody>
+          </table>
+          <span class="header"> Game variables </span>
+          <table>
+            <header>
+
+            </header>
+            <thead>
+              <tr>
+                <th scope="col">Value</th>
+                <th scope="col">Explanation</th>
+              </tr>
+
+            </thead>
+            <tbody>
               <tr>
                 <td>
                   <input id="playout-debug" type="checkbox" value="Show playout debug info" checked="" />
@@ -54,10 +69,21 @@
               </tr>
               <tr>
                 <td>
+                  <input id="detectives-see-x" type="checkbox" value="detectives-see-x"  />
+                </td>
+                <td>
+                  <label for="detectives-see-x"> Detectives can always see X</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <button onclick="lib.startGame()">Start game</button>
                 </td>
               </tr>
             </tbody>
+          </table>
+              
+              
           </table>
         </div>
         <div id="edge-selector">
@@ -71,11 +97,11 @@
                     <input id="taxi" type="checkbox" value="1" checked="" oninput="lib.updateVisibleEdges()" />
                     <label for="taxi"> Taxi</label>
                   </td>
-                  <td>
+                  <td >
                     <input id="bus" type="checkbox" value="1" checked="" oninput="lib.updateVisibleEdges()" />
                     <label for="bus"> Bus</label>
                   </td>
-                  <td>
+                  <td ">
                     <input id="metro" type="checkbox" value="1" checked="" oninput="lib.updateVisibleEdges()" />
                     <label for="metro"> Metro</label>
                   </td>
@@ -89,8 +115,41 @@
 
     <script>
       var players = <%-JSON.stringify(players)%>;
-      var  revealTurns = <%-JSON.stringify(revealTurns)%>;
       window.addEventListener("load",lib.fetchGraph())
+      //Adding a method for finding a node's edges
+      sigma.classes.graph.addMethod("adjacentEdges", function (id) {
+        id = Number(id);
+        //@ts-ignore
+        var a = this.allNeighborsIndex[id],
+          eid,
+          target,
+          edges = [];
+
+        for (target in a) {
+          for (eid in a[target]) {
+            edges.push(a[target][eid]);
+          }
+        }
+        return edges;
+      });
+      sigma.classes.graph.addMethod("adjacentNodes", function (id) {
+        id = String(id)
+        //@ts-ignore
+        let edges = this.adjacentEdges(id)
+        let nodes = []
+        let ids = []
+        for(let t of edges) {
+          if(t.source == id && t.target != id && !ids.includes(t.target)) {
+            nodes.push(window.lib.lookupNodeById(t.target))
+            ids.push(t.target)
+          }
+          if(t.target == id && t.source != id && !ids.includes(t.source)) {
+            nodes.push(window.lib.lookupNodeById(t.source))
+            ids.push(t.source)
+          }
+        }
+        return nodes;
+      });
     </script>
   </body>
 </html>

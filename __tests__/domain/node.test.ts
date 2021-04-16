@@ -1,4 +1,4 @@
-import { GraphNode } from "../../src/domain/graphnode";
+import { GraphNode } from "../../src/domain/GraphNode";
 import { gameMap } from "../../src/server/GameMap";
 import { readFileSync } from "fs";
 

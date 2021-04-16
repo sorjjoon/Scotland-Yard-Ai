@@ -1,10 +1,11 @@
 import { addToSidebar, lookupNodeById, setNodeColor } from "./utils";
 import { Player } from "../domain/players/Player";
-import { GraphNode, NodeInfo } from "../domain/GraphNode";
+import { EdgeInfo, EdgeType, GraphNode, NodeInfo } from "../domain/GraphNode";
 import { black } from "../utils/constants";
 import { pushGameState } from "./replay";
 import { GameState } from "../MCST/GameState";
 import { Detective } from "../domain/players/Detective";
+import { MisterX } from "../domain/players/MisterX";
 
 /**
  * Entry point for a new game
@@ -37,9 +38,11 @@ export async function mainLoop() {
       );
       X.locationKnownToDetectives = X.location;
       X.turnCounterForLocation = turnCounter;
+      X.movesSinceReveal = [];
       setNodeColor(X.location.id, X.color);
     } else {
-      addToSidebar("X moved in secret");
+      addToSidebar("X moved in secret, using {0}".formatString(X.location.details.moveType));
+      X.movesSinceReveal.push(X.location.details.moveType);
       setNodeColor(X.location.id, black);
     }
     if (xIsCaught()) {
@@ -55,16 +58,32 @@ export async function mainLoop() {
         )
       );
       setNodeColor(p.location.id, black);
+
       if (!p.isPlayedByAI) {
-        p.location = await getNextMove(p);
+        if (!checkIfAnyValidMoves(p)) {
+          addToSidebar("No valid moves remaining");
+          p.location.details.moveType = undefined;
+        } else {
+          p.location = await getNextMove(p);
+        }
       } else {
         p.location = await getMoveFromServer(getGameState(turnCounter, p));
       }
       setNodeColor(p.location.id, p.color);
       addToSidebar(
-        "<span style='color:{0};'>Detective {1} moved to: {2}</span>".formatString(p.color, p.id, p.location.id)
+        "<span style='color:{0};'>Detective {1} moved to: {2}, using {3}</span>".formatString(
+          p.color,
+          p.id,
+          p.location.id,
+          p.location.details.moveType ?? "NO TICKETS"
+        )
       );
-      p.taxiTickets--;
+      if (p.location.details.moveType) {
+        p.tickets[p.location.details.moveType]--;
+      }
+      addToSidebar(
+        "<span style='color:{0};'>Tickets remaining: {1} </span>".formatString(p.color, JSON.stringify(p.tickets))
+      );
       pushGameState(turnCounter, detectives[i + 1] ?? X);
       if (xIsCaught()) {
         break;
@@ -102,14 +121,18 @@ function getNextMove(player: Player): Promise<GraphNode> {
         window.gameActive = false;
         let move = window.clickedNode;
         delete window.clickedNode;
-        if (validMove(player, move.id)) {
-          setNodeColor(player.location.id, black);
-          clearInterval(intervalId);
-          return resolve(new GraphNode(move));
-        } else {
-          window.gameActive = true;
-          addToSidebar("Illegal move, choose again");
+        for (let edge in EdgeType) {
+          let showEdge = (document.getElementById(edge.toLocaleLowerCase()) as HTMLInputElement).checked;
+          if (showEdge && validMove(player, move.id, edge as EdgeType)) {
+            clearInterval(intervalId);
+            setNodeColor(player.location.id, black);
+            let temp = new GraphNode(move);
+            temp.details.moveType = edge as EdgeType;
+            return resolve(temp);
+          }
         }
+        window.gameActive = true;
+        addToSidebar("Illegal move, choose again");
       }
       setTimeout(waitForInput, 50);
     })();
@@ -121,11 +144,23 @@ function getNextMove(player: Player): Promise<GraphNode> {
  * @param  {number|string} move
  * @returns {boolean}
  */
-function validMove(player: Player, move: number | string): boolean {
-  //cast to any because neighborhood is loaded by plugin
-  let ids = (window._sigma.graph as any)
-    .neighborhood(player.location.id)
-    .nodes.filter((n) => n.id != player.location.id)
+function validMove(player: Player, move: number | string, moveType: EdgeType): boolean {
+  let neighbours: NodeInfo[] = (window._sigma.graph as any).adjacentNodes(player.location.id);
+  if (Detective.isDetective(player) && player.tickets[moveType] < 1) {
+    return false;
+  }
+  let edgeTargets = (window._sigma.graph as any)
+    .adjacentEdges(player.location.id)
+    .filter((e) => e.attributes.type == moveType && e.source != e.target)
+    .map((e) => {
+      if (String(e.target) != String(player.location.id)) {
+        return String(e.target);
+      }
+      return String(e.source);
+    });
+  let ids = neighbours
+    .filter((n) => n.id != player.location.id)
+    .filter((n) => edgeTargets.includes(String(n.id)))
     .map((n) => n.id);
   if (Detective.isDetective(player)) {
     return ids.includes(String(move)) && !window.detectives.map((d) => d.location.id).includes(Number(move));
@@ -141,18 +176,45 @@ export function getGameState(turnCounter, playerToMove): GameState {
     playerToMove: playerToMove,
   };
 }
+/**
+ * Check if the given player has any legal moves
+ * @param {Player} player
+ */
+function checkIfAnyValidMoves(player: Player) {
+  for (let edge in EdgeType) {
+    for (let node of (window._sigma.graph as any).adjacentNodes(player.location.id)) {
+      if (validMove(player, node.id, edge as EdgeType)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
 
-async function getMoveFromServer(gameState): Promise<GraphNode> {
+async function getMoveFromServer(gameState: GameState): Promise<GraphNode> {
   const url = "/move";
   const method = "POST";
   addToSidebar("Getting move from server...");
+  var originalLocId = gameState.playerToMove.location.id;
+  const intervalId = setInterval(function () {
+    let node = lookupNodeById(originalLocId);
+    if (node.color === black && !MisterX.isMisterX(gameState.playerToMove)) {
+      node.color = gameState.playerToMove.color;
+    } else {
+      node.color = black;
+    }
+    window._sigma.refresh();
+  }, 1000);
   return new Promise(function (resolve, reject) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, url);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.onload = function () {
+      clearInterval(intervalId);
+      setNodeColor(originalLocId, black);
       if (this.status >= 200 && this.status < 300) {
         let move: NodeInfo = JSON.parse(xhr.response);
+
         let msg = "Success!";
         if (move.moveDebugStr && window.showDebug) {
           msg += move.moveDebugStr;

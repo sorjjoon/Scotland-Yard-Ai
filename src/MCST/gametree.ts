@@ -1,6 +1,6 @@
 import { GameState } from "./GameState";
 import { gameDuration, revealTurns } from "../utils/constants";
-import { Role } from "../domain/players/Player";
+import { Player, Role } from "../domain/players/Player";
 import { EdgeType, GraphNode } from "../domain/GraphNode";
 import { lookUpBasedOnKey } from "../utils/utils";
 import { gameMap } from "../server/GameMap";
@@ -64,11 +64,23 @@ export class GameTree {
     this.selection();
   }
   /**
-   * Find the optimal move for the current player to move, according to current playout data
-   * @returns {GraphNode}
+   * Find the optimal move based on the results of currently completed playouts.
+   *
+   * Will return the child with highest win precentage among children
+   * @returns {GameTree}
    */
   public getBestMove(): GameTree {
-    throw Error("not implemented");
+    var comparator: (a: any, b: any) => number;
+    let simpleComparator = (a, b) => {
+      return a.wins / a.visits - b.wins / b.visits;
+    };
+    if (this.state.playerToMove.role !== this.getChildren()[0].state.playerToMove.role) {
+      comparator = (a, b) => simpleComparator(a, b) * -1;
+    } else {
+      comparator = simpleComparator;
+    }
+    let bestTree = this.children.getMax(comparator);
+    return bestTree;
   }
   /**
    * Selection part of the MCTS search.
@@ -117,7 +129,7 @@ export class GameTree {
    * @returns {boolean}
    */
   protected isLeaf() {
-    if (this.getWinner() !== null) {
+    if (this.getWinner() != null) {
       return true;
     }
     return this.getChildren()
@@ -126,10 +138,11 @@ export class GameTree {
   }
   /**
    * Generate all possible child states reachable from this state.
+   *
    * If called by a derived class, will use the overloaded constructor instead of the GameTree one (and children will not be typeof GameTree)
    * @returns {GameTree}
    */
-  protected generateChildren() {
+  public generateChildren() {
     let player = this.state.playerToMove;
     //Empty object set by client script as player to move for states after one side won
     if (Object.keys(player).length === 0) {
@@ -138,34 +151,65 @@ export class GameTree {
     let playerNode = GameTree.gameMap.getNode(player.location.id);
     const detectiveNodes = this.state.detectives.map((d) => d.location.id);
     const children = [];
-    playerNode.getNeighbours(EdgeType.TAXI).forEach((node) => {
-      //Detectives are not allowed to go on to a node with another detective, but mister X is (in case X is surrounded, only move)
-      if (!detectiveNodes.includes(node.id) || this.state.playerToMove.role == Role.X) {
-        let stateAfterMove = GameTree.generateGameState(this.state, node, EdgeType.TAXI);
-        //Will use overloaded construcor, instead of GameTree if called by derived class. ts-ignore to avoid ts complaining about new keyword
-        //@ts-ignore}
-        children.push(new this.constructor(stateAfterMove));
+    const allowedEdgeTypes = [];
+    for (let key in EdgeType) {
+      if (player.tickets[key] > 0) {
+        allowedEdgeTypes.push(key);
       }
-    });
+    }
+    for (let type of allowedEdgeTypes) {
+      playerNode.getNeighbours(type).forEach((node) => {
+        //Detectives are not allowed to go on to a node with another detective, but mister X is (in case X is surrounded, only move)
+        if (!detectiveNodes.includes(node.id) || MisterX.isMisterX(this.state.playerToMove)) {
+          let stateAfterMove = GameTree.generateGameState(this.state, node, type);
+          //Will use overloaded construcor, instead of GameTree if called by derived class. ts-ignore to avoid ts complaining about new keyword
+          //@ts-ignore
+          children.push(new this.constructor(stateAfterMove));
+        }
+      });
+    }
+    if (children.length === 0) {
+      let stateAfterMove = GameTree.generateGameState(this.state, null, null);
+      //@ts-ignore
+      children.push(new this.constructor(stateAfterMove));
+    }
     return children;
   }
+
+  /**
+   * Utility function, will return the given comparator flipped, if the next player to move has a diffrent role than the current
+   * @param  {(a,b)=>number} comparator
+   */
+  protected getFlippedComparator<T>(comparator: (a: T, b: T) => number) {
+    if (this.state.playerToMove.role !== this.getChildren()[0].state.playerToMove.role) {
+      return (a, b) => comparator(a, b) * -1;
+    }
+    return comparator;
+  }
+
   /**
    * Construct a new game state, after the current player has made the specified move.
    * The originalState is not modified
+   *
+   * If the given move is null, will pass the current players turn (only legal if the player has no legal moves)
    * @param  {GameState} originalState
    * @param  {GraphNode} move
    * @param  {EdgeType} moveType
    * @returns GameState
    */
-  protected static generateGameState(originalState: GameState, move: GraphNode, moveType: EdgeType): GameState {
+  protected static generateGameState(originalState: GameState, move: GraphNode | null, moveType: EdgeType): GameState {
     var newState = GameTree.cloneGameState(originalState);
     if (MisterX.isMisterX(newState.playerToMove)) {
       newState.turnCounter++;
-      newState.X.makeMove(move, moveType);
+      if (move != null) {
+        newState.X.makeMove(move, moveType);
+      }
       newState.playerToMove = newState.detectives[0];
     } else {
       var oldPlayer = lookUpBasedOnKey(newState.detectives, "id", newState.playerToMove.id);
-      oldPlayer.makeMove(move, moveType);
+      if (move != null) {
+        oldPlayer.makeMove(move, moveType);
+      }
       //Detective Ids are consecutive 1,2,...,detectiveCount, so indexing oldPLayer id will give the next detective in line.
       //X in case of last detective (and array index overflows)
       newState.playerToMove = newState.detectives[oldPlayer.id] ?? newState.X;
@@ -174,14 +218,20 @@ export class GameTree {
     if (revealTurns.includes(newState.turnCounter)) {
       newState.X.locationKnownToDetectives = newState.X.location;
       newState.X.turnCounterForLocation = newState.turnCounter;
+      newState.X.movesSinceReveal = [];
+    } else {
+      newState.X.movesSinceReveal.push(moveType);
     }
     return newState;
   }
   /**
    * Return a clone of the given state.
+   *
    * Players are cloned using .clone
+   *
    * The new state will be constructed using GraphNode and Player objects (even if the old state is not)
-   * Also strips unnecessary attributes
+   *
+   * Strips unnecessary attributes
    * @param  {GameState} state
    * @returns {GameState}
    */
@@ -204,20 +254,65 @@ export class GameTree {
     }
   }
   /**
-   * Returns the child from the inital game tree which matches the new state
+   * Returns the child from the inital game tree which matches the new state, and which moveType was used to reach it.
+   *
+   * moveType is left null incase misterX made the move
+   *
    * Checks that the provided moves are correct (contained in d1Moves if detective 1 moved etc.)
-   * Returns null in case the provided move was not found (check the result for null)
+   * Returns null in case the provided move was not found
    * @param  {GameTree} inital
    * @param  {GameState} newState
-   * @returns GameTree
+   * @returns {[GraphNode, EdgeType]} [move, moveType]
    */
-  public static getChosenMoveFromTree(inital: GameTree, newState: GameState): GraphNode {
-    var moveId;
+  public static getChosenMoveFromTree(inital: GameTree, newState: GameState): [GraphNode, EdgeType] {
+    var moveId: number, moveType: EdgeType;
+    var newPlayer: Player, oldPLayer: Player;
     if (MisterX.isMisterX(inital.state.playerToMove)) {
       moveId = newState.X.location.id;
+      newPlayer = newState.X;
+      oldPLayer = inital.state.X;
     } else {
-      moveId = lookUpBasedOnKey(newState.detectives, "id", inital.state.playerToMove.id).location.id;
+      oldPLayer = lookUpBasedOnKey(inital.state.detectives, "id", inital.state.playerToMove.id);
+      newPlayer = lookUpBasedOnKey(newState.detectives, "id", inital.state.playerToMove.id);
+      moveId = newPlayer.location.id;
     }
-    return GameTree.gameMap.getNode(moveId);
+    for (let key in EdgeType) {
+      if (newPlayer.tickets[key] < oldPLayer.tickets[key]) {
+        moveType = key as EdgeType;
+        break;
+      }
+    }
+    return [GameTree.gameMap.getNode(moveId), moveType];
+  }
+  /**
+   * Find all possible X locations from the starting state, with the moves given
+   *
+   *
+   * @param {GameState} initalState X.locationKnownToDetectives needs to be set correctly.
+   * @param {EdgeType[]} moves
+   * @returns {GraphNode[]}
+   */
+  public static findPossibleXLocations(initalState: GameState, moves: EdgeType[], index = 0): GraphNode[] {
+    var res: GraphNode[] = [];
+    if (moves.length == index) {
+      return [initalState.X.locationKnownToDetectives ?? initalState.X.location];
+    }
+    const moveType = moves[index];
+    let children = initalState.X.locationKnownToDetectives.getNeighbours(moveType);
+
+    for (let childMove of children) {
+      let newState = this.cloneGameState(initalState);
+      newState.X.locationKnownToDetectives = childMove;
+      res.push(
+        ...this.findPossibleXLocations(
+          newState,
+          moves.map((x) => x),
+          index + 1
+        )
+      );
+    }
+    res.sort((a, b) => a.id - b.id);
+    //remove duplicates
+    return res.filter((item, i, arr) => !i || item.id != arr[i - 1].id);
   }
 }

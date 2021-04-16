@@ -1,23 +1,31 @@
 import { SerializedPlayer } from "./SerializedPlayer";
 import { Color } from "../../utils/constants";
 import { Clonable } from "../clonable";
-import { EdgeType, GraphNode } from "../graphnode";
+import { EdgeType, GraphNode } from "../GraphNode";
 import { Player, Role } from "./Player";
 
 export class MisterX extends Player implements Clonable<MisterX> {
   locationKnownToDetectives: GraphNode | null;
   turnCounterForLocation: number | null;
+  movesSinceReveal: EdgeType[];
 
   constructor(
     location: GraphNode | null,
     id: number,
     color: Color,
     locationKnownToDetectives: GraphNode | null = null,
-    turnCounterForLocation: number | null = null
+    turnCounterForLocation: number | null = null,
+    movesSinceReveal = []
   ) {
-    super(Role.X, location, id, color);
+    const tickets = {};
+    for (let key of Object.values(EdgeType)) {
+      tickets[key] = Number.MAX_SAFE_INTEGER;
+    }
+    super(Role.X, location, id, color, tickets);
+
     this.locationKnownToDetectives = locationKnownToDetectives;
     this.turnCounterForLocation = turnCounterForLocation;
+    this.movesSinceReveal = movesSinceReveal;
   }
 
   /**
@@ -25,12 +33,16 @@ export class MisterX extends Player implements Clonable<MisterX> {
    * @returns {MisterX}
    */
   clone(): MisterX {
-    return new MisterX(this.location, this.id, this.color, this.locationKnownToDetectives, this.turnCounterForLocation);
+    return new MisterX(
+      this.location,
+      this.id,
+      this.color,
+      this.locationKnownToDetectives,
+      this.turnCounterForLocation,
+      this.movesSinceReveal.map((x) => x)
+    );
   }
 
-  makeMove(move: GraphNode | number, moveType: EdgeType) {
-    super.makeMove(move, moveType);
-  }
   equalTo(other: any) {
     return (
       super.equalTo(other) &&
@@ -42,9 +54,9 @@ export class MisterX extends Player implements Clonable<MisterX> {
   }
   /**
    * Type guard for MisterX
-   * Returns true if the given player's role is X
-   * @param  {Player|SerializedPlayer} p
-   * @returns {boolean}
+   *
+   * @param  {Player|SerializedPlayer} player
+   * @returns {boolean} true if the given player's role is X
    */
   static isMisterX(p: Player | SerializedPlayer): p is MisterX {
     return p.role === Role.X;

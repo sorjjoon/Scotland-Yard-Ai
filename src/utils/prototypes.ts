@@ -70,7 +70,9 @@ Array.prototype.getMax = function getMax<T>(comparator: (a: T, b: T) => number):
 
 /**
  * Using the provided callback find the largest elements in the array.
+ *
  * The given comparator should accept two arguments, and return a number larger than 0, if the first argument is larger than the second
+ *
  * Will return an array of all the largest elements
  * @param  {(a:T,b:T)=>number} comparator
  * @returns {T[]} listOfMax

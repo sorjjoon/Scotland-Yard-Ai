@@ -2,20 +2,20 @@
  * Hide/show edges based on edge visibility selections
  */
 export function updateVisibleEdges() {
-  const showTaxi = !(document.getElementById("taxi") as HTMLInputElement).checked;
-  const showBus = !(document.getElementById("bus") as HTMLInputElement).checked;
-  const showMetro = !(document.getElementById("metro") as HTMLInputElement).checked;
+  const hideTaxi = !(document.getElementById("taxi") as HTMLInputElement).checked;
+  const hideBus = !(document.getElementById("bus") as HTMLInputElement).checked;
+  const hideMetro = !(document.getElementById("metro") as HTMLInputElement).checked;
 
   window._sigma.graph.edges().forEach((e) => {
     switch (e.attributes.type) {
       case "TAXI":
-        e.hidden = showTaxi;
+        e.hidden = hideTaxi;
         break;
       case "BUS":
-        e.hidden = showBus;
+        e.hidden = hideBus;
         break;
       case "METRO":
-        e.hidden = showMetro;
+        e.hidden = hideMetro;
         break;
       default:
         throw Error("Unknown edgetype?");

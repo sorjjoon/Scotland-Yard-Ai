@@ -1,0 +1,2733 @@
+[
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 149,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "149",
+          "x": 513.224853515625,
+          "y": -28.674026489257812,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0,0,0)",
+          "size": 10,
+          "id": "149",
+          "read_cam0:size": 8,
+          "read_cam0:x": 390.1024550628468,
+          "read_cam0:y": 8.475650959564414,
+          "cam0:x": 1636.6024550628467,
+          "cam0:y": 719.4756509595644,
+          "cam0:size": 8
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": null,
+      "turnCounterForLocation": null,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 44,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "44",
+            "x": 143.6265106201172,
+            "y": -829.7567749023438,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "44",
+            "read_cam0:size": 8,
+            "read_cam0:x": 99.89898173971521,
+            "read_cam0:y": -620.523370484759,
+            "cam0:x": 1346.3989817397153,
+            "cam0:y": 90.47662951524103,
+            "cam0:size": 8
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 170,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "170",
+            "x": 232.05621337890625,
+            "y": 475.1348876953125,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "170",
+            "read_cam0:size": 8,
+            "read_cam0:x": 169.33275323470264,
+            "read_cam0:y": 404.0593963900823,
+            "cam0:x": 1415.8327532347025,
+            "cam0:y": 1115.0593963900824,
+            "cam0:size": 8
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 158,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "158",
+            "x": 130.0936279296875,
+            "y": 448.94036865234375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "158",
+            "read_cam0:size": 8,
+            "read_cam0:x": 89.27315065489485,
+            "read_cam0:y": 383.4918247155319,
+            "cam0:x": 1335.7731506548948,
+            "cam0:y": 1094.491824715532,
+            "cam0:size": 8
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 0,
+    "playerToMove": {
+      "role": "X",
+      "location": {
+        "id": 149,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "149",
+          "x": 513.224853515625,
+          "y": -28.674026489257812,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0,0,0)",
+          "size": 10,
+          "id": "149",
+          "read_cam0:size": 8,
+          "read_cam0:x": 390.1024550628468,
+          "read_cam0:y": 8.475650959564414,
+          "cam0:x": 1636.6024550628467,
+          "cam0:y": 719.4756509595644,
+          "cam0:size": 8
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": null,
+      "turnCounterForLocation": null,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 863.8688991116996,
+          "cam0:y": 597.8624837044168,
+          "cam0:size": 10.430723848324238,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 863.8688991116996,
+          "cam0:y": 597.8624837044168,
+          "cam0:size": 10.430723848324238,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 44,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "44",
+            "x": 143.6265106201172,
+            "y": -829.7567749023438,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "44",
+            "read_cam0:size": 8,
+            "read_cam0:x": 84.4162856821231,
+            "read_cam0:y": -524.3524728986357,
+            "cam0:x": 448.444352326276,
+            "cam0:y": -228.56003726101403,
+            "cam0:size": 10.430723848324238
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 170,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "170",
+            "x": 232.05621337890625,
+            "y": 475.1348876953125,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "170",
+            "read_cam0:size": 8,
+            "read_cam0:x": 143.08896670883988,
+            "read_cam0:y": 341.4368479458803,
+            "cam0:x": 548.1879100716944,
+            "cam0:y": 1243.2818081746632,
+            "cam0:size": 10.430723848324238
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 158,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "158",
+            "x": 130.0936279296875,
+            "y": 448.94036865234375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "158",
+            "read_cam0:size": 8,
+            "read_cam0:x": 75.4372833254897,
+            "read_cam0:y": 324.05691097324797,
+            "cam0:x": 433.1800483199992,
+            "cam0:y": 1213.7359153211883,
+            "cam0:size": 10.430723848324238
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 1,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 44,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "44",
+          "x": 143.6265106201172,
+          "y": -829.7567749023438,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "44",
+          "read_cam0:size": 8,
+          "read_cam0:x": 84.4162856821231,
+          "read_cam0:y": -524.3524728986357,
+          "cam0:x": 448.444352326276,
+          "cam0:y": -228.56003726101403,
+          "cam0:size": 10.430723848324238
+        }
+      },
+      "id": 1,
+      "color": "rgb(50, 168, 82)",
+      "tickets": {
+        "TAXI": 11,
+        "BUS": 8,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 58,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "58",
+            "x": 209.16259765625,
+            "y": -757.0384521484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "58",
+            "read_cam0:size": 8,
+            "read_cam0:x": 127.89916315937431,
+            "read_cam0:y": -476.10421668346123,
+            "cam0:x": 650.7815161005508,
+            "cam0:y": 221.45460684595048,
+            "cam0:size": 8,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 170,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "170",
+            "x": 232.05621337890625,
+            "y": 475.1348876953125,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "170",
+            "read_cam0:size": 8,
+            "read_cam0:x": 143.08896670883988,
+            "read_cam0:y": 341.4368479458803,
+            "cam0:x": 665.9713196500163,
+            "cam0:y": 1038.995671475292,
+            "cam0:size": 8
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 158,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "158",
+            "x": 130.0936279296875,
+            "y": 448.94036865234375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "158",
+            "read_cam0:size": 8,
+            "read_cam0:x": 75.4372833254897,
+            "read_cam0:y": 324.05691097324797,
+            "cam0:x": 598.3196362666662,
+            "cam0:y": 1021.6157345026597,
+            "cam0:size": 8
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 1,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 170,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "170",
+          "x": 232.05621337890625,
+          "y": 475.1348876953125,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 154, 168)",
+          "size": 10,
+          "id": "170",
+          "read_cam0:size": 8,
+          "read_cam0:x": 143.08896670883988,
+          "read_cam0:y": 341.4368479458803,
+          "cam0:x": 665.9713196500163,
+          "cam0:y": 1038.995671475292,
+          "cam0:size": 8
+        }
+      },
+      "id": 2,
+      "color": "rgb(50, 154, 168)",
+      "tickets": {
+        "TAXI": 11,
+        "BUS": 8,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 58,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "58",
+            "x": 209.16259765625,
+            "y": -757.0384521484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "58",
+            "read_cam0:size": 8,
+            "read_cam0:x": 127.89916315937431,
+            "read_cam0:y": -476.10421668346123,
+            "cam0:x": 650.7815161005508,
+            "cam0:y": 221.45460684595048,
+            "cam0:size": 8,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 702.3316367732377,
+            "cam0:y": 1082.3479780104617,
+            "cam0:size": 8,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 158,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "158",
+            "x": 130.0936279296875,
+            "y": 448.94036865234375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "158",
+            "read_cam0:size": 8,
+            "read_cam0:x": 75.4372833254897,
+            "read_cam0:y": 324.05691097324797,
+            "cam0:x": 598.3196362666662,
+            "cam0:y": 1021.6157345026597,
+            "cam0:size": 8
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 11,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 1,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 158,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "158",
+          "x": 130.0936279296875,
+          "y": 448.94036865234375,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(115, 0, 150)",
+          "size": 10,
+          "id": "158",
+          "read_cam0:size": 8,
+          "read_cam0:x": 75.4372833254897,
+          "read_cam0:y": 324.05691097324797,
+          "cam0:x": 598.3196362666662,
+          "cam0:y": 1021.6157345026597,
+          "cam0:size": 8
+        }
+      },
+      "id": 3,
+      "color": "rgb(115, 0, 150)",
+      "tickets": {
+        "TAXI": 11,
+        "BUS": 8,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 58,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "58",
+            "x": 209.16259765625,
+            "y": -757.0384521484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "58",
+            "read_cam0:size": 8,
+            "read_cam0:x": 127.89916315937431,
+            "read_cam0:y": -476.10421668346123,
+            "cam0:x": 650.7815161005508,
+            "cam0:y": 221.45460684595048,
+            "cam0:size": 8,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 702.3316367732377,
+            "cam0:y": 1082.3479780104617,
+            "cam0:size": 8,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 157,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "157",
+            "x": 274.656494140625,
+            "y": 442.947021484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "157",
+            "read_cam0:size": 8,
+            "read_cam0:x": 171.354047409142,
+            "read_cam0:y": 320.0803540506515,
+            "cam0:x": 694.2364003503185,
+            "cam0:y": 1017.6391775800632,
+            "cam0:size": 8,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 1,
+    "playerToMove": {
+      "role": "X",
+      "location": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 851.6660190853136,
+          "cam0:y": 659.3372453163236,
+          "cam0:size": 8,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 123,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "123",
+          "x": 429.6819763183594,
+          "y": -178.0094451904297,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "123",
+          "read_cam0:size": 8,
+          "read_cam0:x": 274.2127066951266,
+          "read_cam0:y": -91.92126490838982,
+          "cam0:x": 439.92633587692217,
+          "cam0:y": 81.49054408178267,
+          "cam0:size": 14.637319395985866,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 622.6121035693735,
+          "cam0:y": 261.25957485980393,
+          "cam0:size": 14.637319395985866,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": ["TAXI"],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 58,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "58",
+            "x": 209.16259765625,
+            "y": -757.0384521484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "58",
+            "read_cam0:size": 8,
+            "read_cam0:x": 127.89916315937431,
+            "read_cam0:y": -476.10421668346123,
+            "cam0:x": 399.8536059063092,
+            "cam0:y": -373.21343406497397,
+            "cam0:size": 11.72665964340457,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 122.68931403054535,
+            "cam0:y": 1677.3614947203366,
+            "cam0:size": 14.637319395985866,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 157,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "157",
+            "x": 274.656494140625,
+            "y": 442.947021484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "157",
+            "read_cam0:size": 8,
+            "read_cam0:x": 171.354047409142,
+            "read_cam0:y": 320.0803540506515,
+            "cam0:x": 95.58910367132046,
+            "cam0:y": 1460.7375430353648,
+            "cam0:size": 14.637319395985866,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 2,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 58,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "58",
+          "x": 209.16259765625,
+          "y": -757.0384521484375,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "58",
+          "read_cam0:size": 8,
+          "read_cam0:x": 127.89916315937431,
+          "read_cam0:y": -476.10421668346123,
+          "cam0:x": 399.8536059063092,
+          "cam0:y": -373.21343406497397,
+          "cam0:size": 11.72665964340457,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 1,
+      "color": "rgb(50, 168, 82)",
+      "tickets": {
+        "TAXI": 10,
+        "BUS": 8,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 123,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "123",
+          "x": 429.6819763183594,
+          "y": -178.0094451904297,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "123",
+          "read_cam0:size": 8,
+          "read_cam0:x": 274.2127066951266,
+          "read_cam0:y": -91.92126490838982,
+          "cam0:x": 545.9966137446304,
+          "cam0:y": 675.0565386357307,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 621.4046291162772,
+          "cam0:y": 749.2605995622306,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": ["TAXI"],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 77,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "77",
+            "x": 254.9006805419922,
+            "y": -499.9316101074219,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "77",
+            "read_cam0:size": 8,
+            "read_cam0:x": 158.24616042621702,
+            "read_cam0:y": -305.5150677635906,
+            "cam0:x": 385.7500798383755,
+            "cam0:y": 379.9053275956703,
+            "cam0:size": 9.40411535488072,
+            "moveType": "BUS"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 415.0492798498538,
+            "cam0:y": 1333.7912758677494,
+            "cam0:size": 9.40411535488072,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 157,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "157",
+            "x": 274.656494140625,
+            "y": 442.947021484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "157",
+            "read_cam0:size": 8,
+            "read_cam0:x": 171.354047409142,
+            "read_cam0:y": 320.0803540506515,
+            "cam0:x": 403.86300570734033,
+            "cam0:y": 1244.374445619499,
+            "cam0:size": 9.40411535488072,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 2,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 185,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "185",
+          "x": 286.8573913574219,
+          "y": 540.4741821289062,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 154, 168)",
+          "size": 10,
+          "id": "185",
+          "read_cam0:size": 8,
+          "read_cam0:x": 179.44928383206133,
+          "read_cam0:y": 384.7891544810501,
+          "cam0:x": 415.0492798498538,
+          "cam0:y": 1333.7912758677494,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 2,
+      "color": "rgb(50, 154, 168)",
+      "tickets": {
+        "TAXI": 10,
+        "BUS": 8,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:58</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 77, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 123,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "123",
+          "x": 429.6819763183594,
+          "y": -178.0094451904297,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "123",
+          "read_cam0:size": 8,
+          "read_cam0:x": 274.2127066951266,
+          "read_cam0:y": -91.92126490838982,
+          "cam0:x": 545.9966137446304,
+          "cam0:y": 675.0565386357307,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 621.4046291162772,
+          "cam0:y": 749.2605995622306,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": ["TAXI"],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 77,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "77",
+            "x": 254.9006805419922,
+            "y": -499.9316101074219,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "77",
+            "read_cam0:size": 8,
+            "read_cam0:x": 158.24616042621702,
+            "read_cam0:y": -305.5150677635906,
+            "cam0:x": 385.7500798383755,
+            "cam0:y": 379.9053275956703,
+            "cam0:size": 9.40411535488072,
+            "moveType": "BUS"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 153,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "153",
+            "x": 327.10748291015625,
+            "y": 244.4297637939453,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "153",
+            "read_cam0:size": 8,
+            "read_cam0:x": 206.1550253340027,
+            "read_cam0:y": 188.36511159936484,
+            "cam0:x": 451.9521854616065,
+            "cam0:y": 1062.365825508516,
+            "cam0:size": 9.40411535488072,
+            "moveType": "METRO"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 3
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 157,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "157",
+            "x": 274.656494140625,
+            "y": 442.947021484375,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "157",
+            "read_cam0:size": 8,
+            "read_cam0:x": 171.354047409142,
+            "read_cam0:y": 320.0803540506515,
+            "cam0:x": 403.86300570734033,
+            "cam0:y": 1244.374445619499,
+            "cam0:size": 9.40411535488072,
+            "moveType": "TAXI"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 2,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 157,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "157",
+          "x": 274.656494140625,
+          "y": 442.947021484375,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(115, 0, 150)",
+          "size": 10,
+          "id": "157",
+          "read_cam0:size": 8,
+          "read_cam0:x": 171.354047409142,
+          "read_cam0:y": 320.0803540506515,
+          "cam0:x": 403.86300570734033,
+          "cam0:y": 1244.374445619499,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 3,
+      "color": "rgb(115, 0, 150)",
+      "tickets": {
+        "TAXI": 10,
+        "BUS": 8,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:58</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 77, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:185</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 153, using METRO</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":3} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 123,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "123",
+          "x": 429.6819763183594,
+          "y": -178.0094451904297,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "123",
+          "read_cam0:size": 8,
+          "read_cam0:x": 274.2127066951266,
+          "read_cam0:y": -91.92126490838982,
+          "cam0:x": 672.7966137446303,
+          "cam0:y": 282.08522613573086,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 748.2046291162771,
+          "cam0:y": 356.28928706223076,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": ["TAXI"],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 77,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "77",
+            "x": 254.9006805419922,
+            "y": -499.9316101074219,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "77",
+            "read_cam0:size": 8,
+            "read_cam0:x": 158.24616042621702,
+            "read_cam0:y": -305.5150677635906,
+            "cam0:x": 512.5500798383755,
+            "cam0:y": -13.065984904329525,
+            "cam0:size": 9.40411535488072,
+            "moveType": "BUS"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 153,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "153",
+            "x": 327.10748291015625,
+            "y": 244.4297637939453,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "153",
+            "read_cam0:size": 8,
+            "read_cam0:x": 206.1550253340027,
+            "read_cam0:y": 188.36511159936484,
+            "cam0:x": 578.7521854616066,
+            "cam0:y": 669.3945130085162,
+            "cam0:size": 9.40411535488072,
+            "moveType": "METRO"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 3
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 541.8492798498538,
+            "cam0:y": 940.8199633677496,
+            "cam0:size": 9.40411535488072,
+            "moveType": "BUS"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 2,
+    "playerToMove": {
+      "role": "X",
+      "location": {
+        "id": 123,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "123",
+          "x": 429.6819763183594,
+          "y": -178.0094451904297,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "123",
+          "read_cam0:size": 8,
+          "read_cam0:x": 274.2127066951266,
+          "read_cam0:y": -91.92126490838982,
+          "cam0:x": 672.7966137446303,
+          "cam0:y": 282.08522613573086,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 148,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "148",
+          "x": 511.9296875,
+          "y": -97.07489013671875,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(0, 0, 0)",
+          "size": 10,
+          "id": "148",
+          "read_cam0:size": 8,
+          "read_cam0:x": 328.78366614413704,
+          "read_cam0:y": -38.2215782130881,
+          "cam0:x": 748.2046291162771,
+          "cam0:y": 356.28928706223076,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 1,
+      "movesSinceReveal": ["TAXI"],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:58</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 77, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:185</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 153, using METRO</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":3} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:157</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 185, using BUS</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 124,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "124",
+          "x": 256.75775146484375,
+          "y": -141.09837341308594,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "124",
+          "read_cam0:size": 8,
+          "read_cam0:x": 159.4783180214729,
+          "read_cam0:y": -67.43094691361298,
+          "cam0:x": 514.2527172818341,
+          "cam0:y": 315.92678388829734,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 124,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "124",
+          "x": 256.75775146484375,
+          "y": -141.09837341308594,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(235, 64, 52)",
+          "tickets": {
+            "TAXI": 9007199254740991,
+            "BUS": 9007199254740991,
+            "METRO": 9007199254740991
+          },
+          "size": 10,
+          "id": "124",
+          "read_cam0:size": 8,
+          "read_cam0:x": 159.4783180214729,
+          "read_cam0:y": -67.43094691361298,
+          "cam0:x": 514.2527172818341,
+          "cam0:y": 315.92678388829734,
+          "cam0:size": 9.40411535488072,
+          "moveType": "TAXI"
+        }
+      },
+      "turnCounterForLocation": 3,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 77,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "77",
+            "x": 254.9006805419922,
+            "y": -499.9316101074219,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "77",
+            "read_cam0:size": 8,
+            "read_cam0:x": 158.24616042621702,
+            "read_cam0:y": -305.5150677635906,
+            "cam0:x": 512.5500798383755,
+            "cam0:y": -13.065984904329525,
+            "cam0:size": 9.40411535488072,
+            "moveType": "BUS"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 153,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "153",
+            "x": 327.10748291015625,
+            "y": 244.4297637939453,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "153",
+            "read_cam0:size": 8,
+            "read_cam0:x": 206.1550253340027,
+            "read_cam0:y": 188.36511159936484,
+            "cam0:x": 578.7521854616066,
+            "cam0:y": 669.3945130085162,
+            "cam0:size": 9.40411535488072,
+            "moveType": "METRO"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 3
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 541.8492798498538,
+            "cam0:y": 940.8199633677496,
+            "cam0:size": 9.40411535488072,
+            "moveType": "BUS"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 3,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 77,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "77",
+          "x": 254.9006805419922,
+          "y": -499.9316101074219,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "77",
+          "read_cam0:size": 8,
+          "read_cam0:x": 158.24616042621702,
+          "read_cam0:y": -305.5150677635906,
+          "cam0:x": 512.5500798383755,
+          "cam0:y": -13.065984904329525,
+          "cam0:size": 9.40411535488072,
+          "moveType": "BUS"
+        }
+      },
+      "id": 1,
+      "color": "rgb(50, 168, 82)",
+      "tickets": {
+        "TAXI": 10,
+        "BUS": 7,
+        "METRO": 4
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:58</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 77, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:185</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 153, using METRO</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":3} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:157</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 185, using BUS</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><b>Turn 3</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:123</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 124</span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 124,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "124",
+          "x": 256.75775146484375,
+          "y": -141.09837341308594,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "124",
+          "read_cam0:size": 8,
+          "read_cam0:x": 159.4783180214729,
+          "read_cam0:y": -67.43094691361298,
+          "cam0:x": 516.7153238912749,
+          "cam0:y": 373.25742189507685,
+          "cam0:size": 7.212627228275475,
+          "moveType": "BUS"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 124,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "124",
+          "x": 256.75775146484375,
+          "y": -141.09837341308594,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "124",
+          "read_cam0:size": 8,
+          "read_cam0:x": 159.4783180214729,
+          "read_cam0:y": -67.43094691361298,
+          "cam0:x": 516.7153238912749,
+          "cam0:y": 373.25742189507685,
+          "cam0:size": 7.212627228275475,
+          "moveType": "BUS"
+        }
+      },
+      "turnCounterForLocation": 3,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 124,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "124",
+            "x": 256.75775146484375,
+            "y": -141.09837341308594,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "124",
+            "read_cam0:size": 8,
+            "read_cam0:x": 159.4783180214729,
+            "read_cam0:y": -67.43094691361298,
+            "cam0:x": 516.7153238912749,
+            "cam0:y": 373.25742189507685,
+            "cam0:size": 7.212627228275475,
+            "moveType": "BUS"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 6,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 153,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "153",
+            "x": 327.10748291015625,
+            "y": 244.4297637939453,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "153",
+            "read_cam0:size": 8,
+            "read_cam0:x": 206.1550253340027,
+            "read_cam0:y": 188.36511159936484,
+            "cam0:x": 554.6561875264352,
+            "cam0:y": 581.1796154952057,
+            "cam0:size": 7.212627228275475,
+            "moveType": "METRO"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 3
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 532.9485959901101,
+            "cam0:y": 740.8416451182841,
+            "cam0:size": 7.212627228275475,
+            "moveType": "BUS"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 3,
+    "playerToMove": {
+      "role": "DETECTIVE",
+      "location": {
+        "id": 153,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "153",
+          "x": 327.10748291015625,
+          "y": 244.4297637939453,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 154, 168)",
+          "size": 10,
+          "id": "153",
+          "read_cam0:size": 8,
+          "read_cam0:x": 206.1550253340027,
+          "read_cam0:y": 188.36511159936484,
+          "cam0:x": 554.6561875264352,
+          "cam0:y": 581.1796154952057,
+          "cam0:size": 7.212627228275475,
+          "moveType": "METRO"
+        }
+      },
+      "id": 2,
+      "color": "rgb(50, 154, 168)",
+      "tickets": {
+        "TAXI": 10,
+        "BUS": 8,
+        "METRO": 3
+      },
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:58</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 77, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:185</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 153, using METRO</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":3} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:157</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 185, using BUS</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><b>Turn 3</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:123</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 124</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:77</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 124, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":6,\"METRO\":4} </span></span></div>"
+  },
+  {
+    "X": {
+      "role": "X",
+      "location": {
+        "id": 124,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "124",
+          "x": 256.75775146484375,
+          "y": -141.09837341308594,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "124",
+          "read_cam0:size": 8,
+          "read_cam0:x": 159.4783180214729,
+          "read_cam0:y": -67.43094691361298,
+          "cam0:x": 516.7153238912749,
+          "cam0:y": 373.25742189507685,
+          "cam0:size": 7.212627228275475,
+          "moveType": "BUS"
+        }
+      },
+      "id": 4,
+      "color": "rgb(235, 64, 52)",
+      "tickets": {
+        "TAXI": 9007199254740991,
+        "BUS": 9007199254740991,
+        "METRO": 9007199254740991
+      },
+      "locationKnownToDetectives": {
+        "id": 124,
+        "edges": {
+          "TAXI": [],
+          "BUS": [],
+          "METRO": []
+        },
+        "details": {
+          "label": "124",
+          "x": 256.75775146484375,
+          "y": -141.09837341308594,
+          "attributes": {
+            "Computed Z-Level": "0"
+          },
+          "color": "rgb(50, 168, 82)",
+          "size": 10,
+          "id": "124",
+          "read_cam0:size": 8,
+          "read_cam0:x": 159.4783180214729,
+          "read_cam0:y": -67.43094691361298,
+          "cam0:x": 516.7153238912749,
+          "cam0:y": 373.25742189507685,
+          "cam0:size": 7.212627228275475,
+          "moveType": "BUS"
+        }
+      },
+      "turnCounterForLocation": 3,
+      "movesSinceReveal": [],
+      "isPlayedByAI": false,
+      "aiType": "0"
+    },
+    "detectives": [
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 124,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "124",
+            "x": 256.75775146484375,
+            "y": -141.09837341308594,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 168, 82)",
+            "size": 10,
+            "id": "124",
+            "read_cam0:size": 8,
+            "read_cam0:x": 159.4783180214729,
+            "read_cam0:y": -67.43094691361298,
+            "cam0:x": 516.7153238912749,
+            "cam0:y": 373.25742189507685,
+            "cam0:size": 7.212627228275475,
+            "moveType": "BUS"
+          }
+        },
+        "id": 1,
+        "color": "rgb(50, 168, 82)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 6,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 153,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "153",
+            "x": 327.10748291015625,
+            "y": 244.4297637939453,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(50, 154, 168)",
+            "size": 10,
+            "id": "153",
+            "read_cam0:size": 8,
+            "read_cam0:x": 206.1550253340027,
+            "read_cam0:y": 188.36511159936484,
+            "cam0:x": 554.6561875264352,
+            "cam0:y": 581.1796154952057,
+            "cam0:size": 7.212627228275475,
+            "moveType": "METRO"
+          }
+        },
+        "id": 2,
+        "color": "rgb(50, 154, 168)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 8,
+          "METRO": 3
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      },
+      {
+        "role": "DETECTIVE",
+        "location": {
+          "id": 185,
+          "edges": {
+            "TAXI": [],
+            "BUS": [],
+            "METRO": []
+          },
+          "details": {
+            "label": "185",
+            "x": 286.8573913574219,
+            "y": 540.4741821289062,
+            "attributes": {
+              "Computed Z-Level": "0"
+            },
+            "color": "rgb(115, 0, 150)",
+            "size": 10,
+            "id": "185",
+            "read_cam0:size": 8,
+            "read_cam0:x": 179.44928383206133,
+            "read_cam0:y": 384.7891544810501,
+            "cam0:x": 532.9485959901101,
+            "cam0:y": 740.8416451182841,
+            "cam0:size": 7.212627228275475,
+            "moveType": "BUS"
+          }
+        },
+        "id": 3,
+        "color": "rgb(115, 0, 150)",
+        "tickets": {
+          "TAXI": 10,
+          "BUS": 7,
+          "METRO": 4
+        },
+        "isPlayedByAI": false,
+        "aiType": "0"
+      }
+    ],
+    "turnCounter": 3,
+    "playerToMove": {},
+    "chatHistory": "<div><span>Done! Game Starting...</span></div><div><span><b>Turn 1</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:149</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 148</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:44</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 58, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:170</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 185, using TAXI</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:158</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 157, using TAXI</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":4} </span></span></div><div><span><b>Turn 2</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:148</span></span></div><div><span>Choose the new node to move to</span></div><div><span>Illegal move, choose again</span></div><div><span>X moved in secret, using TAXI</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:58</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 77, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 turn! Current location:185</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Detective 2 moved to: 153, using METRO</span></span></div><div><span><span style=\"color:rgb(50, 154, 168);\">Tickets remaining: {\"TAXI\":10,\"BUS\":8,\"METRO\":3} </span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 turn! Current location:157</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Detective 3 moved to: 185, using BUS</span></span></div><div><span><span style=\"color:rgb(115, 0, 150);\">Tickets remaining: {\"TAXI\":10,\"BUS\":7,\"METRO\":4} </span></span></div><div><span><b>Turn 3</b></span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X turn! Current location:123</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(235, 64, 52);\">X</span> is revealed to the detectives! His location is 124</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 turn! Current location:77</span></span></div><div><span>Choose the new node to move to</span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Detective 1 moved to: 124, using BUS</span></span></div><div><span><span style=\"color:rgb(50, 168, 82);\">Tickets remaining: {\"TAXI\":10,\"BUS\":6,\"METRO\":4} </span></span></div><div><span><b>X was caught! Detectives win!</b></span></div><div><span>Refresh view for a new game</span></div>"
+  }
+]

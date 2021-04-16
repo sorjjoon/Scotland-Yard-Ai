@@ -1,20 +1,29 @@
 # Scotland-Yard-Ai
 
+## Documentation
+
 - [Requirments](/documentation/requirments.md)
 - [Weekly reports](/documentation/reports)
-- [Coverage report](/documentation/testing/coverage.txt)
+- [Implementation](/documentation/implementation.md)
+- [Testing](/documentation/testing)
 
-# Usage
+## Usage
 
-To build and run the project:
+To build and run the project (all commands from the project root):
 
 - Clone the repo, and navigate to the project root directory
 - install [node](https://nodejs.org/en/download/) (cubbli has everything needed)
-- install dependencies: npm install
-- compile the source code: npm run compile
+- install dependencies: 'npm install'
+  - This will take a few minutes
+- compile the source code: 'npm run compile'
   - compiled javascript should appear in the /dist folder, and there should a client.bundle.js file in the /public folder
-- start the server: npm run start
+- start the server: 'npm run start'
 - open browser at [http://localhost:5000](/http://localhost:5000)
+- Diffrent constants, to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts).
+  - After any modifications you will need to run compile and start again
+  - If you intend to modify the constant, instead of npm run compile, use 'npm run watch' and 'npm run pack' for compiling, and 'npm run demon' to start the server
+    - They will automatically recompile and restart the server as needed (after file save)
+    - Depending on your browser, you may have to do a full page refresh as well, to refresh cached javascript (chrome/safari). Usually ctrl + refresh
 
 Unit tests: npm test
 \

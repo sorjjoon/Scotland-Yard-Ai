@@ -1,4 +1,4 @@
-import { NodeInfo, GraphNode } from "../GraphNode";
+import { NodeInfo, GraphNode, EdgeType } from "../GraphNode";
 import { Role } from "./Player";
 import { Color } from "../../utils/constants";
 
@@ -7,7 +7,8 @@ export interface SerializedPlayer {
   location: NodeInfo | null;
   id: number;
   color: Color;
-  taxiTickets?: number;
+  tickets?: { [key in EdgeType]?: number };
   locationKnownToDetectives?: GraphNode | null;
   turnCounterForLocation?: number | null;
+  movesSinceReveal?: EdgeType[];
 }

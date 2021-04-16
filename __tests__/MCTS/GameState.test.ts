@@ -3,12 +3,11 @@ import { GameTree } from "../../src/MCST/GameTree";
 import path from "path";
 require("../../src/utils/prototypes");
 describe("Test GameState cloning", () => {
-  const exampleStates = [];
   const testSize = 10;
-  const exampleGame = JSON.parse(readFileSync(path.join(__dirname, "exampleGame.json"), "utf8"));
-  for (let i = 0; i < testSize; i++) {
-    exampleStates.push(exampleGame.getRandom());
-  }
+  const exampleStates = JSON.parse(
+    readFileSync(path.join(process.cwd(), "__tests__", "data", "longExampleGame.json"), "utf8")
+  );
+
   test("Clone properties do not share identity", () => {
     for (const [_, element] of exampleStates.entries()) {
       let clone = GameTree.cloneGameState(element);
@@ -29,7 +28,24 @@ describe("Test GameState cloning", () => {
         expect(detective.equalTo(exampleStates[i].detectives[j])).toBe(true);
       }
       expect(state.X.equalTo(exampleStates[i].X)).toBe(true);
-      expect(state.playerToMove.equalTo(exampleStates[i].playerToMove)).toBe(true);
+      if (Object.keys(exampleStates[i].playerToMove).length == 0) {
+        expect(i).toEqual(clonedStates.length - 1);
+      } else {
+        try {
+          expect(state.playerToMove.equalTo(exampleStates[i].playerToMove)).toBe(true);
+        } catch (err) {
+          // --- add additional data to the error message here ---
+          state.playerToMove.location = null;
+          exampleStates[i].playerToMove.location = null;
+          err.message = `${err.message}\n\nFirst: ${JSON.stringify(
+            state.playerToMove,
+            undefined,
+            2
+          )} \n\n Second: ${JSON.stringify(exampleStates[i].playerToMove, undefined, 2)} \n\n i=${i}`;
+          throw err;
+        }
+      }
+
       expect(state.turnCounter).toEqual(exampleStates[i].turnCounter);
     }
   });

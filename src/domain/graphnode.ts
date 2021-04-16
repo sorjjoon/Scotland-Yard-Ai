@@ -10,8 +10,20 @@ export interface NodeInfo {
   color?: string;
   size?: number;
 
-  //Not normally part of sigma nodes, added to give info to the user about playout count
+  //Not normally part of sigma nodes,
   moveDebugStr?: string;
+  moveType?: EdgeType;
+}
+/**
+ * Sigma exported edge
+ */
+export interface EdgeInfo {
+  source: number;
+  target: number;
+  id: number;
+  attributes: { [type: string]: EdgeType };
+  color: string;
+  size: number;
 }
 
 export class GraphNode {
@@ -33,11 +45,25 @@ export class GraphNode {
   /**
    * Get all neighboring nodes of the given type.
    * Do not modify the returned array, if you need to add a new edge, use addEdge
-   * @param  {EdgeType} type Edgetypes to return.
+   * @param  {EdgeType} type Edgetype to return.
    * @returns {readonly GraphNode[]} readonly GraphNode
    */
   getNeighbours(type: EdgeType): readonly GraphNode[] {
     return this.edges[type];
+  }
+
+  /**
+   * Get all neighboring nodes of the given types.
+   * Do not modify the returned array, if you need to add a new edge, use addEdge
+   * @param  {EdgeType} type Edgetypes to return.
+   * @returns {readonly GraphNode[]} readonly GraphNode
+   */
+  getAllNeighbours(types: EdgeType[]): readonly GraphNode[] {
+    const res = [];
+    for (let t of types) {
+      res.push(...this.edges[t]);
+    }
+    return res;
   }
   /**
    * Add a new neighbour to this node
@@ -48,6 +74,9 @@ export class GraphNode {
     this.edges[type].sort((a: GraphNode, b: GraphNode): number => {
       return a.id - b.id;
     });
+  }
+  toString() {
+    return "id: " + this.id;
   }
   /**
    * Type guard for GraphNode objects. Will return true in case GraphNode objects, or stringified sigma nodes

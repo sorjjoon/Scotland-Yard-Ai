@@ -5,41 +5,34 @@ import { EdgeType, GraphNode } from "../GraphNode";
 import { Player, Role } from "./Player";
 
 export class Detective extends Player implements Clonable<Detective> {
-  taxiTickets: number;
-  tickets: { [key in EdgeType]?: number };
-
-  constructor(location: GraphNode | null, id: number, color: Color, taxiTickets: number) {
-    super(Role.DETECTIVE, location, id, color);
-    this.tickets.TAXI = taxiTickets;
-    this.taxiTickets = taxiTickets;
+  //This attribute is here to make sure Detective is not structually similar to Player (and will not be automatically cast to a Player)
+  readonly uselessAttribute: undefined;
+  /**
+   * Create a new Detective.
+   *
+   * Tickets is copied by value to the new Detective. Keys in tickets which are not EdgeTypes are ignored
+   *
+   * @param  {GraphNode|null} location
+   * @param  {number} id
+   * @param  {Color} color
+   * @param  {{[keyinEdgeType]?:number}} tickets
+   */
+  constructor(location: GraphNode | null, id: number, color: Color, tickets: { [key in EdgeType]?: number }) {
+    super(Role.DETECTIVE, location, id, color, tickets);
   }
   /**
    * A copy of this detective. Location is copied as a reference
    * @returns {Detective}
    */
   clone(): Detective {
-    return new Detective(this.location, this.id, this.color, this.taxiTickets);
+    return new Detective(this.location, this.id, this.color, this.tickets);
   }
-  /**
-   * Set the Detective location to match the new node, and reduces the correct tickets, based on moveType
-   * Makes no effort to check, if the provided move is a valid move
-   * @param  {GraphNode|number} move
-   * @param  {EdgeType} moveType
-   */
-  makeMove(move: GraphNode | number, moveType: EdgeType) {
-    super.makeMove(move, moveType);
-    if (moveType === EdgeType.TAXI) {
-      this.taxiTickets--;
-    }
-  }
-  equalTo(other: any) {
-    return super.equalTo(other) && this.taxiTickets === other.taxiTickets;
-  }
+
   /**
    * Type guard for Detective
-   * Returns true if the given player's role is DETECTIVE
-   * @param  {Player|SerializedPlayer} p
-   * @returns {boolean}
+   *
+   * @param  {Player|SerializedPlayer} player
+   * @returns {boolean} true if the given player's role is DETECTIVE
    */
   static isDetective(p: Player | SerializedPlayer): p is Detective {
     return p.role === Role.DETECTIVE;

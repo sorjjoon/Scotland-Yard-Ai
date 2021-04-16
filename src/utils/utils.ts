@@ -1,10 +1,13 @@
 import * as _ from "../utils/prototypes";
 
 /**
- * Returns a random number between the arguments (inclusive)
+ * Returns a random number between the arguments (inclusive).
  * If the second argument is omitted, returns a positive number between 0 and the given argument
+ *
  * Usage:
+ *
  * randomInt(start, end)
+ *
  * randomInt(end)
  * @param  {number} [start=0]
  * @param  {number} end

@@ -31,7 +31,7 @@ describe("Test randomInt", () => {
 });
 
 describe("Test lookUp", () => {
-  const testData = JSON.parse(readFileSync(path.join(__dirname, "exampleGame.json"), "utf8"));
+  const testData = JSON.parse(readFileSync(path.join(process.cwd(), "__tests__", "data", "exampleGame.json"), "utf8"));
   const testArrDetective = testData[0].detectives;
   const testArrLocation = [];
   for (let x of testData) {

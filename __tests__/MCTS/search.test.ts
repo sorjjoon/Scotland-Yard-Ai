@@ -7,14 +7,18 @@ import { lookUpBasedOnKey } from "../../src/utils/utils";
 import { MisterX } from "../../src/domain/players/MisterX";
 import { Role } from "../../src/domain/players/Player";
 import { EdgeType, GraphNode } from "../../src/domain/GraphNode";
+import { Detective } from "../../src/domain/players/Detective";
+import { ExplorativeSearchTree } from "../../src/MCST/search_trees/ExplorativeSearchTree";
 interface TreeConstructor {
   new (initial: GameState): GameTree;
 }
-const startLocation = JSON.parse(readFileSync(path.join(__dirname, "shortExampleGame.json"), "utf8"))[0];
+const startLocation = JSON.parse(
+  readFileSync(path.join(process.cwd(), "__tests__", "data", "shortExampleGame.json"), "utf8")
+)[0];
 var trees: TreeConstructor[], testNames: string[], tests: Array<[string, TreeConstructor]>;
 tests = [];
-trees = [PureSearchTree];
-testNames = ["Pure"];
+trees = [PureSearchTree, ExplorativeSearchTree];
+testNames = ["Pure", "Explorative"];
 for (let i = 0; i < trees.length; i++) {
   tests.push([testNames[i], trees[i]]);
 }
@@ -60,7 +64,7 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
     if (XWon) {
       expect(totalWins).toEqual((loopCounter - 1) / 4 + 1);
     } else {
-      expect(totalWins).toBeGreaterThanOrEqual(Math.floor((loopCounter / 4) * 3) + 1);
+      expect(totalWins).toBeGreaterThanOrEqual(Math.floor((loopCounter / 4) * 3));
       expect(totalWins).toBeLessThanOrEqual(Math.floor((loopCounter / 4) * 3) + 3);
     }
     expect(current.getWinner()).not.toBeNull();
@@ -72,16 +76,19 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
   });
   test("Playout until root is not a leaf", () => {
     expect(tree.visits).toEqual(0);
+    expect(tree["isLeaf"]()).toBe(true);
     var i = 0;
     for (i; i < tree.getChildren().length; i++) {
       tree.playout();
     }
+    expect(tree["isLeaf"]()).toBe(false);
     expect(tree.visits).toEqual(i);
     var totalWins = 0;
     for (let child of tree.getChildren()) {
       expect(child.visits).toEqual(1);
       expect(child.wins).toBeLessThanOrEqual(1);
       totalWins += child.wins;
+      expect(child["isLeaf"]()).toBe(true);
     }
     expect(tree.wins).toEqual(i - totalWins);
 
@@ -98,13 +105,33 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
     }
     expect(tree.wins).toEqual(i + 1 - totalWins);
   });
-  test("Playout 100 times, and get the best move", () => {
+  test("Playout 100 times, and get the best move (next player different role than current)", () => {
     expect(tree.visits).toEqual(0);
+    expect(MisterX.isMisterX(tree.state.playerToMove)).toBe(true);
     for (let i = 0; i < 100; i++) {
       tree.playout();
     }
     const best = tree.getBestMove();
     expect(best.constructor.prototype).toBeInstanceOf(GameTree);
-    expect(tree.state.X.location.getNeighbours(EdgeType.TAXI).map((x) => x.id)).toContain(best.state.X.location.id);
+    expect(
+      tree.state.X.location.getAllNeighbours([EdgeType.TAXI, EdgeType.BUS, EdgeType.METRO]).map((x) => x.id)
+    ).toContain(best.state.X.location.id);
+  });
+  test("Playout 100 times, and get the best move, (next player same role as current)", () => {
+    tree = tree.getChildren()[0];
+    expect(Detective.isDetective(tree.state.playerToMove)).toBe(true);
+    expect(tree.state.playerToMove.id).toEqual(1);
+    expect(tree.visits).toEqual(0);
+    for (let i = 0; i < 100; i++) {
+      tree.playout();
+    }
+    const [best, _] = GameTree.getChosenMoveFromTree(tree, tree.getBestMove().state);
+
+    tree.state.playerToMove = tree.state.detectives[tree.state.detectives.length - 1];
+    expect(tree.state.playerToMove.id).not.toEqual(1);
+
+    const [bestAfterSwap, __] = GameTree.getChosenMoveFromTree(tree, tree.getBestMove().state);
+
+    expect(best.id).not.toEqual(bestAfterSwap.id);
   });
 });

@@ -42,16 +42,17 @@ main {
   height: auto;
   padding: 3px 0;
 }
-#sidebar > div:first-child {
+#sidebar > div:first-child,
+#sidebar > .header {
   font-size: 24px;
-  padding: 6px 0;
+  padding: 8px 0;
   font-weight: bold;
   text-align: center;
 }
-#game-start-info {
+#sidebar > table {
   width: 100%;
 }
-#game-start-info th {
+#sidebar > table th {
   text-align: left;
 }
 #side-wrapper {
@@ -64,4 +65,13 @@ main {
 }
 #edge-selector {
   flex: 0 1 auto;
+}
+label[for="taxi"] {
+  color: rgb(255, 153, 51);
+}
+label[for="bus"] {
+  color: rgb(50, 168, 82);
+}
+label[for="metro"] {
+  color: rgb(235, 64, 52);
 }

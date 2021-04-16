@@ -1,5 +1,5 @@
-import { GameMap } from "../../src/domain/gamemap";
-import { EdgeType } from "../../src/domain/graphnode";
+import { GameMap } from "../../src/domain/GameMap";
+import { EdgeType } from "../../src/domain/GraphNode";
 import { gameMap } from "../../src/server/GameMap";
 
 describe("Test gamemap", () => {
@@ -61,4 +61,24 @@ describe("Test gamemap", () => {
       });
     }
   });
+
+  const starts = [21, 11, 4, 199, 10];
+  const ends = [33, 163, 72, 18, 33];
+  const avoidNodes = [[], [], [], [], [21, 2]];
+  const answers = [
+    [21, 33],
+    [11, 163],
+    [4, 42, 72],
+    [199, 128, 89, 13, 46, 1, 8, 18],
+    [10, 34, 46, 33],
+  ];
+  test.each(starts.map((_, i) => [starts[i], ends[i], avoidNodes[i], answers[i]]))(
+    "find route. start: %s, end: %s",
+    (start, end, avoid, answer) => {
+      let route = gameMap
+        .findShortestPath(gameMap.getNode(start as number), gameMap.getNode(end as number), avoid as number[])
+        .map((n) => n.id);
+      expect(route).toEqual(answer);
+    }
+  );
 });
