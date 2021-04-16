@@ -7,14 +7,25 @@ export abstract class Player implements Clonable<Player> {
   readonly id: number;
   location: GraphNode | null;
   color: Color;
+  tickets: { [key in EdgeType]?: number };
   isPlayedByAI?: boolean;
   aiType?: string;
 
-  constructor(role: Role, location: GraphNode | null, id: number, color: Color) {
+  constructor(
+    role: Role,
+    location: GraphNode | null,
+    id: number,
+    color: Color,
+    tickets: { [key in EdgeType]?: number }
+  ) {
     this.role = role;
     this.location = location;
     this.id = id;
     this.color = color;
+    this.tickets = {};
+    for (let key in EdgeType) {
+      this.tickets[key] = tickets[key] ?? 0;
+    }
   }
 
   /**
@@ -42,6 +53,14 @@ export abstract class Player implements Clonable<Player> {
    * @returns {boolean}
    */
   equalTo(other: any) {
+    if (other.tickets == null) {
+      return false;
+    }
+    for (let key in this.tickets) {
+      if (this.tickets[key] != other.tickets[key]) {
+        return false;
+      }
+    }
     return (
       this.color === other.color &&
       this.id === other.id &&

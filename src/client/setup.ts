@@ -6,7 +6,7 @@ import { MisterX } from "../domain/players/MisterX";
 import { Player } from "../domain/players/Player";
 import { mainLoop } from "./main";
 import { addToSidebar, lookupNodeById, setNodeColor } from "./utils";
-import { detectiveStartingNodes, xStartingNodes } from "../utils/constants";
+import { detectiveStartingNodes, gameDuration, revealTurns, xStartingNodes } from "../utils/constants";
 import { GameState } from "../MCST/GameState";
 
 declare global {
@@ -22,22 +22,21 @@ declare global {
     showDebug: boolean;
   }
 }
-
+/**
+ * Set up the window for a new game.
+ *
+ * Sigma should be loaded before calling this function (loadGraph)
+ */
 export function startGame() {
-  addToSidebar("Game log");
-  addToSidebar("Setting up...");
-
   window.gameActive = false;
   window.detectives = [];
   window.gameHistory = [];
   window.players = window.players.map((p) => {
     if (Detective.isDetective(p)) {
-      return new Detective(null, p.id, p.color, p.taxiTickets);
+      return new Detective(null, p.id, p.color, p.tickets);
     } else if (MisterX.isMisterX(p)) {
       return new MisterX(null, p.id, p.color, null, null);
     }
-    console.error("Invalid player role");
-    console.error(p);
   });
   var players = window.players;
   players.forEach((p) => {
@@ -50,11 +49,18 @@ export function startGame() {
       window.X = p;
     } else {
       //Shouldn't happen
-      console.error("Invalid player role");
       console.error(p);
+      throw Error("Invalid player role");
     }
   });
   window.showDebug = (document.getElementById("playout-debug") as HTMLInputElement).checked;
+  if ((document.getElementById("detectives-see-x") as HTMLInputElement).checked) {
+    window.revealTurns = [...Array(gameDuration + 1).keys()];
+  } else {
+    window.revealTurns = revealTurns;
+  }
+  addToSidebar("Game log");
+  addToSidebar("Setting up...");
   document.getElementById("sidebar").innerHTML = "";
 
   detectiveStartingNodes.shuffle();
@@ -68,10 +74,14 @@ export function startGame() {
       p.location = new GraphNode(lookupNodeById(xStartingNodes[0]));
     }
   });
+
   addToSidebar("Done! Game Starting...");
   mainLoop();
 }
 
+/**
+ * Make the ajax request to load
+ */
 export function fetchGraph() {
   sigma.parsers.json(
     "public/graph/taxi_data.json",
@@ -79,7 +89,7 @@ export function fetchGraph() {
       container: "graph-container",
 
       settings: {
-        //@ts-ignore
+        //@ts-ignore, type declarations are for prev version?
         drawLabels: true,
       },
     },
@@ -89,21 +99,6 @@ export function fetchGraph() {
         if (window.gameActive) {
           window.clickedNode = e.data.node;
         }
-      });
-      //For the sigma.neighborhood plugin
-      sigma.classes.graph.addMethod("adjacentEdges", function (id) {
-        id = String(id);
-        //@ts-ignore
-        var a = this.allNeighborsIndex[id],
-          eid,
-          target,
-          edges = [];
-        for (target in a) {
-          for (eid in a[target]) {
-            edges.push(a[target][eid]);
-          }
-        }
-        return edges;
       });
     }
   );

@@ -1,21 +1,30 @@
 import { Detective } from "../domain/players/Detective";
 import { MisterX } from "../domain/players/MisterX";
-import { Role } from "../domain/players/Player";
+import { Player, Role } from "../domain/players/Player";
 import { GameState } from "../MCST/GameState";
 import { black, xColor } from "../utils/constants";
 import { getGameState } from "./main";
 import { lookupNodeById } from "./utils";
 
+/**
+ * Replay a new game, starting from turn 0
+ */
 export function replayGame() {
   setUpReplay();
   displayTurn(0);
 }
-
+/**
+ * Setup needed for replay
+ */
 function setUpReplay() {
   const header = document.getElementById("replay-header");
   header.classList.add("show");
 }
 
+/**
+ * Display the given turn.
+ * @param {number} turn
+ */
 export function displayTurn(turn: number) {
   const currentTurn = window.gameHistory[turn];
   const side = document.getElementById("sidebar");
@@ -49,7 +58,13 @@ export function displayTurn(turn: number) {
   }
   document.getElementById("replay-player").innerHTML = "Player to move: " + playerStr;
 }
-
+/**
+ * Setup the given button.
+ *
+ * Makes the button disabled, if the given turn is invalid
+ * @param  {HTMLButtonElement} button
+ * @param  {number} newTurn
+ */
 function setUpButton(button: HTMLButtonElement, newTurn: number) {
   if (newTurn < 0 || newTurn >= window.gameHistory.length) {
     button.disabled = true;
@@ -58,11 +73,14 @@ function setUpButton(button: HTMLButtonElement, newTurn: number) {
     button.onclick = function () {
       displayTurn(newTurn);
     };
-    // button.setAttribute("onlick", "lib.displayTurn({0})".formatString(newTurn));
   }
 }
-
-export function pushGameState(turnCounter, playerToMove) {
+/**
+ * Push the current game state to history
+ * @param  {number} turnCounter
+ * @param  {Player} playerToMove
+ */
+export function pushGameState(turnCounter: number, playerToMove: Player) {
   const state: GameState = JSON.parse(JSON.stringify(getGameState(turnCounter, playerToMove)));
   state.chatHistory = document.getElementById("sidebar").innerHTML;
   window.gameHistory.push(state);

@@ -3,9 +3,11 @@ import path from "path";
 import { Player } from "../domain/players/Player";
 import {
   AITypes,
+  busTickets,
   Color,
   detectiveColors,
   detectiveCount,
+  metroTickets,
   moveProcessTime,
   revealTurns,
   taxiTickets,
@@ -21,6 +23,8 @@ import { gameMap } from "./GameMap";
 import { EdgeType } from "../domain/GraphNode";
 import { monteCarloSearch } from "../MCST/MCTS";
 import { GameTree } from "../MCST/GameTree";
+import { randomMove } from "./RandomAi";
+import { ExplorativeSearchTree } from "../MCST/search_trees/ExplorativeSearchTree";
 
 /**
  * Main entry point for the app
@@ -58,10 +62,13 @@ const main = async () => {
     var move;
     switch (gameState.playerToMove.aiType) {
       case AITypes.RANDOM:
-        move = gameMap.getNode(gameState.playerToMove.location.id).getNeighbours(EdgeType.TAXI).getRandom();
+        move = randomMove(gameState);
         break;
       case AITypes["PURE MCTS"]:
         move = monteCarloSearch(GameTree.cloneGameState(gameState), moveProcessTime, PureSearchTree);
+        break;
+      case AITypes["EXPLORATIVE MCTS"]:
+        move = monteCarloSearch(GameTree.cloneGameState(gameState), moveProcessTime, ExplorativeSearchTree);
         break;
       default:
         res.status(500).send({
@@ -76,7 +83,9 @@ const main = async () => {
     detectiveColors.shuffle(); //Different colors every game
     const players: Player[] = [];
     for (let id = 1; id < detectiveCount + 1; id++) {
-      players.push(new Detective(null, id, detectiveColors[id - 1], taxiTickets));
+      players.push(
+        new Detective(null, id, detectiveColors[id - 1], { TAXI: taxiTickets, BUS: busTickets, METRO: metroTickets })
+      );
     }
 
     players.push(new MisterX(null, players.length + 1, xColor));

@@ -20,4 +20,5 @@ Player.prototype.makeMove = function makeMove(newNode: number | GraphNode, moveT
     newNode = gameMap.getNode(newNode);
   }
   this.location = newNode;
+  this.tickets[moveType]--;
 };

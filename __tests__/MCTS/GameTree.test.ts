@@ -4,27 +4,30 @@ import { MisterX } from "../../src/domain/players/MisterX";
 import { lookUpBasedOnKey } from "../../src/utils/utils";
 import { GameState } from "../../src/MCST/GameState";
 import { GameTree } from "../../src/MCST/GameTree";
-import { Role } from "../../src/domain/players/Player";
+import { Player, Role } from "../../src/domain/players/Player";
 import { Detective } from "../../src/domain/players/Detective";
-import { gameDuration } from "../../src/utils/constants";
+import { busTickets, gameDuration, metroTickets, taxiTickets } from "../../src/utils/constants";
 import { gameMap } from "../../src/server/GameMap";
 import { EdgeType } from "../../src/domain/GraphNode";
+import { createPlayerFromObject } from "../../src/server/utils";
 
 describe("Test GameTree", () => {
-  const xStart = 50;
-  const d1Start = 14;
-  const d2Start = 135;
-  const d3Start = 44;
+  const xStart = 149;
+  const d1Start = 44;
+  const d2Start = 170;
+  const d3Start = 158;
   var xMoves: number[], d1Moves: number[], d2Moves: number[], d3Moves: number[];
 
   var exampleGame: GameState[], tree: GameTree;
   beforeEach(() => {
-    exampleGame = JSON.parse(readFileSync(path.join(__dirname, "shortExampleGame.json"), "utf8"));
+    exampleGame = JSON.parse(
+      readFileSync(path.join(process.cwd(), "__tests__", "data", "shortExampleGame.json"), "utf8")
+    );
     tree = new GameTree(GameTree.cloneGameState(exampleGame[0]));
-    xMoves = [38, 24, 38];
-    d1Moves = [25, 38];
-    d2Moves = [143, 129];
-    d3Moves = [32, 45];
+    xMoves = [148, 123, 124];
+    d1Moves = [58, 77, 124];
+    d2Moves = [185, 153];
+    d3Moves = [157, 185];
   });
   test("Detective ids are [1,2,3]", () => {
     for (let state of exampleGame) {
@@ -38,12 +41,13 @@ describe("Test GameTree", () => {
       if (Object.keys(s.playerToMove).length !== 0) {
         let correctChildrenCount = 0;
         if (MisterX.isMisterX(s.playerToMove)) {
-          correctChildrenCount = GameTree.gameMap.getNode(s.playerToMove.location.id).getNeighbours(EdgeType.TAXI)
-            .length;
+          correctChildrenCount = GameTree.gameMap
+            .getNode(s.playerToMove.location.id)
+            .getAllNeighbours(Object.values(EdgeType)).length;
         } else {
           GameTree.gameMap
             .getNode(s.playerToMove.location.id)
-            .getNeighbours(EdgeType.TAXI)
+            .getAllNeighbours(Object.values(EdgeType))
             .forEach((element) => {
               if (!tree.state.detectives.map((d) => d.location.id).includes(element.id)) {
                 correctChildrenCount++;
@@ -57,11 +61,75 @@ describe("Test GameTree", () => {
       }
     }
   });
+  test("Children lengts are correct, ticket testing", () => {
+    tree = new GameTree(exampleGame[1]);
+    const p = tree.state.playerToMove;
+    expect(p.role).toEqual(Role.DETECTIVE);
+    expect(p.id).toEqual(1);
+    p.location = GameTree.gameMap.getNode(138);
+    tree.generateChildren();
+    expect(tree.getChildren().length).toEqual(3);
+    for (let child of tree.getChildren()) {
+      expect(child.state.detectives[0].tickets.TAXI).toEqual(p.tickets.TAXI - 1);
+      expect(child.state.detectives[0].tickets.BUS).toEqual(p.tickets.BUS);
+      expect(child.state.detectives[0].tickets.METRO).toEqual(p.tickets.METRO);
+    }
+
+    p.location = GameTree.gameMap.getNode(34);
+    tree.state.detectives[0].location = GameTree.gameMap.getNode(34);
+    tree["children"] = null;
+    expect(tree.getChildren().length).toEqual(8);
+    var taxiRoutes = [10, 47, 48];
+    var busRoutes = [63, 46, 58];
+    var route22 = [EdgeType.BUS, EdgeType.TAXI];
+    for (let child of tree.getChildren()) {
+      let moveId = child.state.detectives[0].location.id;
+      if (taxiRoutes.includes(moveId)) {
+        expect(child.state.detectives[0].tickets.TAXI).toEqual(p.tickets.TAXI - 1);
+        expect(child.state.detectives[0].tickets.BUS).toEqual(p.tickets.BUS);
+        expect(child.state.detectives[0].tickets.METRO).toEqual(p.tickets.METRO);
+      } else if (busRoutes.includes(moveId)) {
+        expect(child.state.detectives[0].tickets.TAXI).toEqual(p.tickets.TAXI);
+        expect(child.state.detectives[0].tickets.BUS).toEqual(p.tickets.BUS - 1);
+        expect(child.state.detectives[0].tickets.METRO).toEqual(p.tickets.METRO);
+      } else {
+        //22
+        expect(moveId).toEqual(22);
+        expect(child.state.detectives[0].tickets.METRO).toEqual(p.tickets.METRO);
+        if (child.state.detectives[0].tickets.BUS < p.tickets.BUS) {
+          route22 = route22.filter((x) => x != EdgeType.TAXI);
+          expect(child.state.detectives[0].tickets.TAXI).toEqual(p.tickets.TAXI);
+          expect(child.state.detectives[0].tickets.BUS).toEqual(p.tickets.BUS - 1);
+        } else {
+          route22 = route22.filter((x) => x != EdgeType.BUS);
+          expect(child.state.detectives[0].tickets.TAXI).toEqual(p.tickets.TAXI - 1);
+          expect(child.state.detectives[0].tickets.BUS).toEqual(p.tickets.BUS);
+        }
+      }
+    }
+    tree.state.playerToMove.tickets.BUS = 0;
+    tree.state.detectives[0].tickets.BUS = 0;
+    tree["children"] = null;
+    taxiRoutes.push(22);
+    taxiRoutes.sort((a, b) => a - b);
+    expect(tree.getChildren().length).toEqual(taxiRoutes.length);
+    var temp = tree.getChildren().map((x) => x.state.detectives[0].location.id);
+
+    temp.sort((a, b) => a - b);
+
+    expect(temp).toEqual(taxiRoutes);
+
+    tree.state.playerToMove.tickets.TAXI = 0;
+    tree.state.detectives[0].tickets.TAXI = 0;
+    tree["children"] = null;
+    expect(tree.getChildren().length).toEqual(1);
+    expect(tree.getChildren()[0].state.detectives[0].location.id).toEqual(tree.state.detectives[0].location.id);
+  });
   test("Children lengths are  unchanged for x in case neighbouring detectives", () => {
-    const originalNeighbours = tree.state.X.location.getNeighbours(EdgeType.TAXI).length;
+    const originalNeighbours = tree.state.X.location.getAllNeighbours(Object.values(EdgeType)).length;
     expect(originalNeighbours).toEqual(tree.getChildren().length);
     expect(tree.state.playerToMove.role).toEqual(Role.X);
-    tree.state.detectives[0].location = tree.state.X.location.getNeighbours(EdgeType.TAXI)[0];
+    tree.state.detectives[0].location = tree.state.X.location.getAllNeighbours(Object.values(EdgeType))[0];
     tree["children"] = null;
     expect(tree.getChildren().length).toEqual(originalNeighbours);
   });
@@ -69,18 +137,36 @@ describe("Test GameTree", () => {
   test("Children lengths are correct detective in case neighbouring detectives", () => {
     tree = tree.getChildren()[0];
     expect(tree.state.playerToMove.role).toEqual(Role.DETECTIVE);
-    const originalNeighbours = tree.state.detectives[0].location.getNeighbours(EdgeType.TAXI).length;
+    expect(tree.state.playerToMove.id).toEqual(1);
+    const originalNeighbours = tree.state.detectives[0].location.getAllNeighbours(Object.values(EdgeType)).length;
     expect(originalNeighbours).toEqual(tree.getChildren().length);
-    tree.state.detectives[1].location = tree.state.detectives[0].location.getNeighbours(EdgeType.TAXI)[0];
+    tree.state.detectives[1].location = tree.state.detectives[0].location.getAllNeighbours(Object.values(EdgeType))[0];
+    const nodeToMoveTo = tree.state.detectives[0].location.getAllNeighbours(Object.values(EdgeType))[0].id;
+    var correctRoutes = 0;
+    for (let key of Object.values(EdgeType)) {
+      if (
+        tree.state.detectives[0].location
+          .getNeighbours(key)
+          .map((n) => n.id)
+          .includes(nodeToMoveTo)
+      )
+        correctRoutes++;
+    }
+    expect(correctRoutes).toBeGreaterThan(0);
     tree["children"] = null;
-    expect(tree.getChildren().length).toEqual(originalNeighbours - 1);
+    //-2 because there are 2 ways to get to the neighbour in this case (bus and taxi)
+    expect(tree.getChildren().length).toEqual(originalNeighbours - correctRoutes);
   });
 
   test("Chosen move from tree", () => {
     for (let i = 1; i < exampleGame.length; i++) {
-      let tree = new GameTree(exampleGame[i]);
+      tree = new GameTree(exampleGame[i]);
+      if (Object.keys(tree.state.playerToMove).length == 0) {
+        expect(i).toEqual(exampleGame.length - 1);
+        break;
+      }
       let prevTree = new GameTree(exampleGame[i - 1]);
-      const moveId = GameTree.getChosenMoveFromTree(prevTree, tree.state).id;
+      const moveId = GameTree.getChosenMoveFromTree(prevTree, tree.state)[0].id;
       let arr;
       switch (prevTree.state.playerToMove.id) {
         case 1:
@@ -101,9 +187,13 @@ describe("Test GameTree", () => {
       expect(arr).toContain(moveId);
       arr.splice(0, 1);
     }
+    expect(d1Moves.length).toEqual(0);
+    expect(d2Moves.length).toEqual(0);
+    expect(d3Moves.length).toEqual(0);
+    expect(xMoves.length).toEqual(0);
   });
   test("Start positions are correct", () => {
-    expect(tree.state.playerToMove.equalTo(exampleGame[0].X)).toBe(true);
+    expect(tree.state.playerToMove.equalTo(createPlayerFromObject(exampleGame[0].X))).toBe(true);
     expect(tree.state.X.location.id).toEqual(xStart);
     expect(tree.state.X.locationKnownToDetectives).toBeFalsy();
     expect(tree.state.X.turnCounterForLocation ?? null).toBeNull();
@@ -128,50 +218,66 @@ describe("Test GameTree", () => {
     });
   });
   test("Entire game can be found in children", () => {
-    var root = tree;
+    var currentTree = tree;
     const detectiveTickets = {};
-    const initialDetectiveTickets = {};
     for (let d of exampleGame[0].detectives) {
-      detectiveTickets[d.id] = d.taxiTickets;
-      initialDetectiveTickets[d.id] = d.taxiTickets;
+      detectiveTickets[d.id] = JSON.parse(JSON.stringify(d)).tickets;
+      expect(detectiveTickets[d.id]).toEqual({ TAXI: taxiTickets, BUS: busTickets, METRO: metroTickets });
     }
 
     for (let i = 1; i < exampleGame.length; i++) {
       let current = exampleGame[i];
-      let newState = getChosenMoveFromTree(root, current);
-      if (current.turnCounter !== 2) expect(newState).not.toBeNull();
-      root = newState;
-      if (i < exampleGame.length - 1) {
-        expect(root.getWinner()).toBeNull();
-      } else {
-        expect(root.getWinner()).toEqual(Role.DETECTIVE);
+      if (Object.keys(current.playerToMove).length == 0) {
+        expect(i).toEqual(exampleGame.length - 1);
+        break;
       }
-      expect(root.state.turnCounter).toEqual(current.turnCounter);
-      for (let j = 0; j < root.state.detectives.length; j++) {
-        let d1 = root.state.detectives[j];
+      let newState = findChosenMoveFromTree(currentTree, current);
+
+      const [move, moveType] = GameTree.getChosenMoveFromTree(new GameTree(exampleGame[i - 1]), exampleGame[i]);
+      expect([newState.state.X.location.id].concat(newState.state.detectives.map((d) => d.location.id))).toContain(
+        move.id
+      );
+      if (current.turnCounter !== 2) expect(newState).not.toBeNull();
+
+      currentTree = newState;
+
+      if (i < exampleGame.length - 2) {
+        expect(currentTree.getWinner()).toBeNull();
+      } else {
+        expect(currentTree.getWinner()).toEqual(Role.DETECTIVE);
+      }
+      expect(currentTree.state.turnCounter).toEqual(current.turnCounter);
+      for (let j = 0; j < currentTree.state.detectives.length; j++) {
+        let d1 = currentTree.state.detectives[j];
         let d2 = current.detectives[j];
 
         expect(d1.equalTo(d2)).toBe(true);
-        expect(d1.taxiTickets).toEqual(detectiveTickets[d1.id]);
-
-        if (root.state.turnCounter > 1) {
-          expect(d1.taxiTickets).toBeLessThan(initialDetectiveTickets[d1.id]);
-        }
       }
-      if (Detective.isDetective(root.state.playerToMove)) {
-        detectiveTickets[root.state.playerToMove.id]--;
+
+      if (Detective.isDetective(exampleGame[i - 1].playerToMove)) {
+        detectiveTickets[exampleGame[i - 1].playerToMove.id][moveType]--;
       }
     }
+    expect(d1Moves.length).toEqual(0);
+    expect(d2Moves.length).toEqual(0);
+    expect(d3Moves.length).toEqual(0);
+    expect(xMoves.length).toEqual(0);
+
+    expect(detectiveTickets[1]).toEqual({ TAXI: 10, BUS: 6, METRO: 4 });
+    expect(detectiveTickets[2]).toEqual({ TAXI: 10, BUS: 8, METRO: 3 });
+    expect(detectiveTickets[3]).toEqual({ TAXI: 10, BUS: 7, METRO: 4 });
   });
   /**
    * Returns the child from the inital game tree which matches the new state
-   * Checks that the provided moves are correct (contained in d1Moves if detective 1 moved etc.)
+   *
+   * Checks that the provided moves are correct (contained in d1Moves if detective 1 moved etc.), and splices the move from the list afterwards.
+   *
    * Returns null in case the provided move was not found (check the result for null)
    * @param  {GameTree} inital
    * @param  {GameState} newState
    * @returns GameTree
    */
-  function getChosenMoveFromTree(inital: GameTree, newState: GameState): GameTree | null {
+  function findChosenMoveFromTree(inital: GameTree, newState: GameState): GameTree | null {
     var moveId;
     if (MisterX.isMisterX(inital.state.playerToMove)) {
       moveId = newState.X.location.id;
@@ -197,7 +303,6 @@ describe("Test GameTree", () => {
     }
     expect(arr).toContain(moveId);
     arr.splice(0, 1);
-
     for (let child of inital.getChildren()) {
       if (MisterX.isMisterX(inital.state.playerToMove)) {
         if (child.state.X.location.id == moveId) {

@@ -6,20 +6,15 @@ import { GameTree } from "../GameTree";
  */
 export class PureSearchTree extends GameTree {
   /**
-   * Find the optimal move based on the results current playouts
+   * Find the optimal move based on the results of currently completed playouts
    * @returns {GraphNode}
    */
   public getBestMove(): GameTree {
-    var comparator;
-    let simpleComparator = (a, b) => {
-      return a.wins / a.visits - b.wins / b.visits;
-    };
-    if (this.state.playerToMove.role !== this.getChildren()[0].state.playerToMove.role) {
-      comparator = (a, b) => simpleComparator(a, b) * -1;
-    } else {
-      comparator = simpleComparator;
-    }
-    let bestTree = this.children.getMax(comparator);
+    let bestTree = this.children.getMax(
+      this.getFlippedComparator((a, b) => {
+        return a.wins / a.visits - b.wins / b.visits;
+      })
+    );
     return bestTree;
   }
   /**

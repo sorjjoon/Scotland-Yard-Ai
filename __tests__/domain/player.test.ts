@@ -6,11 +6,12 @@ import { Detective } from "../../src/domain/players/Detective";
 import { MisterX } from "../../src/domain/players/MisterX";
 import { GameState } from "../../src/MCST/GameState";
 import { GameTree } from "../../src/MCST/GameTree";
+import { cwd } from "process";
 
 describe("Test Player", () => {
   var exampleGame: GameState[], tree: GameTree;
   beforeEach(() => {
-    exampleGame = JSON.parse(readFileSync(path.join(__dirname, "shortExampleGame.json"), "utf8"));
+    exampleGame = JSON.parse(readFileSync(path.join(cwd(), "__tests__", "data", "shortExampleGame.json"), "utf8"));
     tree = new GameTree(GameTree.cloneGameState(exampleGame[0]));
   });
   test("Player equalTo", () => {
@@ -27,7 +28,7 @@ describe("Test Player", () => {
 
     const copyOfD = tree.state.detectives[0].clone();
     expect(copyOfD.equalTo(tree.state.detectives[0])).toBe(true);
-    copyOfD.taxiTickets++;
+    copyOfD.tickets.TAXI++;
     expect(copyOfD.equalTo(tree.state.detectives[0])).toBe(false);
   });
   test("Player equalTo, nullish location history MisterX", () => {
@@ -59,17 +60,19 @@ describe("Test Player", () => {
     expect(MisterX.isMisterX(tree.state.X)).toBe(true);
     expect(tree.state.detectives.map((d) => Detective.isDetective(d))).not.toContain(false);
   });
-  test("Detective and X makeMove", () => {
+  test("Detective and X makeMove TAXI", () => {
     const x = tree.state.X;
     const d = tree.state.detectives[0];
     x.makeMove(21, EdgeType.TAXI);
     expect(x.location).toBeInstanceOf(GraphNode);
     expect(x.location.id).toEqual(21);
 
-    const dTickets = d.taxiTickets;
+    const dTickets = d.tickets.TAXI;
+    const dMTickets = d.tickets.METRO;
+    const dBTickets = d.tickets.BUS;
     d.makeMove(21, EdgeType.TAXI);
     expect(d.location).toBeInstanceOf(GraphNode);
-    expect(d.taxiTickets).toEqual(dTickets - 1);
+    expect(d.tickets.TAXI).toEqual(dTickets - 1);
 
     x.makeMove(gameMap.getNode(25), EdgeType.TAXI);
     expect(x.location).toBeInstanceOf(GraphNode);
@@ -78,6 +81,20 @@ describe("Test Player", () => {
     d.makeMove(gameMap.getNode(25), EdgeType.TAXI);
     expect(d.location).toBeInstanceOf(GraphNode);
     expect(d.location).toBe(gameMap.getNode(25));
-    expect(d.taxiTickets).toEqual(dTickets - 2);
+    expect(d.tickets.TAXI).toEqual(dTickets - 2);
+
+    expect(d.tickets.BUS).toEqual(dBTickets);
+    expect(d.tickets.METRO).toEqual(dMTickets);
+  });
+
+  test("Detective tickets are not shared after cloning", () => {
+    const d1 = GameTree.cloneGameState(exampleGame.getRandom()).detectives.getRandom();
+    const d2 = d1.clone();
+    expect(d1).not.toBe(d2);
+    expect(d1).not.toBe(d2.tickets);
+    expect(d1.tickets).toEqual(d2.tickets);
+
+    d1.tickets[EdgeType.TAXI]--;
+    expect(d1.tickets).not.toEqual(d2.tickets);
   });
 });
