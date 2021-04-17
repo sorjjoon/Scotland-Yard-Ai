@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strictNullChecks": false,
+    "forceConsistentCasingInFileNames": true,
     "strictFunctionTypes": true,
 
     "noUnusedLocals": false,
