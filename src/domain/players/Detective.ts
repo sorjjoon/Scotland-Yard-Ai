@@ -1,6 +1,6 @@
 import { SerializedPlayer } from "./SerializedPlayer";
 import { Color } from "../../utils/constants";
-import { Clonable } from "../clonable";
+import { Clonable } from "../Clonable";
 import { EdgeType, GraphNode } from "../GraphNode";
 import { Player, Role } from "./Player";
 

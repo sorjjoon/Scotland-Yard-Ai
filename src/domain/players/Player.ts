@@ -1,5 +1,5 @@
 import { Color } from "../../utils/constants";
-import { Clonable } from "../clonable";
+import { Clonable } from "../Clonable";
 import { EdgeType, GraphNode, NodeInfo } from "../GraphNode";
 
 export abstract class Player implements Clonable<Player> {
