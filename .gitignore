@@ -12,3 +12,6 @@ time.txt
 /*temp*
 *.map
 *.tgz
+*.log
+/CPU_PROFILES
+/data

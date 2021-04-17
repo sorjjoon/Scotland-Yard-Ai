@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "node dist/server/index.js",
+    "profile": "node --max_semi_space_size=128  --inspect dist/server/index.js",
     "demon": "nodemon dist/server/index.js",
     "compile": "tsc -p tsconfig.server.json && webpack ",
     "pack": "webpack --watch",
