@@ -6,6 +6,10 @@ The Ai for the game is implemented using [Monte Carlo tree search](https://en.wi
 
 Our gametree is represented as tree structure, with the root node being our current gamestate, which we want to evaluate and child nodes representing moves the current player can make.
 
+## Game Rules
+
+The project implements most of the Scotland Yard boardgame rules. The game is centered around a group of detectives trying to catch Mister X. Both players can move around the map using taxi, bus or metroroutes (yellow, green, red). X has an infinite amount of tickets, but detectives each have a limited number of tickets they can use. The game ends if X is caught (a detective ends/starts their turn in the same node as X). Mister X is usually hidden from the detectives, but he is periodically revealed to the detectives (around every 4 turns). When revealed, detectives know the exact location of X, but after his next move he will be again hidden. Detectives do know however what forms of transport X uses to move around the city (and can use this to try and narrow down his location).
+
 ## Program Overview
 
 The programm can be devised into two distinct parts, the backend server, and the frontend ui.
