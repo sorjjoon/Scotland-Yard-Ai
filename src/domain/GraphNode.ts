@@ -10,7 +10,7 @@ export interface NodeInfo {
   color?: string;
   size?: number;
 
-  //Not normally part of sigma nodes,
+  //Not normally part of sigma nodes, set when returning good moves for extra info
   moveDebugStr?: string;
   moveType?: EdgeType;
 }

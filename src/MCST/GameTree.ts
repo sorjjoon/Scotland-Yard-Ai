@@ -36,6 +36,7 @@ export class GameTree {
 
   /**
    * Check if this state is an end state or not
+   *
    * Returns null if no side is the winner
    * @returns {string| null}
    */
@@ -91,6 +92,7 @@ export class GameTree {
   }
   /**
    * Pick random children, until an endstate is reached
+   *
    * Returns true if x won this playout
    * @returns {boolean} Xwins
    */
@@ -168,6 +170,7 @@ export class GameTree {
         }
       });
     }
+    //Detective is out of tickets
     if (children.length === 0) {
       let stateAfterMove = GameTree.generateGameState(this.state, null, null);
       //@ts-ignore
@@ -256,9 +259,9 @@ export class GameTree {
   /**
    * Returns the child from the inital game tree which matches the new state, and which moveType was used to reach it.
    *
-   * moveType is left null incase misterX made the move
    *
    * Checks that the provided moves are correct (contained in d1Moves if detective 1 moved etc.)
+   *
    * Returns null in case the provided move was not found
    * @param  {GameTree} inital
    * @param  {GameState} newState

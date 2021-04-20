@@ -5,7 +5,7 @@ export class Queue<T> {
   private left: Node<T>;
   private right: Node<T>;
   /**
-   * Add a new
+   * Add a new element to the queue
    * @param  {T} value
    */
   push(value: T) {
@@ -32,6 +32,10 @@ export class Queue<T> {
 
     return temp?.value;
   }
+  /**
+   * Check if this queue isEmpty
+   * @returns isEmpty
+   */
   isEmpty() {
     return this.right == null;
   }

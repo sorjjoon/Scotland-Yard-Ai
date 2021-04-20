@@ -93,7 +93,14 @@ Array.prototype.getAllMax = function getMax<T>(comparator: (a: T, b: T) => numbe
   });
   return max;
 };
-
+/**
+ * Returns a formated version of this string using the given arguments
+ *
+ * syntax, args: world
+ *
+ * hi {0} -> hi world
+ * @returns {string}
+ */
 String.prototype.formatString = function (...args: any[]) {
   var str = this.toString();
   if (arguments.length) {

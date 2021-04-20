@@ -21,6 +21,8 @@ interface TreeConstructor {
  */
 export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor) {
   var roots: GameTree[] = [];
+
+  //Determine possible roots, from X:s last known location
   if (Detective.isDetective(initialState.playerToMove)) {
     for (let xLoc of GameTree.findPossibleXLocations(initialState, initialState.X.movesSinceReveal)) {
       let state = GameTree.cloneGameState(initialState);
@@ -34,6 +36,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     roots = [new treeConstructor(GameTree.cloneGameState(initialState))];
   }
   var fastestRoute;
+  //Check if detective is far enough, so they should just rush X
   //Doesnt matter which member of roots we use, they only differ with X.location (cant use initialState)
   if (Detective.isDetective(roots[0].state.playerToMove)) {
     fastestRoute = GameTree.gameMap.findShortestPath(
@@ -73,7 +76,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     }
   }
   const combinedRoots = new treeConstructor(roots[0].state);
-
+  //Combine info from diffrent roots
   for (let i = 0; i < combinedRoots.getChildren().length; i++) {
     roots.forEach((r) => {
       combinedRoots.visits += r.visits;
@@ -83,6 +86,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     });
   }
   console.log("Playouts finished!");
+
   let bestTree = combinedRoots.getBestMove();
   const temp = GameTree.getChosenMoveFromTree(combinedRoots, bestTree.state);
   let move = temp[0];

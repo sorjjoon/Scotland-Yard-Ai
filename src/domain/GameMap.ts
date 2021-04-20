@@ -36,7 +36,7 @@ export class GameMap {
   }
   /**
    * Nodes are ordered by id
-   * @returns GraphNode[]
+   * @returns {GraphNode[]}
    */
   public getAllNodes(): readonly GraphNode[] {
     return this.nodes;
@@ -84,6 +84,7 @@ export class GameMap {
         queue.push([start, n]);
       }
     }
+
     while (!queue.isEmpty()) {
       let route = queue.pop();
       let current = route[route.length - 1];
