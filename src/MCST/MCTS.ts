@@ -75,13 +75,8 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
       possibleRoots.forEach((r) => r.playout());
     }
   }
-<<<<<<< HEAD
   const combinedRoots = new treeConstructor(possibleRoots[0].state);
   //Combine info from the used possible roots
-=======
-  const combinedRoots = new treeConstructor(roots[0].state);
-  //Combine info from diffrent roots
->>>>>>> 77688fe44a226c09419f24a747455dff0edcf077
   for (let i = 0; i < combinedRoots.getChildren().length; i++) {
     possibleRoots.forEach((r) => {
       combinedRoots.visits += r.visits;
