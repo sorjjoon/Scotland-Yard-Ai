@@ -29,7 +29,6 @@ import { ExplorativeSearchTree } from "../MCST/search_trees/ExplorativeSearchTre
 /**
  * Main entry point for the app
  */
-
 const main = async () => {
   console.log("Setting up server");
   const port = 5000;

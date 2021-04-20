@@ -43,6 +43,7 @@ function lookupNodesByKeyValue(sigmaInstance: SigmaJs.Sigma, key, value) {
 function lookupNodeByKeyValue(sigmaInstance, key, value) {
   return lookupNodesByKeyValue(sigmaInstance, key, value).pop();
 }
+
 /**
  * Find a node from the graph by id
  * @param {number|string} value

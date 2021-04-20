@@ -29,8 +29,7 @@ export abstract class Player implements Clonable<Player> {
   }
 
   /**
-   * Returns a deep copy of the player
-   * location is a shallow copy
+   * Returns a copy of this player
    * @returns Player
    */
   clone(): Player {

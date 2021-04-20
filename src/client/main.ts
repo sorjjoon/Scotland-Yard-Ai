@@ -167,7 +167,12 @@ function validMove(player: Player, move: number | string, moveType: EdgeType): b
   }
   return ids.includes(String(move));
 }
-
+/**
+ * Get an object representing the current game state
+ * @param turnCounter
+ * @param playerToMove
+ * @returns {GameState}
+ */
 export function getGameState(turnCounter, playerToMove): GameState {
   return {
     X: window.X,
@@ -190,7 +195,13 @@ function checkIfAnyValidMoves(player: Player) {
   }
   return false;
 }
-
+/**
+ * Get the best move from the current player from the game server.
+ *
+ * Returned promise will resolve after server responds
+ * @param gameState
+ * @returns {Promise<GraphNode>}
+ */
 async function getMoveFromServer(gameState: GameState): Promise<GraphNode> {
   const url = "/move";
   const method = "POST";
@@ -252,6 +263,10 @@ async function getMoveFromServer(gameState: GameState): Promise<GraphNode> {
   });
 }
 
+/**
+ * Check if detectives have found X
+ * @returns {boolean}
+ */
 function xIsCaught() {
   return window.detectives.map((p) => p.location.id).includes(window.X.location.id);
 }

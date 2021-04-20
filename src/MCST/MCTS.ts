@@ -20,7 +20,9 @@ interface TreeConstructor {
  * @returns {GraphNode} Bets move, according to collected data
  */
 export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor) {
-  var roots: GameTree[] = [];
+  var possibleRoots: GameTree[] = [];
+
+  //Determine possible roots, from X:s last known location
   if (Detective.isDetective(initialState.playerToMove)) {
     for (let xLoc of GameTree.findPossibleXLocations(initialState, initialState.X.movesSinceReveal)) {
       let state = GameTree.cloneGameState(initialState);
@@ -28,18 +30,19 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
       if (MisterX.isMisterX(state.playerToMove)) {
         state.playerToMove.location = xLoc;
       }
-      roots.push(new treeConstructor(state));
+      possibleRoots.push(new treeConstructor(state));
     }
   } else {
-    roots = [new treeConstructor(GameTree.cloneGameState(initialState))];
+    possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState))];
   }
   var fastestRoute;
+  //Check if detective is far enough, so they should just rush X
   //Doesnt matter which member of roots we use, they only differ with X.location (cant use initialState)
-  if (Detective.isDetective(roots[0].state.playerToMove)) {
+  if (Detective.isDetective(possibleRoots[0].state.playerToMove)) {
     fastestRoute = GameTree.gameMap.findShortestPath(
-      roots[0].state.X.locationKnownToDetectives.id,
-      roots[0].state.playerToMove.location.id,
-      roots[0].state.detectives.map((d) => d.id)
+      possibleRoots[0].state.X.locationKnownToDetectives.id,
+      possibleRoots[0].state.playerToMove.location.id,
+      possibleRoots[0].state.detectives.map((d) => d.id)
     );
     if (fastestRoute.length - 2 > maxDistanceBeforeRushing) {
       let rushMove = fastestRoute[1];
@@ -59,7 +62,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
         }
       }
       //Make sure the move is legal, if it's not use playouts
-      if (roots[0].state.playerToMove.tickets[rushMove.details.moveType] > 0) {
+      if (possibleRoots[0].state.playerToMove.tickets[rushMove.details.moveType] > 0) {
         return rushMove;
       }
     }
@@ -69,13 +72,13 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
   const end = Date.now() + timeout;
   while (Date.now() < end) {
     for (let i = 0; i < 100; i++) {
-      roots.forEach((r) => r.playout());
+      possibleRoots.forEach((r) => r.playout());
     }
   }
-  const combinedRoots = new treeConstructor(roots[0].state);
-
+  const combinedRoots = new treeConstructor(possibleRoots[0].state);
+  //Combine info from the used possible roots
   for (let i = 0; i < combinedRoots.getChildren().length; i++) {
-    roots.forEach((r) => {
+    possibleRoots.forEach((r) => {
       combinedRoots.visits += r.visits;
       combinedRoots.wins += r.wins;
       combinedRoots.getChildren()[i].visits += r.getChildren()[i].visits;
@@ -83,6 +86,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     });
   }
   console.log("Playouts finished!");
+
   let bestTree = combinedRoots.getBestMove();
   const temp = GameTree.getChosenMoveFromTree(combinedRoots, bestTree.state);
   let move = temp[0];
@@ -94,7 +98,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     move.details.moveDebugStr = " Playouts: {0}, using {2} possible root(s). Win ratio for chosen move: {1}. Fastest route towards X was  {3} (distance: {4})".formatString(
       combinedRoots.visits,
       wp.toFixed(2),
-      roots.length,
+      possibleRoots.length,
       fastestRoute[1].id,
       fastestRoute.length
     );
@@ -102,7 +106,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     move.details.moveDebugStr = " Playouts: {0}, using {2} possible root(s). Win ratio for chosen move: {1}.".formatString(
       combinedRoots.visits,
       wp.toFixed(2),
-      roots.length
+      possibleRoots.length
     );
   }
   move.details.moveType = temp[1];
