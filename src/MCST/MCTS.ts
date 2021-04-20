@@ -20,11 +20,7 @@ interface TreeConstructor {
  * @returns {GraphNode} Bets move, according to collected data
  */
 export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor) {
-<<<<<<< HEAD
   var possibleRoots: GameTree[] = [];
-=======
-  var roots: GameTree[] = [];
->>>>>>> 77688fe44a226c09419f24a747455dff0edcf077
 
   //Determine possible roots, from X:s last known location
   if (Detective.isDetective(initialState.playerToMove)) {
