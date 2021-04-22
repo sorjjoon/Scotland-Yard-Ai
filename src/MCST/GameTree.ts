@@ -185,7 +185,7 @@ export class GameTree {
    */
   protected getFlippedComparator<T>(comparator: (a: T, b: T) => number) {
     if (this.state.playerToMove.role !== this.getChildren()[0].state.playerToMove.role) {
-      return (a, b) => comparator(a, b) * -1;
+      return (a, b) => 1 - comparator(a, b);
     }
     return comparator;
   }
@@ -218,6 +218,7 @@ export class GameTree {
       newState.playerToMove = newState.detectives[oldPlayer.id] ?? newState.X;
     }
 
+    //Reveal X to detectives
     if (revealTurns.includes(newState.turnCounter)) {
       newState.X.locationKnownToDetectives = newState.X.location;
       newState.X.turnCounterForLocation = newState.turnCounter;
@@ -290,9 +291,10 @@ export class GameTree {
   /**
    * Find all possible X locations from the starting state, with the moves given
    *
-   *
+   * Do not pass a value for thr "index" parameter
    * @param {GameState} initalState X.locationKnownToDetectives needs to be set correctly.
    * @param {EdgeType[]} moves
+   * @param {number} index Used to track recursion depth, do not pass a value for this
    * @returns {GraphNode[]}
    */
   public static findPossibleXLocations(initalState: GameState, moves: EdgeType[], index = 0): GraphNode[] {
@@ -314,8 +316,8 @@ export class GameTree {
         )
       );
     }
-    res.sort((a, b) => a.id - b.id);
     //remove duplicates
+    res.sort((a, b) => a.id - b.id);
     return res.filter((item, i, arr) => !i || item.id != arr[i - 1].id);
   }
 }

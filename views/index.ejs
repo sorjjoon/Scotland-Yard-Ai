@@ -34,7 +34,7 @@
             <tbody>
               <% players.forEach(function(player){ %>
               <tr>
-                <td style="color: <%=player.color%>"><%= player.role %></td>
+                <td style="color: <%=player.color%>"><span class="player-role"> <%= player.role %></span></td>
                 <td>
                   <select class="ai-selector" id="ai-select-<%=player.id%>">
                     <% Object.keys(aiTypes).forEach(function(key){ %>
@@ -47,7 +47,7 @@
             </tbody>
           </table>
           <span class="header"> Game variables </span>
-          <table>
+          <table id="game-variables">
             <header>
 
             </header>
@@ -73,6 +73,15 @@
                 </td>
                 <td>
                   <label for="detectives-see-x"> Detectives can always see X</label>
+                </td>
+                
+              </tr>
+              <tr>
+                <td>
+                  <input id="loop-game" type="checkbox" value="loop"  />
+                </td>
+                <td>
+                  <label for="loop-game"> Loop gameplay for testing (results in console)</label>
                 </td>
               </tr>
               <tr>
@@ -112,10 +121,26 @@
         </div>
       </div>
     </main>
-
+    <!-- const adjustNodeSize = function() {
+      if ("_sigma" in window) {
+        window._sigma.settings("maxNodeSize", 4);
+        window._sigma.settings("drawLabels", true)
+        window._sigma.refresh();
+        window._sigma.settings("drawLabels", true)
+        window._sigma.refresh();
+      } else {
+        setTimeout(adjustNodeSize,50)
+      }
+     
+    } -->
     <script>
       var players = <%-JSON.stringify(players)%>;
       window.addEventListener("load",lib.fetchGraph())
+
+      //For some reason this is the only way to adjust the node sizes (onload callback doesn't adjust)
+      
+      //window.addEventListener("load", adjustNodeSize) 
+      
       //Adding a method for finding a node's edges
       sigma.classes.graph.addMethod("adjacentEdges", function (id) {
         id = Number(id);

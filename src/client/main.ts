@@ -95,6 +95,7 @@ export async function mainLoop() {
   addToSidebar("Refresh view for a new game");
   pushGameState(turnCounter, {} as any);
   addToSidebar("<button id='replay-button' onclick='lib.replayGame()'> Replay Game </button>");
+  return xIsCaught();
 }
 /**
  * Wait for a human player to make a move, and check that the made move is legal

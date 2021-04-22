@@ -76,7 +76,7 @@ export function startGame() {
   });
 
   addToSidebar("Done! Game Starting...");
-  mainLoop();
+  return mainLoop();
 }
 
 /**
@@ -89,8 +89,8 @@ export function fetchGraph() {
       container: "graph-container",
 
       settings: {
-        //@ts-ignore, type declarations are for prev version?
-        drawLabels: true,
+        //@ts-ignore
+        drawLabes: true,
       },
     },
     function (s) {
@@ -99,6 +99,9 @@ export function fetchGraph() {
         if (window.gameActive) {
           window.clickedNode = e.data.node;
         }
+        s.graph.nodes().forEach((element) => {
+          element.maxNodeSize = 1;
+        });
       });
     }
   );

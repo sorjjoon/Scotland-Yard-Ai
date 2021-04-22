@@ -5,6 +5,8 @@ import { maxDistanceBeforeRushing } from "../utils/constants";
 import { lookUpBasedOnKey } from "../utils/utils";
 import { GameState } from "./GameState";
 import { GameTree } from "./GameTree";
+import { ExplorativeSearchTree } from "./search_trees/ExplorativeSearchTree";
+import { PureSearchTree } from "./search_trees/PureSearchTree";
 
 interface TreeConstructor {
   new (initial: GameState): GameTree;
@@ -21,7 +23,7 @@ interface TreeConstructor {
  */
 export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor) {
   var possibleRoots: GameTree[] = [];
-
+  const debugStrArgs: any = { initialState: initialState };
   //Determine possible roots, from X:s last known location
   if (Detective.isDetective(initialState.playerToMove)) {
     for (let xLoc of GameTree.findPossibleXLocations(initialState, initialState.X.movesSinceReveal)) {
@@ -35,6 +37,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
   } else {
     possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState))];
   }
+  debugStrArgs.possibleRoots = possibleRoots;
   var fastestRoute;
   //Check if detective is far enough, so they should just rush X
   //Doesnt matter which member of roots we use, they only differ with X.location (cant use initialState)
@@ -44,8 +47,9 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
       possibleRoots[0].state.playerToMove.location.id,
       possibleRoots[0].state.detectives.map((d) => d.id)
     );
+    debugStrArgs.fastestRoute = fastestRoute;
     if (fastestRoute.length - 2 > maxDistanceBeforeRushing) {
-      let rushMove = fastestRoute[1];
+      let rushMove = fastestRoute[fastestRoute.length - 2];
 
       rushMove.details.moveDebugStr = " No playouts, rushed towards X. Distance: {0}".formatString(
         fastestRoute.length - 2
@@ -76,6 +80,8 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     }
   }
   const combinedRoots = new treeConstructor(possibleRoots[0].state);
+  debugStrArgs.combinedRoots = combinedRoots;
+
   //Combine info from the used possible roots
   for (let i = 0; i < combinedRoots.getChildren().length; i++) {
     possibleRoots.forEach((r) => {
@@ -85,30 +91,57 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
       combinedRoots.getChildren()[i].wins += r.getChildren()[i].wins;
     });
   }
+
   console.log("Playouts finished!");
 
   let bestTree = combinedRoots.getBestMove();
   const temp = GameTree.getChosenMoveFromTree(combinedRoots, bestTree.state);
-  let move = temp[0];
-  let wp = bestTree.wins / bestTree.visits;
-  if (MisterX.isMisterX(combinedRoots.state.playerToMove)) {
-    wp = 1 - wp;
-  }
-  if (Detective.isDetective(initialState.playerToMove)) {
-    move.details.moveDebugStr = " Playouts: {0}, using {2} possible root(s). Win ratio for chosen move: {1}. Fastest route towards X was  {3} (distance: {4})".formatString(
-      combinedRoots.visits,
-      wp.toFixed(2),
-      possibleRoots.length,
-      fastestRoute[1].id,
-      fastestRoute.length
+  debugStrArgs.bestTree = bestTree;
+
+  let bestMove = temp[0];
+
+  bestMove.details.moveDebugStr = getDebugStr(debugStrArgs);
+
+  bestMove.details.moveType = temp[1];
+  return bestMove;
+}
+
+function getDebugStr(args: {
+  combinedRoots: GameTree;
+  bestTree: GameTree;
+  possibleRoots;
+  fastestRoute;
+  initialState: GameState;
+}): string {
+  var str = " Playouts: {0}, using {1} possible root(s).".formatString(
+    args.combinedRoots.visits,
+    args.possibleRoots.length
+  );
+  if (Detective.isDetective(args.initialState.playerToMove)) {
+    str += " Fastest route towards X was  {0} (distance: {1})".formatString(
+      args.fastestRoute[args.fastestRoute.length - 2]?.id ?? args.fastestRoute[args.fastestRoute.length - 1]?.id,
+      args.fastestRoute.length
     );
-  } else {
-    move.details.moveDebugStr = " Playouts: {0}, using {2} possible root(s). Win ratio for chosen move: {1}.".formatString(
-      combinedRoots.visits,
-      wp.toFixed(2),
-      possibleRoots.length
-    );
   }
-  move.details.moveType = temp[1];
-  return move;
+  switch (args.bestTree.constructor) {
+    case PureSearchTree:
+      let winPre = args.bestTree.wins / args.bestTree.visits;
+      if (MisterX.isMisterX(args.combinedRoots.state.playerToMove)) {
+        winPre = 1 - winPre;
+      }
+      str += " Win ratio for chosen move: " + winPre.toFixed(2);
+
+      break;
+    case ExplorativeSearchTree:
+      str += " Visits for children (largest chosen) [{0}]".formatString(
+        args.combinedRoots
+          .getChildren()
+          .map((a) => a.visits)
+          .join(", ")
+      );
+      break;
+    default:
+      break;
+  }
+  return str;
 }
