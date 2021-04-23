@@ -1,3 +1,4 @@
+import { Role } from "../../domain/players/Player";
 import { GameState } from "../GameState";
 import { GameTree } from "../GameTree";
 
@@ -25,6 +26,15 @@ export class ExplorativeSearchTree extends GameTree {
     //Doesn't change functionality, just here for type conversion
     return super.getChildren() as ExplorativeSearchTree[];
   }
+  /**
+   * Find the best move according to data from current playouts
+   *
+   * returns the most visited child node
+   * @returns
+   */
+  public getBestMove() {
+    return this.getChildren().getMax((a, b) => a.visits - b.visits);
+  }
 
   protected selection() {
     var XWins;
@@ -39,14 +49,9 @@ export class ExplorativeSearchTree extends GameTree {
           .rollout();
       }
     } else {
-      let comparator = (a, b) => {
-        return a.UCT(this.visits) - b.UCT(this.visits);
+      const comparator = (a: ExplorativeSearchTree, b) => {
+        return a.UCT(this.visits, this.state.playerToMove.role) - b.UCT(this.visits, this.state.playerToMove.role);
       };
-      if (this.state.playerToMove.role !== this.getChildren()[0].state.playerToMove.role) {
-        comparator = (a, b) => {
-          return b.UCT(this.visits) - a.UCT(this.visits);
-        };
-      }
       let bestChilds = this.getChildren().getAllMax(comparator);
       XWins = bestChilds.getRandom().selection();
     }
@@ -55,11 +60,13 @@ export class ExplorativeSearchTree extends GameTree {
   /**
    * Returns the numerical value for Upper Confidence Bound 1 applied to trees) for this node.
    *
-   * Remember to flip this for cases, where the
+   * Remember to flip this for cases, where the next player to move has a diffrent role
    * @param  {number} parentVisits
    * @returns {number}
    */
-  private UCT(parentVisits: number): number {
-    return this.wins / this.visits + this.exploitationParameter * (Math.log(parentVisits) / this.visits);
+  private UCT(parentVisits: number, parentRole: Role): number {
+    var winPre = this.wins / this.visits;
+    if (this.state.playerToMove.role !== parentRole) winPre = 1 - winPre;
+    return winPre + this.exploitationParameter * (Math.log(parentVisits) / this.visits);
   }
 }

@@ -89,6 +89,7 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
       expect(child.wins).toBeLessThanOrEqual(1);
       totalWins += child.wins;
       expect(child["isLeaf"]()).toBe(true);
+      expect(child["children"]).not.toBeNull();
     }
     expect(tree.wins).toEqual(i - totalWins);
 

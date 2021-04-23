@@ -45,7 +45,20 @@ const main = async () => {
 
   //Log all incoming requests
   app.use(function (req, res, next) {
-    console.info(format("[%s] at %s requested %s", new Date().toUTCString(), req.ip, req.url));
+    switch (req?.body?.playerToMove?.aiType) {
+      case AITypes.RANDOM:
+        console.info(format("[%s] at %s requested %s TYPE RANDOM", new Date().toUTCString(), req.ip, req.url));
+        break;
+      case AITypes["PURE MCTS"]:
+        console.info(format("[%s] at %s requested %s TYPE PURE", new Date().toUTCString(), req.ip, req.url));
+        break;
+      case AITypes["EXPLORATIVE MCTS"]:
+        console.info(format("[%s] at %s requested %s TYPE EXPLORE", new Date().toUTCString(), req.ip, req.url));
+        break;
+      default:
+        console.info(format("[%s] at %s requested %s", new Date().toUTCString(), req.ip, req.url));
+        break;
+    }
     next();
   });
 
@@ -59,6 +72,7 @@ const main = async () => {
     }
 
     var move;
+
     switch (gameState.playerToMove.aiType) {
       case AITypes.RANDOM:
         move = randomMove(gameState);
