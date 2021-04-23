@@ -8,17 +8,22 @@ export function replayGame() {
 }
 
 export async function startGame() {
-  const gameSetup = document.getElementById("sidebar").innerHTML;
   //Setup replay loops:
+  const setUpValues: setup.gameSetupParams = {};
+  window.players.forEach((p) => {
+    let type = (document.getElementById("ai-select-{0}".formatString(p.id)) as HTMLInputElement).value;
+    setUpValues[p.id] = type;
+  });
+  setUpValues.detectivesSeeX = (document.getElementById("detectives-see-x") as HTMLInputElement).checked;
+  setUpValues.debugStr = (document.getElementById("playout-debug") as HTMLInputElement).checked;
+
   if ((document.getElementById("loop-game") as HTMLInputElement).checked) {
     var dWins = 0;
     var games = 0;
     while (true) {
-      dWins += Number(setup.startGame());
+      dWins += Number(await setup.startGame(setUpValues));
       games++;
-      console.log(setup.startGame());
       console.info("{0} games played: Detective wins {1}".formatString(games, dWins));
-      document.getElementById("sidebar").innerHTML = gameSetup;
     }
   } else {
     setup.startGame();
