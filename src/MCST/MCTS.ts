@@ -9,7 +9,7 @@ import { ExplorativeSearchTree } from "./search_trees/ExplorativeSearchTree";
 import { PureSearchTree } from "./search_trees/PureSearchTree";
 
 interface TreeConstructor {
-  new (initial: GameState): GameTree;
+  new (initial: GameState, explorationParam?): GameTree;
 }
 
 /**
@@ -21,7 +21,7 @@ interface TreeConstructor {
  * @param {TreeConstructor} treeConstructor Constructor used for creating a tree
  * @returns {GraphNode} Bets move, according to collected data
  */
-export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor) {
+export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor, explorationParam?:number) {
   var possibleRoots: GameTree[] = [];
   const debugStrArgs: any = { initialState: initialState };
   //Determine possible roots, from X:s last known location
@@ -32,10 +32,10 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
       if (MisterX.isMisterX(state.playerToMove)) {
         state.playerToMove.location = xLoc;
       }
-      possibleRoots.push(new treeConstructor(state));
+      possibleRoots.push(new treeConstructor(state, explorationParam));
     }
   } else {
-    possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState))];
+    possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState), explorationParam)];
   }
   debugStrArgs.possibleRoots = possibleRoots;
   var fastestRoute;

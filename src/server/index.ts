@@ -81,7 +81,8 @@ const main = async () => {
         move = monteCarloSearch(GameTree.cloneGameState(gameState), moveProcessTime, PureSearchTree);
         break;
       case AITypes["EXPLORATIVE MCTS"]:
-        move = monteCarloSearch(GameTree.cloneGameState(gameState), moveProcessTime, ExplorativeSearchTree);
+        console.log("Using exploitation param: ")
+        move = monteCarloSearch(GameTree.cloneGameState(gameState), moveProcessTime, ExplorativeSearchTree, gameState.exploitationParameter);
         break;
       default:
         res.status(500).send({
