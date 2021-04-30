@@ -75,3 +75,11 @@ export function setNodeColor(nodeId: number | string, newColor: string) {
 export function randomFloat(a: number, b: number) {
   return Math.random() * (b - a) + a;
 }
+
+export function sumArray(arr: number[]) {
+  var r = 0;
+  arr.forEach((x) => {
+    r += x;
+  });
+  return r;
+}

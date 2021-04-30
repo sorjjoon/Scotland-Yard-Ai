@@ -74,10 +74,21 @@ export async function startGame() {
       }
       //Update param, using the highest success from last round max results if updating for detective, min result if updating for X
       if (varyParam == "D") {
-        window.detectiveExplorationParam = candidates[getMaxIndex(results, (a, b) => a - b)];
+        let indexes = getAllMaxIndex(results, (a, b) => a - b);
+        console.log("Best candidates (new will be avg from these)");
+        let bestCandidates = candidates.filter((_, i) => indexes.includes(i));
+        console.log(String(bestCandidates));
+        let avg = utils.sumArray(bestCandidates) / bestCandidates.length;
+        window.detectiveExplorationParam = avg;
         console.log("Updating exploration param, new param (for detectives): " + window.detectiveExplorationParam);
       } else if (varyParam == "X") {
-        window.misterXExplorationParam = candidates[getMaxIndex(results, (a, b) => b - a)];
+        let indexes = getAllMaxIndex(results, (a, b) => b - a);
+
+        console.log("Best candidates (new will be avg from these)");
+        let bestCandidates = candidates.filter((_, i) => indexes.includes(i));
+        console.log(String(bestCandidates));
+        let avg = utils.sumArray(bestCandidates) / bestCandidates.length;
+        window.misterXExplorationParam = avg;
         console.log("Updating exploration param, new param (for X): " + window.misterXExplorationParam);
       }
     }
@@ -94,18 +105,22 @@ function generateCandidates(start: number, childrenCount: number) {
   return res;
 }
 
-function getMaxIndex(arr: number[], key: (x, y) => number) {
-  var max = arr[0];
-  var maxI = 0;
+function getAllMaxIndex<T>(arr: T[], comparator: (a: T, b: T) => number): number[] {
+  var max: number[];
   arr.forEach((x, i) => {
-    if (key(max, x) < 0) {
-      max = x;
-      maxI = i;
+    if (max == undefined) {
+      max = [i];
+    } else {
+      let comp = comparator(arr[max[0]], x);
+      if (comp == 0) {
+        max.push(i);
+      } else if (comp < 0) {
+        max = [i];
+      }
     }
   });
-  return maxI;
+  return max;
 }
-
 export function fetchGraph() {
   setup.fetchGraph();
 }

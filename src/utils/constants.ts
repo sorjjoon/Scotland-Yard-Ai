@@ -24,7 +24,7 @@ export const black = "rgb(0, 0, 0)";
 /**
  * How long MCTS is run when processing moves
  */
-export const moveProcessTime = 1 * 1000; //ms
+export const moveProcessTime = 2 * 1000; //ms
 /**
  * Max distance detectives can be from X, before instead of MCTS detectives simply take the shortest path towards X
  */
