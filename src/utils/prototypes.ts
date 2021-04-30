@@ -77,7 +77,7 @@ Array.prototype.getMax = function getMax<T>(comparator: (a: T, b: T) => number):
  * @param  {(a:T,b:T)=>number} comparator
  * @returns {T[]} listOfMax
  */
-Array.prototype.getAllMax = function getMax<T>(comparator: (a: T, b: T) => number): T[] {
+Array.prototype.getAllMax = function getAllMax<T>(comparator: (a: T, b: T) => number): T[] {
   var max: T[];
   this.forEach((x) => {
     if (max == undefined) {

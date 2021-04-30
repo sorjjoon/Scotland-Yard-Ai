@@ -24,7 +24,7 @@ export const black = "rgb(0, 0, 0)";
 /**
  * How long MCTS is run when processing moves
  */
-export const moveProcessTime = 5 * 1000; //ms
+export const moveProcessTime = 2 * 1000; //ms
 /**
  * Max distance detectives can be from X, before instead of MCTS detectives simply take the shortest path towards X
  */
@@ -33,7 +33,7 @@ export const maxDistanceBeforeRushing = 5;
 export const detectiveStartingNodes = [44, 58, 32, 92, 66, 14, 39, 71, 105, 42, 135, 158, 170, 167, 182, 165, 124];
 export const xStartingNodes = [45, 97, 50, 68, 86, 142, 156, 149, 146];
 
-export const detectiveCount = 5;
+export const detectiveCount = 4;
 
 export const taxiTickets = 11;
 export const busTickets = 8;

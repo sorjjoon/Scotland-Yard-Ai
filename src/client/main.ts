@@ -260,6 +260,11 @@ async function getMoveFromServer(gameState: GameState): Promise<GraphNode> {
         statusText: xhr.statusText,
       });
     };
+    if (MisterX.isMisterX(gameState.playerToMove)) {
+      gameState.exploitationParameter = window.misterXExplorationParam;
+    } else {
+      gameState.exploitationParameter = window.detectiveExplorationParam;
+    }
     xhr.send(JSON.stringify(gameState));
   });
 }

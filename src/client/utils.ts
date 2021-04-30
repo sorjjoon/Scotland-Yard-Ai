@@ -65,3 +65,21 @@ export function setNodeColor(nodeId: number | string, newColor: string) {
   node.color = newColor;
   window._sigma.refresh();
 }
+
+/**
+ * Return a random number between the given args
+ * @param  {number} a
+ * @param  {number} b
+ * @returns {number}
+ */
+export function randomFloat(a: number, b: number) {
+  return Math.random() * (b - a) + a;
+}
+
+export function sumArray(arr: number[]) {
+  var r = 0;
+  arr.forEach((x) => {
+    r += x;
+  });
+  return r;
+}
