@@ -86,6 +86,51 @@
               </tr>
               <tr>
                 <td>
+                  <input id="start-param-X" type="text" value="1.41421356237" />
+                </td>
+                <td>
+                  <label for="start-param-X">X (starting) exploration parameter</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="start-param-D" type="text" value="1.41421356237" />
+                </td>
+                <td>
+                  <label for="start-param-D">Detective (starting) exploration parameter</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <select name="vary-param" id="vary-param">
+                    <option value="no" selected="selected">No variation</option>
+                    <option value="X">for X</option>
+                    <option value="D">for Detectives</option>
+                    
+                  </select>
+                </td>
+                <td>
+                  <label for="vary-param"> Vary exploration parameter between loops</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="rounds-before" type="text" value="1" />
+                </td>
+                <td>
+                  <label for="rounds-before"> Rounds before updating exploration param</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="candidates" type="text" value="10" />
+                </td>
+                <td>
+                  <label for="candidates">Number of exploration param candidates, during 1 round of evolution</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
                   <button onclick="lib.startGame()">Start game</button>
                 </td>
               </tr>

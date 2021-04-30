@@ -11,4 +11,6 @@ export interface GameState {
   turnCounter: number;
   playerToMove: Player;
   chatHistory?: string;
+  exploitationParameter?: number;
+  moveProvessTime?: number;
 }

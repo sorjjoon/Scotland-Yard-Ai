@@ -20,6 +20,8 @@ declare global {
     clickedNode: SigmaJs.Node;
     gameHistory: GameState[];
     showDebug: boolean;
+    misterXExplorationParam: number;
+    detectiveExplorationParam: number;
   }
 }
 
