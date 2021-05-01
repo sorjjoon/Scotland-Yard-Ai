@@ -25,6 +25,9 @@ export async function startGame() {
   setUpValues.detectivesSeeX = (document.getElementById("detectives-see-x") as HTMLInputElement).checked;
   setUpValues.debugStr = (document.getElementById("playout-debug") as HTMLInputElement).checked;
 
+  setUpValues.detectiveMoveTime = parseInt((document.getElementById("d-time") as HTMLInputElement).value);
+  setUpValues.xMoveTime = parseInt((document.getElementById("x-time") as HTMLInputElement).value);
+
   if ((document.getElementById("loop-game") as HTMLInputElement).checked) {
     var dWins = 0;
     var games = 0;
@@ -54,7 +57,7 @@ export async function startGame() {
           window.misterXExplorationParam = candidates[i];
         }
         let dWinsThisRound = 0;
-        for (let i = 0; i < roundsBetween; i++) {
+        for (let _ = 0; _ < roundsBetween; _++) {
           let res = await setup.startGame(setUpValues);
           dWins += Number(res);
           dWinsThisRound += Number(res);

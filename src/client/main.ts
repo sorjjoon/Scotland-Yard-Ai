@@ -262,8 +262,10 @@ async function getMoveFromServer(gameState: GameState): Promise<GraphNode> {
     };
     if (MisterX.isMisterX(gameState.playerToMove)) {
       gameState.exploitationParameter = window.misterXExplorationParam;
+      gameState.moveProcessTime = window.xMoveTime;
     } else {
       gameState.exploitationParameter = window.detectiveExplorationParam;
+      gameState.moveProcessTime = window.detectiveMoveTime;
     }
     xhr.send(JSON.stringify(gameState));
   });

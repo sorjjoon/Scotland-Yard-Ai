@@ -21,7 +21,7 @@ export class GameTree {
   protected children: GameTree[] | null;
   wins: number;
   visits: number;
-
+  exploitationParameter?: number;
   /**
    * Passed state properties must be proper Domain objects (not parsed from JSON)
    * Pass the state to cloneGameState first otherwise

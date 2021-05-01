@@ -65,17 +65,14 @@ export class ExplorativeSearchTree extends GameTree {
    * @returns {number}
    */
   private UCT(parentVisits: number, parentRole: Role): number {
-    
     var winPre = this.wins / this.visits;
     if (this.state.playerToMove.role !== parentRole) winPre = 1 - winPre;
     return winPre + this.exploitationParameter * (Math.log(parentVisits) / this.visits);
   }
 
   public generateChildren() {
-    const res = super.generateChildren(
-      
-    )
-    res.forEach(x=>x.exploitationParameter=this.exploitationParameter)
-    return res
+    const res = super.generateChildren();
+    res.forEach((x) => (x.exploitationParameter = this.exploitationParameter));
+    return res;
   }
 }

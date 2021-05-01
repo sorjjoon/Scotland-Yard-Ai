@@ -21,10 +21,16 @@ interface TreeConstructor {
  * @param {TreeConstructor} treeConstructor Constructor used for creating a tree
  * @returns {GraphNode} Bets move, according to collected data
  */
-export function monteCarloSearch(initialState: GameState, timeout: number, treeConstructor: TreeConstructor, explorationParam?:number) {
+export function monteCarloSearch(
+  initialState: GameState,
+  timeout: number,
+  treeConstructor: TreeConstructor,
+  explorationParam?: number
+) {
   var possibleRoots: GameTree[] = [];
   const debugStrArgs: any = { initialState: initialState };
   //Determine possible roots, from X:s last known location
+
   if (Detective.isDetective(initialState.playerToMove)) {
     for (let xLoc of GameTree.findPossibleXLocations(initialState, initialState.X.movesSinceReveal)) {
       let state = GameTree.cloneGameState(initialState);
@@ -36,6 +42,9 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     }
   } else {
     possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState), explorationParam)];
+  }
+  if (explorationParam) {
+    console.log("Using exploitation param: " + possibleRoots[0]?.exploitationParameter);
   }
   debugStrArgs.possibleRoots = possibleRoots;
   var fastestRoute;
@@ -58,7 +67,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
         if (
           fastestRoute[0]
             .getNeighbours(e)
-            .map((e) => e.id)
+            .map((x) => x.id)
             .includes(rushMove.id)
         ) {
           rushMove.details.moveType = e;
@@ -72,7 +81,7 @@ export function monteCarloSearch(initialState: GameState, timeout: number, treeC
     }
   }
 
-  console.log("Starting playouts...");
+  console.log("Starting playouts...  timeout: ({0} s)".formatString(timeout / 1000));
   const end = Date.now() + timeout;
   while (Date.now() < end) {
     for (let i = 0; i < 100; i++) {

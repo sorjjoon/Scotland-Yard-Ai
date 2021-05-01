@@ -19,3 +19,7 @@ For the UI we use a simple, one page website, which keeps track and visualizes t
 The server is used only for calculating optimal moves (as well as serving all the required html, js and css).
 
 There are numerous [constants](/src/utils/constants.ts) that can be used to modify the gameplay. Unfortunatelly, it is not currently possible to modify these directly from the client browser, but the source code needs to be modified directly (and the project recompiled, and the server restarted.)
+
+## Testing Overview
+
+The programm has the functionality for easily looping the gameplay, to test impact of various parameters on the effectivness of the AI.

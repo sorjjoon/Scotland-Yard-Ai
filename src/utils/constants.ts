@@ -33,7 +33,7 @@ export const maxDistanceBeforeRushing = 5;
 export const detectiveStartingNodes = [44, 58, 32, 92, 66, 14, 39, 71, 105, 42, 135, 158, 170, 167, 182, 165, 124];
 export const xStartingNodes = [45, 97, 50, 68, 86, 142, 156, 149, 146];
 
-export const detectiveCount = 4;
+export const detectiveCount = 3;
 
 export const taxiTickets = 11;
 export const busTickets = 8;

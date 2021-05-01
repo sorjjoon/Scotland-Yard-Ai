@@ -9,6 +9,7 @@ import { Role } from "../../src/domain/players/Player";
 import { EdgeType, GraphNode } from "../../src/domain/GraphNode";
 import { Detective } from "../../src/domain/players/Detective";
 import { ExplorativeSearchTree } from "../../src/MCST/search_trees/ExplorativeSearchTree";
+
 interface TreeConstructor {
   new (initial: GameState): GameTree;
 }
@@ -134,5 +135,20 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
     const [bestAfterSwap, __] = GameTree.getChosenMoveFromTree(tree, tree.getBestMove().state);
 
     expect(best.id).not.toEqual(bestAfterSwap.id);
+  });
+
+  test("ExploitationParameter param (for explorative)", () => {
+    if (tree instanceof ExplorativeSearchTree) {
+      tree.exploitationParameter = 2;
+      for (let c of tree.getChildren()) {
+        expect(c.exploitationParameter).toEqual(2);
+        for (let c2 of c.getChildren()) {
+          expect(c2.exploitationParameter).toEqual(2);
+          for (let c3 of c2.getChildren()) {
+            expect(c3.exploitationParameter).toEqual(2);
+          }
+        }
+      }
+    }
   });
 });

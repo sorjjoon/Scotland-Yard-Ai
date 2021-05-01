@@ -22,6 +22,8 @@ declare global {
     showDebug: boolean;
     misterXExplorationParam: number;
     detectiveExplorationParam: number;
+    detectiveMoveTime: number;
+    xMoveTime: number;
   }
 }
 
@@ -29,6 +31,8 @@ export interface gameSetupParams {
   aiTypes?: { [key: number]: string };
   detectivesSeeX?: boolean;
   debugStr?: boolean;
+  detectiveMoveTime?: number;
+  xMoveTime?: number;
 }
 
 /**
@@ -44,11 +48,18 @@ export function startGame(params: gameSetupParams = {}) {
   window.gameActive = false;
   window.detectives = [];
   window.gameHistory = [];
+
+  window.detectiveMoveTime =
+    params.detectiveMoveTime ?? parseInt((document.getElementById("d-time") as HTMLInputElement).value);
+  window.xMoveTime = params.xMoveTime ?? parseInt((document.getElementById("x-time") as HTMLInputElement).value);
+
   window.players = window.players.map((p) => {
     if (Detective.isDetective(p)) {
       return new Detective(null, p.id, p.color, p.tickets);
     } else if (MisterX.isMisterX(p)) {
       return new MisterX(null, p.id, p.color, null, null);
+    } else {
+      throw Error("unknown play role?");
     }
   });
   var players = window.players;

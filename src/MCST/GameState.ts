@@ -12,5 +12,5 @@ export interface GameState {
   playerToMove: Player;
   chatHistory?: string;
   exploitationParameter?: number;
-  moveProvessTime?: number;
+  moveProcessTime?: number;
 }
