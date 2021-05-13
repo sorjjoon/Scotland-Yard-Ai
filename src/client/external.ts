@@ -29,6 +29,7 @@ export async function startGame() {
   setUpValues.xMoveTime = parseInt((document.getElementById("x-time") as HTMLInputElement).value);
 
   if ((document.getElementById("loop-game") as HTMLInputElement).checked) {
+    console.log("Starting gameplay loop");
     var dWins = 0;
     var games = 0;
 
@@ -37,17 +38,27 @@ export async function startGame() {
     const candidateCount = parseInt((document.getElementById("candidates") as HTMLInputElement).value);
     var candidates: number[];
 
-    while (true) {
-      if (varyParam == "D") {
-        candidates = generateCandidates(window.detectiveExplorationParam, candidateCount);
-      } else if (varyParam == "X") {
-        candidates = generateCandidates(window.misterXExplorationParam, candidateCount);
-      } else {
-        //Just so the next loop works
-        candidates = Array(20);
-      }
+    const varyTime = (document.getElementById("vary-time") as HTMLInputElement).value;
+    const timeIncrement = parseInt((document.getElementById("incr-time") as HTMLInputElement).value);
 
-      let results = Array(candidates.length);
+    while (true) {
+      if (setUpValues.detectiveMoveTime <= 0 || setUpValues.xMoveTime <= 0) {
+        console.log("Movetime negative, breaking loop");
+        break;
+      }
+      let results = Array(candidateCount);
+      switch (varyParam) {
+        case "D":
+          candidates = generateCandidates(window.detectiveExplorationParam, candidateCount);
+          break;
+        case "X":
+          candidates = generateCandidates(window.misterXExplorationParam, candidateCount);
+          break;
+        default:
+          //Array will not be used. 20 is just a random number (cant be empty, or the next loop won't work)
+          candidates = Array(20);
+          break;
+      }
 
       for (let i = 0; i < candidates.length; i++) {
         if (varyParam == "D") {
@@ -63,9 +74,19 @@ export async function startGame() {
           dWinsThisRound += Number(res);
           games++;
           window.players = JSON.parse(originalPlayers);
-          console.info("{0} games played: Detective wins {1}".formatString(games, dWins));
+          console.info("{0} games played: Detective wins {1}.".formatString(games, dWins));
         }
-
+        switch (varyTime) {
+          case "X":
+            setUpValues.xMoveTime += timeIncrement;
+            break;
+          case "D":
+            setUpValues.detectiveMoveTime += timeIncrement;
+            break;
+          default:
+            break;
+        }
+        console.log("Setup params: " + JSON.stringify(setUpValues, null, 2));
         results[i] = dWinsThisRound;
       }
       if (varyParam !== "no") {

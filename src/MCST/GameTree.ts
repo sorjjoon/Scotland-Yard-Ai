@@ -44,7 +44,7 @@ export class GameTree {
     if (this.state.detectives.map((d) => d.location.id).includes(this.state.X.location.id)) {
       return Role.DETECTIVE;
     }
-    if (this.state.turnCounter >= gameDuration) return Role.X;
+    if (this.state.turnCounter > gameDuration) return Role.X;
     return null;
   }
   /**

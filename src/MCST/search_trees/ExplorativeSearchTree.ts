@@ -60,7 +60,6 @@ export class ExplorativeSearchTree extends GameTree {
   /**
    * Returns the numerical value for Upper Confidence Bound 1 applied to trees) for this node.
    *
-   * Remember to flip this for cases, where the next player to move has a diffrent role
    * @param  {number} parentVisits
    * @returns {number}
    */

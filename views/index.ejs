@@ -118,7 +118,7 @@
                   <input id="rounds-before" type="text" value="1" />
                 </td>
                 <td>
-                  <label for="rounds-before"> Rounds before updating exploration param</label>
+                  <label for="rounds-before"> Rounds between updates</label>
                 </td>
               </tr>
               <tr>
@@ -145,6 +145,28 @@
                   <label for="x-time"> Move process time (ms), X</label>
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <select name="vary-time" id="vary-time" oninput="">
+                    <option value="no" selected="selected">No variation</option>
+                    <option value="X">for X</option>
+                    <option value="D">for Detectives</option>
+                    
+                  </select>
+                </td>
+                <td>
+                  <label for="vary-time"> Vary time between loops</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input id="incr-time" type="text" value="100" />
+                </td>
+                <td>
+                  <label for="incr-time"> Increment time by (can be negative)</label>
+                </td>
+              </tr>
+              
               <tr>
                 <td>
                   <button onclick="lib.startGame()">Start game</button>
