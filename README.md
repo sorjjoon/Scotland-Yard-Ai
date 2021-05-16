@@ -24,13 +24,14 @@ To build and run the project (all commands from the project root):
     - Random: The AI will choose a move at random
     - Pure: An implementation of PURE MCTS (a very simple MCTS)
     - Explorative: A more advanced version of MCTS, with a preference for exploring the gametree
-      - Currently not working, couldn't get this to work for this deadline (makes nonsensical moves atm)
+      - Exploration parameter can be modified for both detectives and X seperately
 
 Diffrent constants to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts).
-  - After any modifications you will need to run compile and start again
-  - If you intend to modify the constants a lot, instead of 'npm run compile', use 'npm run watch' and 'npm run pack' for compiling, and 'npm run demon' to start the server
-    - They will automatically recompile and restart the server as needed (after file save)
-    - Depending on your browser, you may have to do a full page refresh as well, to refresh cached javascript (chrome/safari). Usually ctrl + refresh
+
+- After any modifications you will need to run compile and start again
+- If you intend to modify the constants a lot, instead of 'npm run compile', use 'npm run watch' and 'npm run pack' for compiling, and 'npm run demon' to start the server
+  - They will automatically recompile and restart the server as needed (after file save)
+  - Depending on your browser, you may have to do a full page refresh as well, to refresh cached javascript (chrome/safari). Usually ctrl + refresh
 
 Unit tests: npm test
 \
