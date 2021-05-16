@@ -40,7 +40,7 @@ To build and run the project (all commands from the project root):
     - **Increment time**
       - After **Rounds between updates**, how much move process time is incremented. No impact if "No variation" is selected for vary time    
 
-Diffrent constants to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts). Most have minimal impact (and therefor not implemented in the gui), with the expection of the number of detectives used.
+Diffrent constants to customize the gameplay can be found in [/src/utils/constants.ts](/src/utils/constants.ts). Most have minimal impact (and therefore not implemented in the gui), with the expection of the number of detectives used.
 
 - After any modifications you will need to run compile and start again
 - If you intend to modify the constants a lot, instead of 'npm run compile', use 'npm run watch' and 'npm run pack' for compiling, and 'npm run demon' to start the server
