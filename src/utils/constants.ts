@@ -22,7 +22,7 @@ export const black = "rgb(0, 0, 0)";
  */
 
 /**
- * How long MCTS is run when processing moves
+ * How long MCTS is run when processing moves, no longer impacts acual processing time, is simply the default value for the ui
  */
 export const moveProcessTime = 2 * 1000; //ms
 /**
