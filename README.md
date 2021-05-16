@@ -28,7 +28,7 @@ To build and run the project (all commands from the project root):
   - Move process time controls how long playouts are run, before choosing the best move
   - Detectives can always see X
     - Makes it so X is always revealed to the detectives
-  - Additional options are for running automated games, and have no impact unless "Loop gameplay" is also checked. All results from automated tests are printed to console (check devtools for your browser)
+  - Additional options are for running automated games, and have no impact unless **Loop gameplay** is also checked. All results from automated tests are printed to console (check devtools for your browser)
     - **Rounds between updates**
       - How many rounds are done before any updates are made (to process time, or exploration param)   
     - **Vary Exploration parameter**
