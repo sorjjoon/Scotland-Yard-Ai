@@ -15,11 +15,10 @@ interface TreeConstructor {
 /**
  * Construct a Monte Carlo Search Tree using the given consturctor, and do playouts on the created tree.
  *
- *
  * @param {GameState} initialState
  * @param {number} timeout timeout for playouts. The function will not return immediatly after timeout, as playouts are done in batches of 100 for performance
  * @param {TreeConstructor} treeConstructor Constructor used for creating a tree
- * @returns {GraphNode} Bets move, according to collected data
+ * @returns {GraphNode} Best move, according to collected data
  */
 export function monteCarloSearch(
   initialState: GameState,
@@ -27,58 +26,16 @@ export function monteCarloSearch(
   treeConstructor: TreeConstructor,
   explorationParam?: number
 ) {
-  var possibleRoots: GameTree[] = [];
   const debugStrArgs: any = { initialState: initialState };
   //Determine possible roots, from X:s last known location
-
-  if (Detective.isDetective(initialState.playerToMove)) {
-    for (let xLoc of GameTree.findPossibleXLocations(initialState, initialState.X.movesSinceReveal)) {
-      let state = GameTree.cloneGameState(initialState);
-      state.X.location = xLoc;
-      if (MisterX.isMisterX(state.playerToMove)) {
-        state.playerToMove.location = xLoc;
-      }
-      possibleRoots.push(new treeConstructor(state, explorationParam));
-    }
-  } else {
-    possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState), explorationParam)];
-  }
-  if (explorationParam) {
-    console.log("Using exploitation param: " + possibleRoots[0]?.exploitationParameter);
-  }
+  const possibleRoots = getPossibleRoots(treeConstructor, initialState, explorationParam);
   debugStrArgs.possibleRoots = possibleRoots;
-  var fastestRoute;
-  //Check if detective is far enough, so they should just rush X
-  //Doesnt matter which member of roots we use, they only differ with X.location (cant use initialState)
-  if (Detective.isDetective(possibleRoots[0].state.playerToMove)) {
-    fastestRoute = GameTree.gameMap.findShortestPath(
-      possibleRoots[0].state.X.locationKnownToDetectives.id,
-      possibleRoots[0].state.playerToMove.location.id,
-      possibleRoots[0].state.detectives.map((d) => d.id)
-    );
-    debugStrArgs.fastestRoute = fastestRoute;
-    if (fastestRoute.length - 2 > maxDistanceBeforeRushing) {
-      let rushMove = fastestRoute[fastestRoute.length - 2];
 
-      rushMove.details.moveDebugStr = " No playouts, rushed towards X. Distance: {0}".formatString(
-        fastestRoute.length - 2
-      );
-      for (let e of Object.values(EdgeType)) {
-        if (
-          fastestRoute[0]
-            .getNeighbours(e)
-            .map((x) => x.id)
-            .includes(rushMove.id)
-        ) {
-          rushMove.details.moveType = e;
-          break;
-        }
-      }
-      //Make sure the move is legal, if it's not use playouts
-      if (possibleRoots[0].state.playerToMove.tickets[rushMove.details.moveType] > 0) {
-        return rushMove;
-      }
-    }
+  //Check if detective is far enough, so they should just rush X
+  //Doesnt matter which member of roots we use, they only differ with X.location and we're using X:s last known location (cant use initialState)
+  const rushMove = checkRushing(possibleRoots[0], debugStrArgs);
+  if (rushMove != null) {
+    return rushMove;
   }
 
   console.log("Starting playouts...  timeout: ({0} s)".formatString(timeout / 1000));
@@ -88,10 +45,12 @@ export function monteCarloSearch(
       possibleRoots.forEach((r) => r.playout());
     }
   }
+  console.log("Playouts finished!");
+
   const combinedRoots = new treeConstructor(possibleRoots[0].state);
   debugStrArgs.combinedRoots = combinedRoots;
 
-  //Combine info from the used possible roots
+  //Combine info from the used possible roots. The order of getChildren is the same for all roots
   for (let i = 0; i < combinedRoots.getChildren().length; i++) {
     possibleRoots.forEach((r) => {
       combinedRoots.visits += r.visits;
@@ -100,8 +59,6 @@ export function monteCarloSearch(
       combinedRoots.getChildren()[i].wins += r.getChildren()[i].wins;
     });
   }
-
-  console.log("Playouts finished!");
 
   let bestTree = combinedRoots.getBestMove();
   const temp = GameTree.getChosenMoveFromTree(combinedRoots, bestTree.state);
@@ -115,11 +72,16 @@ export function monteCarloSearch(
   return bestMove;
 }
 
+/**
+ * Construct a debug string for the made playouts, based on collected args
+ * @param  {{combinedRoots:GameTree; bestTree:GameTree;possibleRoots:GameTree[]; fastestRoute:GraphNode[]; initialState:GameState;}} args
+ * @returns string
+ */
 function getDebugStr(args: {
   combinedRoots: GameTree;
   bestTree: GameTree;
-  possibleRoots;
-  fastestRoute;
+  possibleRoots: GameTree[];
+  fastestRoute: GraphNode[];
   initialState: GameState;
 }): string {
   var str = " Playouts: {0}, using {1} possible root(s).".formatString(
@@ -153,4 +115,77 @@ function getDebugStr(args: {
       break;
   }
   return str;
+}
+/**
+ * Check if the current player to move should simply rush towards X.
+ *
+ * Return null, if route would be too long (or the current player is X)
+ *
+ * The fastest route willl be set to fastestRoute on the given second parameter object
+ * @param  {GameTree} root
+ * @param  {} debugStrArgs
+ * @returns GraphNode
+ */
+function checkRushing(root: GameTree, debugStrArgs): GraphNode | null {
+  if (Detective.isDetective(root.state.playerToMove)) {
+    const fastestRoute = GameTree.gameMap.findShortestPath(
+      root.state.X.locationKnownToDetectives.id,
+      root.state.playerToMove.location.id,
+      root.state.detectives.map((d) => d.id)
+    );
+    debugStrArgs.fastestRoute = fastestRoute;
+
+    //Check if the fastest route is fast enough, and that the move is legal
+    if (fastestRoute.length - 1 > maxDistanceBeforeRushing) {
+      const rushMove = fastestRoute[fastestRoute.length - 2];
+
+      rushMove.details.moveDebugStr = " No playouts, rushed towards X. Distance: {0}".formatString(
+        fastestRoute.length - 2
+      );
+      //Determine the movetype used by the rush move
+      for (let e of Object.values(EdgeType)) {
+        if (
+          fastestRoute[0]
+            .getNeighbours(e)
+            .map((x) => x.id)
+            .includes(rushMove.id)
+        ) {
+          rushMove.details.moveType = e;
+          break;
+        }
+      }
+      //Make sure the move is legal, if it's not use playouts
+      if (root.state.playerToMove.tickets[rushMove.details.moveType] > 0) {
+        return rushMove;
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Find all possible roots for the initialState (locations X could be, in case the player to move is a detective)
+ * @param  {TreeConstructor} treeConstructor
+ * @param  {GameState} initialState
+ * @param  {number} explorationParam?
+ * @returns {GameTree{}}
+ */
+function getPossibleRoots(treeConstructor: TreeConstructor, initialState: GameState, explorationParam?: number) {
+  var possibleRoots: GameTree[] = [];
+  if (Detective.isDetective(initialState.playerToMove)) {
+    for (let xLoc of GameTree.findPossibleXLocations(initialState, initialState.X.movesSinceReveal)) {
+      let state = GameTree.cloneGameState(initialState);
+      state.X.location = xLoc;
+      if (MisterX.isMisterX(state.playerToMove)) {
+        state.playerToMove.location = xLoc;
+      }
+      possibleRoots.push(new treeConstructor(state, explorationParam));
+    }
+  } else {
+    possibleRoots = [new treeConstructor(GameTree.cloneGameState(initialState), explorationParam)];
+  }
+  if (explorationParam) {
+    console.log("Using exploration param: " + possibleRoots[0]?.exploitationParameter);
+  }
+  return possibleRoots;
 }

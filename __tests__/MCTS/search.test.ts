@@ -129,6 +129,7 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
     }
     const [best, _] = GameTree.getChosenMoveFromTree(tree, tree.getBestMove().state);
 
+    //Swap the player to move
     tree.state.playerToMove = tree.state.detectives[tree.state.detectives.length - 1];
     expect(tree.state.playerToMove.id).not.toEqual(1);
 
@@ -137,7 +138,7 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
     expect(best.id).not.toEqual(bestAfterSwap.id);
   });
 
-  test("ExploitationParameter param (for explorative)", () => {
+  test("ExploitationParameter param is passed to children (only for explorative)", () => {
     if (tree instanceof ExplorativeSearchTree) {
       tree.exploitationParameter = 2;
       for (let c of tree.getChildren()) {
@@ -146,6 +147,10 @@ describe.each(tests)("Test MCTS: (%s)", (name, treeConstructor) => {
           expect(c2.exploitationParameter).toEqual(2);
           for (let c3 of c2.getChildren()) {
             expect(c3.exploitationParameter).toEqual(2);
+            c3.exploitationParameter = 3;
+            for (let c4 of c3.getChildren()) {
+              expect(c4.exploitationParameter).toEqual(3);
+            }
           }
         }
       }

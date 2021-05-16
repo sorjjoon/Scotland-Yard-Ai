@@ -38,17 +38,22 @@ export class ExplorativeSearchTree extends GameTree {
 
   protected selection() {
     var XWins;
+
     if (this.isLeaf()) {
       if (this.getWinner() !== null) {
+        //Means playouts were started at node that one side had won
+        //rollout() will handle checking which side won
         XWins = this.rollout();
       } else {
-        //Pick an unvisited child AT RANDOM
+        //We are not an end state, but we still have unvisited children, so UCT can't be calculated
+        //rollout on a random unvisited child
         XWins = this.getChildren()
           .filter((x) => x.visits == 0)
           .getRandom()
           .rollout();
       }
     } else {
+      //We have visited all our children at least once. Pick the child with the highest UCT to visit
       const comparator = (a: ExplorativeSearchTree, b) => {
         return a.UCT(this.visits, this.state.playerToMove.role) - b.UCT(this.visits, this.state.playerToMove.role);
       };
@@ -58,19 +63,22 @@ export class ExplorativeSearchTree extends GameTree {
     return this.propogate(XWins);
   }
   /**
-   * Returns the numerical value for Upper Confidence Bound 1 applied to trees) for this node.
+   * Returns the numerical value for Upper Confidence Bound (applied to trees) for this node.
    *
    * @param  {number} parentVisits
    * @returns {number}
    */
   private UCT(parentVisits: number, parentRole: Role): number {
     var winPre = this.wins / this.visits;
+    //Flipping win precentage, in case the player to move has a diffrent role than the parent (for example, player to move was X, but now is a detective)
     if (this.state.playerToMove.role !== parentRole) winPre = 1 - winPre;
     return winPre + this.exploitationParameter * (Math.log(parentVisits) / this.visits);
   }
 
   public generateChildren() {
     const res = super.generateChildren();
+    //Generate children uses doesn't pass parameter to the constructor it uses,
+    //need to set the exploration parameter afterwards, to make sure it's passed correctly to child states
     res.forEach((x) => (x.exploitationParameter = this.exploitationParameter));
     return res;
   }

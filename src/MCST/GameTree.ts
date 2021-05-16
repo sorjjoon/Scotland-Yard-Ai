@@ -24,6 +24,7 @@ export class GameTree {
   exploitationParameter?: number;
   /**
    * Passed state properties must be proper Domain objects (not parsed from JSON)
+   *
    * Pass the state to cloneGameState first otherwise
    * @param  {GameState} state
    */
@@ -44,11 +45,26 @@ export class GameTree {
     if (this.state.detectives.map((d) => d.location.id).includes(this.state.X.location.id)) {
       return Role.DETECTIVE;
     }
-    if (this.state.turnCounter > gameDuration) return Role.X;
+    if (this.state.turnCounter >= gameDuration) return Role.X;
     return null;
   }
   /**
    * Find all possible game states from this position in one move
+   *
+   * The given children will ALWAYS be in the follwing order
+   *
+   * Taxi moves (if legal)
+   *
+   * Bus moves (if legal)
+   *
+   * Metro moves (if legal)
+   *
+   * Ordered by node id (ascending)
+   *
+   * If the player to move has no legal moves (detective ran out of tickets)
+   *
+   * A list with one elemnent is returned, player to move has changed but no move was made
+   *
    * @returns { readonly GameTree[]} children
    */
   public getChildren(): readonly GameTree[] {
@@ -80,8 +96,7 @@ export class GameTree {
     } else {
       comparator = simpleComparator;
     }
-    let bestTree = this.children.getMax(comparator);
-    return bestTree;
+    return this.children.getMax(comparator);
   }
   /**
    * Selection part of the MCTS search.
@@ -91,7 +106,7 @@ export class GameTree {
     throw Error("not implemented");
   }
   /**
-   * Pick random children, until an endstate is reached
+   * Pick random children, until an end state is reached
    *
    * Returns true if x won this playout
    * @returns {boolean} Xwins
@@ -107,6 +122,7 @@ export class GameTree {
         break;
       default:
         XWins = this.getChildren().getRandom().rollout();
+        break;
     }
     return this.propogate(XWins);
   }
@@ -141,7 +157,7 @@ export class GameTree {
   /**
    * Generate all possible child states reachable from this state.
    *
-   * If called by a derived class, will use the overloaded constructor instead of the GameTree one (and children will not be typeof GameTree)
+   * When called by a derived class, will use the overloaded constructor instead of the GameTree one (children will never be typeof GameTree)
    * @returns {GameTree}
    */
   public generateChildren() {
@@ -264,6 +280,8 @@ export class GameTree {
    * Checks that the provided moves are correct (contained in d1Moves if detective 1 moved etc.)
    *
    * Returns null in case the provided move was not found
+   *
+   * moveType will be undefined if no ticketed move was used (detective ran out of tickets and had to pass)
    * @param  {GameTree} inital
    * @param  {GameState} newState
    * @returns {[GraphNode, EdgeType]} [move, moveType]
@@ -288,10 +306,11 @@ export class GameTree {
     }
     return [GameTree.gameMap.getNode(moveId), moveType];
   }
+
   /**
    * Find all possible X locations from the starting state, with the moves given
    *
-   * Do not pass a value for thr "index" parameter
+   * Do not pass a value for the "index" parameter
    * @param {GameState} initalState X.locationKnownToDetectives needs to be set correctly.
    * @param {EdgeType[]} moves
    * @param {number} index Used to track recursion depth, do not pass a value for this
@@ -300,9 +319,18 @@ export class GameTree {
   public static findPossibleXLocations(initalState: GameState, moves: EdgeType[], index = 0): GraphNode[] {
     var res: GraphNode[] = [];
     if (moves.length == index) {
+      // The end of recursion, if index was allowed to grow this large, means this move chain is valid
+      // initalState.X.locationKnownToDetectives ?? initalState.X.location INSTEAD OF initalState.X.locationKnownToDetectives
+      //  locationKnownToDetectives CAN be null in rare cases, mainly when finding the first move of the game for X
+      // (locationKnown will be set AFTER the move, and will non null afterwards)
+      // This function will update locationKnownToDetectives as needed, it will not touch X.location
+      // X.location will be returned ONLY IF WE ARE PASSED AN EMPTY MOVES ARRAY, AND INDEX 0
+
       return [initalState.X.locationKnownToDetectives ?? initalState.X.location];
     }
+    //moves contains the moves made, index tracks recursion depth, moveType will be the
     const moveType = moves[index];
+    // will throw an error, if locationKnownToDetectives is null otherwise (as it should)
     let children = initalState.X.locationKnownToDetectives.getNeighbours(moveType);
 
     for (let childMove of children) {
@@ -316,6 +344,7 @@ export class GameTree {
         )
       );
     }
+
     //remove duplicates
     res.sort((a, b) => a.id - b.id);
     return res.filter((item, i, arr) => !i || item.id != arr[i - 1].id);

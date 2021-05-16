@@ -64,7 +64,6 @@ export async function startGame() {
         if (varyParam == "D") {
           window.detectiveExplorationParam = candidates[i];
         } else if (varyParam == "X") {
-          candidates = generateCandidates(window.misterXExplorationParam, candidateCount);
           window.misterXExplorationParam = candidates[i];
         }
         let dWinsThisRound = 0;
@@ -107,7 +106,6 @@ export async function startGame() {
         console.log("Updating exploration param, new param (for detectives): " + window.detectiveExplorationParam);
       } else if (varyParam == "X") {
         let indexes = getAllMaxIndex(results, (a, b) => b - a);
-
         console.log("Best candidates (new will be avg from these)");
         let bestCandidates = candidates.filter((_, i) => indexes.includes(i));
         console.log(String(bestCandidates));

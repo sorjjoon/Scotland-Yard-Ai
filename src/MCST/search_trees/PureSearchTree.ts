@@ -10,12 +10,11 @@ export class PureSearchTree extends GameTree {
    * @returns {GraphNode}
    */
   public getBestMove(): GameTree {
-    let bestTree = this.children.getMax(
+    return this.children.getMax(
       this.getFlippedComparator((a, b) => {
         return a.wins / a.visits - b.wins / b.visits;
       })
     );
-    return bestTree;
   }
   /**
    * Find all possible game states from this position in one move
@@ -30,6 +29,8 @@ export class PureSearchTree extends GameTree {
     var XWins;
     if (this.isLeaf()) {
       if (this.getWinner() !== null) {
+        //Means playouts were started at node that one side had won
+        //rollout() will handle checking which side won
         XWins = this.rollout();
       } else {
         //Pick an unvisited child node AT RANDOM
